@@ -10,7 +10,8 @@ import Testimonials from "@/components/sections/Testimonials";
 import Appointment from "@/components/sections/Appointment";
 import Insurance from "@/components/sections/Insurance";
 import FAQ from "@/components/sections/FAQ";
-import Contact, { Footer } from "@/components/sections/Contact";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
 import { WhatsAppButton, ScrollToTop } from "@/components/sections/FloatingButtons";
 
 export default function Home() {

@@ -1,110 +1,69 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
-import TiltCard from "@/components/ui/TiltCard";
 import { SplitText } from "@/components/ui/TextReveal";
 import { services } from "@/lib/data";
 import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function Services() {
   const { t } = useLang();
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <section id="services" className="section-padding bg-white dark:bg-[#080d1a] relative overflow-hidden mesh-bg">
+    <section id="services" className="section-padding relative overflow-hidden">
+      <div className="absolute inset-0 mesh-bg" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1px] bg-gradient-to-r from-transparent via-[#C9A96E]/20 to-transparent" />
+
       <div className="max-w-[1400px] mx-auto relative z-10">
         <ScrollReveal>
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          <div className="text-center max-w-3xl mx-auto mb-20 md:mb-24">
+            <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-[#C9A96E]/20 bg-[#C9A96E]/[0.05] text-[#C9A96E] text-[12px] font-semibold mb-6 tracking-[3px] uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] animate-pulse" />
               {t.services.badge}
             </span>
             <SplitText
               text={t.services.title1}
               tag="h2"
-              className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight"
+              className="text-[clamp(2rem,4vw,3.5rem)] font-bold font-[family-name:var(--font-heading)] text-white leading-tight tracking-[-0.02em]"
             />
             <SplitText
               text={t.services.title2}
               tag="h2"
-              className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1"
+              className="text-[clamp(2rem,4vw,3.5rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient-gold mt-1 tracking-[-0.02em]"
               delay={0.15}
             />
-            <p className="text-[16px] text-text-secondary dark:text-slate-400 mt-6 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-[16px] text-[#888888] mt-8 leading-relaxed max-w-2xl mx-auto">
               {t.services.description}
             </p>
           </div>
         </ScrollReveal>
 
-        <StaggerChildren stagger={0.06}>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {services.map((service, i) => (
-              <StaggerItem key={service.title}>
-                <TiltCard glareColor={`${service.color}10`} maxTilt={6} scale={1.03}>
-                  <div
-                    className="h-full rounded-3xl p-6 transition-all duration-500 group cursor-pointer border border-transparent hover:border-primary/[0.08] relative overflow-hidden"
-                    style={{ background: "var(--card-bg)", backdropFilter: "blur(20px)" }}
-                    onMouseEnter={() => setHoveredIndex(i)}
-                    onMouseLeave={() => setHoveredIndex(null)}
+        <StaggerChildren stagger={0.08}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <StaggerItem key={service.title}>
+                  <motion.div
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="h-full glass rounded-3xl p-8 gold-border-glow relative overflow-hidden group cursor-pointer"
                   >
-                    <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                      style={{
-                        background: `radial-gradient(circle at 50% 0%, ${service.color}08, transparent 70%)`,
-                      }}
-                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#C9A96E]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                     <div className="relative z-10">
-                      <div
-                        className="w-13 h-13 rounded-2xl flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
-                        style={{ background: `${service.color}10` }}
-                      >
-                        <service.icon
-                          className="w-6 h-6 transition-colors duration-300"
-                          style={{ color: service.color }}
-                        />
+                      <div className="w-16 h-16 rounded-2xl bg-[#C9A96E]/10 flex items-center justify-center mb-7 group-hover:bg-[#C9A96E]/15 transition-all duration-700 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#C9A96E]/10">
+                        <Icon className="w-7 h-7 text-[#C9A96E]" />
                       </div>
 
-                      <h3 className="text-[17px] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-2.5 group-hover:text-primary dark:group-hover:text-primary transition-colors duration-300">
+                      <h3 className="font-bold font-[family-name:var(--font-heading)] text-white mb-3 text-[17px]">
                         {service.title}
                       </h3>
-
-                      <p className="text-[13px] text-text-secondary dark:text-slate-400 leading-relaxed mb-5 line-clamp-3">
-                        {service.description}
-                      </p>
-
-                      <div className="flex items-center gap-2 text-[13px] font-semibold text-primary group-hover:gap-3 transition-all duration-500">
-                        {t.services.learnMore}
-                        <motion.div
-                          animate={hoveredIndex === i ? { x: 3, y: -3 } : { x: 0, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <ArrowUpRight className="w-4 h-4" />
-                        </motion.div>
-                      </div>
+                      <p className="text-[13px] text-[#777] leading-relaxed">{service.description}</p>
                     </div>
-
-                    <AnimatePresence>
-                      {hoveredIndex === i && (
-                        <motion.div
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                          className="absolute top-4 right-4 w-8 h-8 rounded-xl flex items-center justify-center z-10"
-                          style={{ background: `${service.color}12` }}
-                        >
-                          <service.icon className="w-4 h-4" style={{ color: service.color }} />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </TiltCard>
-              </StaggerItem>
-            ))}
+                  </motion.div>
+                </StaggerItem>
+              );
+            })}
           </div>
         </StaggerChildren>
       </div>

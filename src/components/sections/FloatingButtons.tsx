@@ -16,23 +16,23 @@ export function WhatsAppButton() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-[72px] right-0 w-[300px] glass rounded-[1.5rem] p-5 mb-2"
-            style={{ boxShadow: "0 25px 60px -15px rgba(0,0,0,0.15)" }}
+            className="absolute bottom-[72px] right-0 w-[300px] glass rounded-[1.5rem] p-5 mb-2 gold-border-glow"
+            style={{ boxShadow: "0 25px 60px -15px rgba(0,0,0,0.4)" }}
           >
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white text-[15px]">
+              <h4 className="font-bold font-[family-name:var(--font-heading)] text-white text-[15px]">
                 Chat with us
               </h4>
               <motion.button
                 onClick={() => setIsOpen(false)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-7 h-7 rounded-lg bg-primary/[0.06] flex items-center justify-center hover:bg-primary/10 transition-colors"
+                className="w-7 h-7 rounded-lg bg-[#C9A96E]/10 flex items-center justify-center hover:bg-[#C9A96E]/15 transition-colors"
               >
-                <X className="w-3.5 h-3.5 text-primary" />
+                <X className="w-3.5 h-3.5 text-[#C9A96E]" />
               </motion.button>
             </div>
-            <p className="text-[13px] text-text-secondary dark:text-slate-400 mb-4 leading-relaxed">
+            <p className="text-[13px] text-[#888] mb-4 leading-relaxed">
               Hi there! How can we help you today?
             </p>
             <motion.a
@@ -93,8 +93,8 @@ export function ScrollToTop() {
           whileHover={{ scale: 1.08, y: -3 }}
           whileTap={{ scale: 0.92 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center"
-          style={{ boxShadow: "0 8px 30px -4px rgba(14,165,233,0.35)" }}
+          className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-[#C9A96E] text-[#0A0A0A] flex items-center justify-center"
+          style={{ boxShadow: "0 8px 30px -4px rgba(201,169,110,0.4)" }}
         >
           <ArrowUp className="w-5 h-5" />
         </motion.button>

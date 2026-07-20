@@ -1,226 +1,130 @@
 "use client";
 
-import Image from "next/image";
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, MessageCircle, ChevronRight, Send } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
-import { socialLinks } from "@/lib/data";
-import { FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon, YoutubeIcon } from "@/components/ui/SocialIcons";
 import { useLang } from "@/components/ui/LanguageProvider";
-
-const quickLinks = ["Home", "About Us", "Services", "Doctors", "Gallery", "Testimonials", "Blog", "Contact"];
-const serviceLinks = ["Dental Implants", "Hollywood Smile", "Veneers", "Teeth Whitening", "Orthodontics", "Root Canal"];
 
 export default function Contact() {
   const { t } = useLang();
-
-  const contactInfo = [
-    { icon: MapPin, title: t.contact.visit, lines: t.contact.address.split("\n"), action: { label: t.contact.directions, href: "https://maps.google.com" } },
-    { icon: Phone, title: t.contact.call, lines: [t.contact.phone1, t.contact.phone2], action: { label: t.contact.callNow, href: "tel:+15550123456" } },
-    { icon: Mail, title: t.contact.email, lines: [t.contact.emailAddr, t.contact.emailAddr2], action: { label: t.contact.sendEmail, href: "mailto:hello@elitedental.com" } },
-    { icon: Clock, title: t.contact.hours, lines: t.contact.hoursDetail.split("\n"), action: null },
-  ];
   return (
-    <section id="contact" className="section-padding bg-white dark:bg-[#080d1a] relative overflow-hidden mesh-bg">
+    <section id="contact" className="section-padding relative overflow-hidden">
+      <div className="absolute inset-0 mesh-bg" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1px] bg-gradient-to-r from-transparent via-[#C9A96E]/20 to-transparent" />
+
       <div className="max-w-[1400px] mx-auto relative z-10">
         <ScrollReveal>
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          <div className="text-center max-w-3xl mx-auto mb-20 md:mb-24">
+            <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-[#C9A96E]/20 bg-[#C9A96E]/[0.05] text-[#C9A96E] text-[12px] font-semibold mb-6 tracking-[3px] uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] animate-pulse" />
               {t.contact.badge}
             </span>
-            <SplitText text={t.contact.title1} tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight" />
-            <SplitText text={t.contact.title2} tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1" delay={0.15} />
+            <SplitText
+              text={t.contact.title1}
+              tag="h2"
+              className="text-[clamp(2rem,4vw,3.5rem)] font-bold font-[family-name:var(--font-heading)] text-white leading-tight tracking-[-0.02em]"
+            />
+            <SplitText
+              text={t.contact.title2}
+              tag="h2"
+              className="text-[clamp(2rem,4vw,3.5rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient-gold mt-1 tracking-[-0.02em]"
+              delay={0.15}
+            />
           </div>
         </ScrollReveal>
 
-        <StaggerChildren stagger={0.08}>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
-            {contactInfo.map((info) => (
-              <StaggerItem key={info.title}>
-                <div className="glass rounded-[1.5rem] p-6 group hover:shadow-lg transition-all duration-500 h-full">
-                  <div className="w-12 h-12 rounded-xl bg-primary/[0.06] flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors duration-500">
-                    <info.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className="font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-3 text-[16px]">
-                    {info.title}
-                  </h3>
-                  <div className="space-y-1 mb-4">
-                    {info.lines.map((line) => (
-                      <p key={line} className="text-[13px] text-text-secondary dark:text-slate-400 leading-relaxed">{line}</p>
-                    ))}
-                  </div>
-                  {info.action && (
-                    <a href={info.action.href} target="_blank" rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[13px] font-semibold text-primary hover:gap-2 transition-all duration-300">
-                      {info.action.label}
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-                </div>
-              </StaggerItem>
-            ))}
-          </div>
-        </StaggerChildren>
-
-        <ScrollReveal>
-          <div className="rounded-[2rem] overflow-hidden premium-shadow-xl mb-0">
-            <div className="aspect-[21/9] relative">
-              <Image
-                src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1600&q=80&auto=format&fit=crop"
-                alt="Beverly Hills dental clinic location"
-                fill
-                className="object-cover"
-                sizes="100vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              <div className="absolute bottom-6 left-6 md:left-10 flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="text-white font-semibold text-[15px]">{t.contact.address.split("\n")[0]}</p>
-                  <p className="text-white/60 text-[13px]">{t.contact.address.split("\n")[1]}</p>
-                </div>
-              </div>
+        <div className="grid lg:grid-cols-2 gap-12">
+          <ScrollReveal direction="left" distance={50}>
+            <div className="space-y-6">
+              <StaggerChildren stagger={0.1}>
+                {[
+                  { icon: MapPin, title: t.contact.visit, lines: t.contact.address.split("\n"), action: t.contact.directions },
+                  { icon: Phone, title: t.contact.call, lines: [t.contact.phone1, t.contact.phone2], action: t.contact.callNow },
+                  { icon: Mail, title: t.contact.email, lines: [t.contact.emailAddr, t.contact.emailAddr2], action: t.contact.sendEmail },
+                  { icon: Clock, title: t.contact.hours, lines: t.contact.hoursDetail.split("\n") },
+                ].map((info) => (
+                  <StaggerItem key={info.title}>
+                    <div className="flex gap-5 p-6 glass rounded-2xl gold-border-glow hover:bg-[#C9A96E]/[0.03] transition-all duration-700 group">
+                      <div className="w-14 h-14 rounded-xl bg-[#C9A96E]/10 flex items-center justify-center shrink-0 group-hover:bg-[#C9A96E]/15 transition-colors">
+                        <info.icon className="w-6 h-6 text-[#C9A96E]" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold font-[family-name:var(--font-heading)] text-white text-[15px] mb-1">
+                          {info.title}
+                        </h4>
+                        {info.lines.map((line, j) => (
+                          <p key={j} className="text-[#888] text-[14px] leading-relaxed">{line}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </StaggerChildren>
             </div>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-  );
-}
+          </ScrollReveal>
 
-export function Footer() {
-  const { t } = useLang();
-  return (
-    <footer className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #080d1a, #020617)" }}>
-      <div className="absolute inset-0 hero-grid opacity-20" />
-      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
-
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="section-padding pb-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-            <ScrollReveal delay={0}>
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-11 h-11 rounded-[14px] bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
-                    <span className="text-white font-bold text-lg font-[family-name:var(--font-heading)]">E</span>
+          <ScrollReveal direction="right" distance={50}>
+            <div className="glass rounded-3xl p-8 md:p-10 gold-border-glow">
+              <h3 className="text-[22px] font-bold font-[family-name:var(--font-heading)] text-white mb-8">
+                {t.contact.badge}
+              </h3>
+              <form className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-[12px] text-[#888] mb-2 tracking-wide uppercase">Name</label>
+                    <input
+                      type="text"
+                      className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-[#C9A96E]/10 text-white placeholder-[#555] focus:outline-none focus:border-[#C9A96E]/30 transition-colors text-[14px]"
+                      placeholder="Your name"
+                    />
                   </div>
                   <div>
-                    <span className="text-lg font-bold font-[family-name:var(--font-heading)] leading-none block text-white">Elite</span>
-                    <span className="text-[9px] tracking-[0.25em] text-primary font-semibold uppercase">Dental Clinic</span>
+                    <label className="block text-[12px] text-[#888] mb-2 tracking-wide uppercase">Email</label>
+                    <input
+                      type="email"
+                      className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-[#C9A96E]/10 text-white placeholder-[#555] focus:outline-none focus:border-[#C9A96E]/30 transition-colors text-[14px]"
+                      placeholder="Your email"
+                    />
                   </div>
                 </div>
-                <p className="text-slate-500 text-[14px] leading-relaxed mb-6">
-                  {t.footer.desc}
-                </p>
-                <div className="flex gap-2.5">
-                  {[
-                    { icon: FacebookIcon, href: socialLinks.facebook },
-                    { icon: InstagramIcon, href: socialLinks.instagram },
-                    { icon: TwitterIcon, href: socialLinks.twitter },
-                    { icon: LinkedinIcon, href: socialLinks.linkedin },
-                    { icon: YoutubeIcon, href: socialLinks.youtube },
-                  ].map((social) => (
-                    <motion.a
-                      key={social.href}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      className="w-10 h-10 rounded-xl bg-white/[0.04] flex items-center justify-center hover:bg-primary/15 hover:text-primary text-slate-500 transition-colors duration-300"
-                    >
-                      <social.icon className="w-4 h-4" />
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.1}>
-              <div>
-                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">{t.footer.quickLinks}</h3>
-                <ul className="space-y-2.5">
-                  {quickLinks.map((link) => (
-                    <li key={link}>
-                      <a href={`#${link.toLowerCase().replace(" ", "")}`} className="text-slate-500 text-[14px] hover:text-primary transition-colors duration-300 inline-flex items-center gap-2 hover:gap-3">
-                        <ChevronRight className="w-3 h-3" />
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.2}>
-              <div>
-                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">{t.footer.ourServices}</h3>
-                <ul className="space-y-2.5">
-                  {serviceLinks.map((link) => (
-                    <li key={link}>
-                      <a href="#services" className="text-slate-500 text-[14px] hover:text-primary transition-colors duration-300 inline-flex items-center gap-2 hover:gap-3">
-                        <ChevronRight className="w-3 h-3" />
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.3}>
-              <div>
-                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">{t.footer.newsletter}</h3>
-                <p className="text-slate-500 text-[14px] mb-4 leading-relaxed">
-                  {t.footer.newsletterDesc}
-                </p>
-                <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+                <div>
+                  <label className="block text-[12px] text-[#888] mb-2 tracking-wide uppercase">Phone</label>
                   <input
-                    type="email"
-                    placeholder={t.footer.emailPlaceholder}
-                    className="flex-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.06] text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/20 text-[14px] transition-all duration-300"
+                    type="tel"
+                    className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-[#C9A96E]/10 text-white placeholder-[#555] focus:outline-none focus:border-[#C9A96E]/30 transition-colors text-[14px]"
+                    placeholder="Your phone number"
                   />
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center hover:bg-primary-dark transition-colors shrink-0"
-                  >
-                    <Send className="w-4 h-4 text-white" />
-                  </motion.button>
-                </form>
-                <div className="mt-5 flex items-center gap-2">
-                  <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#25D366]/[0.08] text-[#25D366] text-[13px] font-medium hover:bg-[#25D366]/15 transition-colors">
-                    <MessageCircle className="w-3.5 h-3.5" />
-                    {t.footer.whatsapp}
-                  </a>
-                  <a href="tel:+15550123456"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/[0.06] text-primary text-[13px] font-medium hover:bg-primary/10 transition-colors">
-                    <Phone className="w-3.5 h-3.5" />
-                    {t.footer.callNow}
-                  </a>
                 </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
+                <div>
+                  <label className="block text-[12px] text-[#888] mb-2 tracking-wide uppercase">Message</label>
+                  <textarea
+                    rows={4}
+                    className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-[#C9A96E]/10 text-white placeholder-[#555] focus:outline-none focus:border-[#C9A96E]/30 transition-colors resize-none text-[14px]"
+                    placeholder="How can we help you?"
+                  />
+                </div>
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="btn-premium w-full justify-center"
+                >
+                  <Send className="w-4 h-4" />
+                  {t.contact.sendEmail}
+                </motion.button>
+              </form>
 
-        <div className="border-t border-white/[0.04] py-6">
-          <div className="max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-slate-600 text-[13px]">
-              &copy; {new Date().getFullYear()} Elite Dental Clinic. {t.footer.rights}
-            </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-slate-600 text-[13px] hover:text-primary transition-colors">{t.footer.privacy}</a>
-              <a href="#" className="text-slate-600 text-[13px] hover:text-primary transition-colors">{t.footer.terms}</a>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#" className="flex items-center gap-2 px-4 py-2.5 rounded-xl glass gold-border-glow text-[#C9A96E] text-[12px] font-medium hover:bg-[#C9A96E]/[0.05] transition-colors">
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp
+                </a>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
-    </footer>
+    </section>
   );
 }
