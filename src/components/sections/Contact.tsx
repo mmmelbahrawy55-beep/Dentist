@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, MessageCircle, ChevronRight, Send } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
@@ -63,12 +64,22 @@ export default function Contact() {
 
         <ScrollReveal>
           <div className="rounded-[2rem] overflow-hidden premium-shadow-xl mb-0">
-            <div className="aspect-[21/9] bg-gradient-to-br from-primary/[0.06] to-secondary/[0.04] relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-16 h-16 text-primary/20 mx-auto mb-3" />
-                  <p className="text-text-secondary dark:text-slate-400 font-medium">Interactive Google Map</p>
-                  <p className="text-text-light dark:text-slate-500 text-[13px] mt-1">123 Dental Avenue, Beverly Hills, CA 90210</p>
+            <div className="aspect-[21/9] relative">
+              <Image
+                src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1600&q=80&auto=format&fit=crop"
+                alt="Beverly Hills dental clinic location"
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="absolute bottom-6 left-6 md:left-10 flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-[15px]">123 Dental Avenue, Suite 500</p>
+                  <p className="text-white/60 text-[13px]">Beverly Hills, CA 90210</p>
                 </div>
               </div>
             </div>

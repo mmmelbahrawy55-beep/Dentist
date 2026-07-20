@@ -1,12 +1,20 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Calendar, Clock, User, ArrowUpRight } from "lucide-react";
+import { Calendar, Clock, ArrowUpRight } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import TiltCard from "@/components/ui/TiltCard";
 import { SplitText } from "@/components/ui/TextReveal";
 import { LinkedinIcon, TwitterIcon } from "@/components/ui/SocialIcons";
 import { doctors } from "@/lib/data";
+
+const doctorImages = [
+  "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=600&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80&auto=format&fit=crop",
+];
 
 export default function Doctors() {
   return (
@@ -38,18 +46,22 @@ export default function Doctors() {
 
         <StaggerChildren stagger={0.12}>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {doctors.map((doctor) => (
+            {doctors.map((doctor, i) => (
               <StaggerItem key={doctor.name}>
                 <TiltCard glareColor="rgba(14,165,233,0.06)" maxTilt={8} scale={1.02}>
                   <div className="group">
                     <div className="relative mb-5">
                       <div className="absolute -inset-2 bg-gradient-to-r from-primary/15 to-secondary/15 rounded-[1.75rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
                       <div className="relative overflow-hidden rounded-[1.5rem] bg-white dark:bg-slate-800/80 transition-all duration-700 group-hover:shadow-xl">
-                        <div className="aspect-[3/4] bg-gradient-to-br from-primary/[0.08] via-secondary/[0.04] to-transparent flex items-center justify-center relative overflow-hidden">
-                          <User className="w-20 h-20 text-primary/15" />
-
+                        <div className="aspect-[3/4] relative">
+                          <Image
+                            src={doctorImages[i]}
+                            alt={`Portrait of ${doctor.name} - ${doctor.specialty}`}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
-
                           <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out">
                             <div className="flex gap-2">
                               <a href="#" className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center hover:bg-white/25 transition-colors">

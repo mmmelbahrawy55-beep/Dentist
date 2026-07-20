@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { CheckCircle, Award, Shield, Heart, Target, Eye } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import TiltCard from "@/components/ui/TiltCard";
-import { LineReveal, SplitText } from "@/components/ui/TextReveal";
+import { SplitText } from "@/components/ui/TextReveal";
 
 const features = [
   { icon: Shield, title: "Advanced Technology", desc: "Latest dental equipment and digital diagnostics" },
@@ -53,11 +54,15 @@ export default function About() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/15 to-secondary/15 rounded-[2.5rem] blur-2xl" />
               <div className="relative rounded-[2rem] overflow-hidden premium-shadow-xl">
-                <div className="aspect-video bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/5 flex items-center justify-center">
-                  <div className="text-center">
-                    <Eye className="w-20 h-20 text-primary/20 mx-auto mb-4" />
-                    <p className="text-text-secondary dark:text-slate-400 text-sm font-medium">Clinic Interior Image</p>
-                  </div>
+                <div className="aspect-video relative">
+                  <Image
+                    src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80&auto=format&fit=crop"
+                    alt="Modern dental clinic interior with advanced equipment"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
               </div>
             </div>
@@ -111,7 +116,7 @@ export default function About() {
               <StaggerItem key={feature.title}>
                 <TiltCard glareColor="rgba(14,165,233,0.06)" maxTilt={8} scale={1.03}>
                   <div className="h-full glass rounded-3xl p-7 text-center hover:shadow-lg dark:hover:shadow-primary/[0.05] transition-all duration-500 group">
-                    <div className="w-14 h-14 rounded-2xl bg-primary/[0.06] flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/10 transition-colors duration-500 group-hover:scale-110 transition-transform">
+                    <div className="w-14 h-14 rounded-2xl bg-primary/[0.06] flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/10 transition-all duration-500 group-hover:scale-110">
                       <feature.icon className="w-6 h-6 text-primary" />
                     </div>
                     <h3 className="font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-2 text-[16px]">

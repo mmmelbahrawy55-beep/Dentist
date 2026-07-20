@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, MessageCircle, Star, Shield, Award, Sparkles, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, MessageCircle, Star, Shield, Award, ChevronDown } from "lucide-react";
 import { SplitText } from "@/components/ui/TextReveal";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -37,12 +38,6 @@ export default function Hero() {
         <div className="absolute top-[-10%] right-[-5%] w-[700px] h-[700px] bg-primary/15 rounded-full blur-[120px] animate-blob" />
         <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-secondary/15 rounded-full blur-[120px] animate-blob" style={{ animationDelay: "3s" }} />
         <div className="absolute top-[40%] left-[30%] w-[400px] h-[400px] bg-accent/8 rounded-full blur-[100px] animate-blob" style={{ animationDelay: "5s" }} />
-
-        <div className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
       </motion.div>
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -186,10 +181,16 @@ export default function Hero() {
               >
                 <div className="absolute -inset-8 bg-gradient-to-r from-primary/25 to-secondary/25 rounded-[2.5rem] blur-3xl" />
                 <div className="relative rounded-[2rem] border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm overflow-hidden">
-                  <div className="aspect-[4/5] bg-gradient-to-br from-white/[0.08] to-white/[0.02] flex items-center justify-center">
-                    <svg className="w-28 h-28 text-white/10" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
+                  <div className="aspect-[4/5] relative">
+                    <Image
+                      src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80&auto=format&fit=crop"
+                      alt="Professional dentist providing premium dental care"
+                      fill
+                      className="object-cover"
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/60 via-transparent to-transparent" />
                   </div>
 
                   <motion.div

@@ -1,16 +1,41 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeftRight } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
 
 const cases = [
-  { before: "Smile Transformation", after: "Hollywood Smile", category: "Cosmetic" },
-  { before: "Missing Teeth", after: "Dental Implants", category: "Implants" },
-  { before: "Discolored Teeth", after: "Professional Whitening", category: "Whitening" },
-  { before: "Crooked Teeth", after: "Orthodontic Results", category: "Orthodontics" },
+  {
+    beforeImg: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1445527815219-ecbfec455d5c?w=800&q=80&auto=format&fit=crop",
+    before: "Dental Concern",
+    after: "Hollywood Smile",
+    category: "Cosmetic",
+  },
+  {
+    beforeImg: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80&auto=format&fit=crop",
+    before: "Missing Teeth",
+    after: "Dental Implants",
+    category: "Implants",
+  },
+  {
+    beforeImg: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=80&auto=format&fit=crop",
+    before: "Discolored Teeth",
+    after: "Professional Whitening",
+    category: "Whitening",
+  },
+  {
+    beforeImg: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1619353115193-3f4ef1e4f5a7?w=800&q=80&auto=format&fit=crop",
+    before: "Crooked Teeth",
+    after: "Orthodontic Results",
+    category: "Orthodontics",
+  },
 ];
 
 export default function Gallery() {
@@ -62,25 +87,29 @@ export default function Gallery() {
                   onMouseMove={(e) => handleMove(e.clientX, i)}
                   onTouchMove={(e) => handleMove(e.touches[0].clientX, i)}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-amber-50 dark:from-red-950/30 dark:to-amber-900/20 transition-all duration-700">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <p className="text-red-400/50 text-sm font-semibold">Before Treatment</p>
-                        <p className="text-red-500/30 text-xs mt-1">{item.before}</p>
-                      </div>
-                    </div>
+                  <div className="absolute inset-0">
+                    <Image
+                      src={item.beforeImg}
+                      alt={`Before: ${item.before}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-black/10" />
                   </div>
 
                   <div
-                    className="absolute inset-0 bg-gradient-to-br from-emerald-100 to-teal-50 dark:from-emerald-950/30 dark:to-teal-900/20"
+                    className="absolute inset-0"
                     style={{ clipPath: `inset(0 0 0 ${sliderPositions[i]}%)` }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <p className="text-emerald-400/50 text-sm font-semibold">After Treatment</p>
-                        <p className="text-emerald-500/30 text-xs mt-1">{item.after}</p>
-                      </div>
-                    </div>
+                    <Image
+                      src={item.afterImg}
+                      alt={`After: ${item.after}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-black/10" />
                   </div>
 
                   <div
@@ -97,10 +126,10 @@ export default function Gallery() {
                     </motion.div>
                   </div>
 
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/20 backdrop-blur-sm text-white text-[11px] font-semibold z-10 tracking-wide">
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-sm text-white text-[11px] font-semibold z-10 tracking-wide">
                     Before
                   </div>
-                  <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/20 backdrop-blur-sm text-white text-[11px] font-semibold z-10 tracking-wide">
+                  <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-sm text-white text-[11px] font-semibold z-10 tracking-wide">
                     After
                   </div>
                 </div>
