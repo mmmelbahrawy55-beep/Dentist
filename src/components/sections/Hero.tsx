@@ -184,7 +184,7 @@ export default function Hero() {
                 <div className="relative rounded-[2rem] border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm overflow-hidden">
                   <div className="aspect-[4/5] relative">
                     <Image
-                      src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80&auto=format&fit=crop"
+                      src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&q=80&auto=format&fit=crop"
                       alt="Professional dentist providing premium dental care"
                       fill
                       className="object-cover"
