@@ -6,8 +6,10 @@ import { Star, ChevronLeft, ChevronRight, Quote, User } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
 import { testimonials } from "@/lib/data";
+import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function Testimonials() {
+  const { t } = useLang();
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -45,21 +47,21 @@ export default function Testimonials() {
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] text-white/70 text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              Testimonials
+              {t.testimonials.badge}
             </span>
             <SplitText
-              text="What Our Patients"
+              text={t.testimonials.title1}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-white leading-tight"
             />
             <SplitText
-              text="Say About Us"
+              text={t.testimonials.title2}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1"
               delay={0.15}
             />
             <p className="text-[16px] text-white/45 mt-6 leading-relaxed max-w-2xl mx-auto">
-              Real stories from real patients who have experienced the Elite Dental difference.
+              {t.testimonials.description}
             </p>
           </div>
         </ScrollReveal>
@@ -149,7 +151,7 @@ export default function Testimonials() {
               <div className="w-px h-8 bg-white/10" />
               <div className="text-left">
                 <p className="text-white font-bold text-[18px]">4.9 / 5.0</p>
-                <p className="text-white/40 text-[13px]">Based on 1,500+ Google Reviews</p>
+                <p className="text-white/40 text-[13px]">{t.testimonials.rating}</p>
               </div>
             </div>
           </div>

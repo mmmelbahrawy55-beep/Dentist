@@ -1,0 +1,144 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "doctors": "Doctors",
+    "gallery": "Gallery",
+    "testimonials": "Testimonials",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "bookNow": "Book Now",
+    "bookAppointment": "Book Appointment"
+  },
+  "hero": {
+    "badge": "#1 Rated Dental Clinic",
+    "title1": "Your Perfect",
+    "title2": "Smile Awaits",
+    "subtitle": "Experience world-class dental care where cutting-edge technology meets luxury comfort. Our award-winning specialists craft smiles that change lives.",
+    "bookBtn": "Book Appointment",
+    "whatsappBtn": "WhatsApp Us",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "badge": "About Us",
+    "title1": "Where Excellence Meets",
+    "title2": "Compassionate Care",
+    "description": "For over two decades, Elite Dental Clinic has been the trusted destination for families seeking exceptional dental care in a luxurious, welcoming environment.",
+    "storyTitle": "Our Story",
+    "storyText1": "Founded in 2003, Elite Dental Clinic was born from a simple yet powerful vision: to redefine dental care by combining clinical excellence with an unparalleled patient experience.",
+    "storyText2": "Our vision is to be the global benchmark for dental excellence. Our mission is to transform lives through healthy, beautiful smiles — delivered with compassion, precision, and state-of-the-art technology.",
+    "vision": "Our Vision",
+    "visionText": "To be the global benchmark for dental excellence and patient care.",
+    "mission": "Our Mission",
+    "missionText": "Transforming lives through healthy, beautiful smiles with compassion and precision.",
+    "features": {
+      "tech": "Advanced Technology",
+      "techDesc": "Latest dental equipment and digital diagnostics",
+      "care": "Patient-First Care",
+      "careDesc": "Your comfort and health are our top priority",
+      "award": "Award-Winning Team",
+      "awardDesc": "Recognized excellence in dental care",
+      "precision": "Precision Results",
+      "precisionDesc": "Meticulous attention to every detail"
+    },
+    "certTitle": "Our Certifications & Accreditations"
+  },
+  "services": {
+    "badge": "Our Services",
+    "title1": "Comprehensive Dental",
+    "title2": "Services",
+    "description": "From routine check-ups to complete smile makeovers, we offer a full spectrum of dental services using the latest technology and techniques.",
+    "learnMore": "Learn More"
+  },
+  "doctors": {
+    "badge": "Our Team",
+    "title1": "Meet Our Expert",
+    "title2": "Specialists",
+    "description": "Our team of internationally trained, board-certified dental specialists brings decades of combined experience to deliver exceptional results.",
+    "bookBtn": "Book Appointment"
+  },
+  "gallery": {
+    "badge": "Results",
+    "title1": "Stunning",
+    "title2": "Transformations",
+    "description": "See the life-changing results our patients have achieved. Drag the slider to compare before and after.",
+    "before": "Before",
+    "after": "After"
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title1": "What Our Patients",
+    "title2": "Say About Us",
+    "description": "Real stories from real patients who have experienced the Elite Dental difference.",
+    "rating": "Based on 1,500+ Google Reviews"
+  },
+  "appointment": {
+    "badge": "Book Now",
+    "title1": "Schedule Your",
+    "title2": "Appointment",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "date": "Preferred Date",
+    "time": "Preferred Time",
+    "selectTime": "Select Time",
+    "doctor": "Doctor",
+    "anyDoctor": "Any Available Doctor",
+    "service": "Service",
+    "selectService": "Select Service",
+    "message": "Additional Message",
+    "messagePlaceholder": "Tell us about your dental concerns...",
+    "confirmBtn": "Confirm Appointment",
+    "successTitle": "Appointment Booked!",
+    "successText": "We'll confirm your appointment shortly via email and phone. Thank you for choosing Elite Dental!",
+    "bookAnother": "Book Another",
+    "contactInfo": "Contact Information",
+    "emergency": "Emergency",
+    "hotline": "24/7 Hotline",
+    "workingHours": "Working Hours",
+    "hours": "Mon-Fri: 8AM-6PM\nSat: 9AM-2PM"
+  },
+  "insurance": {
+    "badge": "Insurance",
+    "title1": "Trusted Insurance",
+    "title2": "Partners",
+    "description": "We work with most major insurance providers to make quality dental care accessible."
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title1": "Frequently Asked",
+    "title2": "Questions"
+  },
+  "contact": {
+    "badge": "Contact",
+    "title1": "Get In",
+    "title2": "Touch",
+    "visit": "Visit Us",
+    "call": "Call Us",
+    "email": "Email Us",
+    "hours": "Working Hours",
+    "directions": "Get Directions",
+    "callNow": "Call Now",
+    "sendEmail": "Send Email",
+    "address": "123 Dental Avenue, Suite 500\nBeverly Hills, CA 90210",
+    "phone1": "+1 (555) 012-3456",
+    "phone2": "+1 (555) 012-3457",
+    "emailAddr": "hello@elitedental.com",
+    "emailAddr2": "appointments@elitedental.com",
+    "hoursDetail": "Mon - Fri: 8:00 AM - 6:00 PM\nSaturday: 9:00 AM - 2:00 PM\nSunday: Emergency Only"
+  },
+  "footer": {
+    "desc": "Transforming smiles and changing lives through exceptional dental care since 2003.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Subscribe for dental tips, special offers, and clinic updates.",
+    "emailPlaceholder": "Your email",
+    "whatsapp": "WhatsApp",
+    "callNow": "Call Now",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}

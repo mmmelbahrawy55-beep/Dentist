@@ -6,8 +6,10 @@ import { Plus, Minus } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
 import { faqs } from "@/lib/data";
+import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function FAQ() {
+  const { t } = useLang();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -17,10 +19,10 @@ export default function FAQ() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              FAQ
+              {t.faq.badge}
             </span>
-            <SplitText text="Frequently Asked" tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight" />
-            <SplitText text="Questions" tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1" delay={0.15} />
+            <SplitText text={t.faq.title1} tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight" />
+            <SplitText text={t.faq.title2} tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1" delay={0.15} />
           </div>
         </ScrollReveal>
 

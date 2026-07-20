@@ -6,13 +6,7 @@ import { CheckCircle, Award, Shield, Heart, Target, Eye } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import TiltCard from "@/components/ui/TiltCard";
 import { SplitText } from "@/components/ui/TextReveal";
-
-const features = [
-  { icon: Shield, title: "Advanced Technology", desc: "Latest dental equipment and digital diagnostics" },
-  { icon: Heart, title: "Patient-First Care", desc: "Your comfort and health are our top priority" },
-  { icon: Award, title: "Award-Winning Team", desc: "Recognized excellence in dental care" },
-  { icon: Target, title: "Precision Results", desc: "Meticulous attention to every detail" },
-];
+import { useLang } from "@/components/ui/LanguageProvider";
 
 const certifications = [
   "American Dental Association (ADA)",
@@ -22,6 +16,7 @@ const certifications = [
 ];
 
 export default function About() {
+  const { t } = useLang();
   return (
     <section id="about" className="section-padding bg-surface dark:bg-surface-dark relative overflow-hidden mesh-bg">
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -29,22 +24,21 @@ export default function About() {
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              About Us
+              {t.about.badge}
             </span>
             <SplitText
-              text="Where Excellence Meets"
+              text={t.about.title1}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight"
             />
             <SplitText
-              text="Compassionate Care"
+              text={t.about.title2}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1"
               delay={0.2}
             />
             <p className="text-[16px] text-text-secondary dark:text-slate-400 mt-6 leading-relaxed max-w-2xl mx-auto">
-              For over two decades, Elite Dental Clinic has been the trusted destination for families seeking
-              exceptional dental care in a luxurious, welcoming environment.
+              {t.about.description}
             </p>
           </div>
         </ScrollReveal>
@@ -71,26 +65,24 @@ export default function About() {
           <div>
             <ScrollReveal delay={0.1}>
               <h3 className="text-[clamp(1.5rem,3vw,2.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-5">
-                Our Story
+                {t.about.storyTitle}
               </h3>
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
               <p className="text-text-secondary dark:text-slate-400 leading-relaxed mb-5 text-[15px]">
-                Founded in 2003, Elite Dental Clinic was born from a simple yet powerful vision: to redefine dental
-                care by combining clinical excellence with an unparalleled patient experience.
+                {t.about.storyText1}
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
               <p className="text-text-secondary dark:text-slate-400 leading-relaxed mb-8 text-[15px]">
-                Our vision is to be the global benchmark for dental excellence. Our mission is to transform lives
-                through healthy, beautiful smiles — delivered with compassion, precision, and state-of-the-art technology.
+                {t.about.storyText2}
               </p>
             </ScrollReveal>
 
             <StaggerChildren stagger={0.12} delay={0.3}>
               {[
-                { icon: Target, title: "Our Vision", text: "To be the global benchmark for dental excellence and patient care." },
-                { icon: Heart, title: "Our Mission", text: "Transforming lives through healthy, beautiful smiles with compassion and precision." },
+                { icon: Target, title: t.about.vision, text: t.about.visionText },
+                { icon: Heart, title: t.about.mission, text: t.about.missionText },
               ].map((item) => (
                 <StaggerItem key={item.title}>
                   <div className="flex gap-4 p-5 rounded-2xl bg-primary/[0.03] border border-primary/[0.06] mb-4 hover:bg-primary/[0.06] transition-colors duration-500">
@@ -112,7 +104,12 @@ export default function About() {
 
         <StaggerChildren stagger={0.1}>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
-            {features.map((feature) => (
+            {[
+              { icon: Shield, title: t.about.features.tech, desc: t.about.features.techDesc },
+              { icon: Heart, title: t.about.features.care, desc: t.about.features.careDesc },
+              { icon: Award, title: t.about.features.award, desc: t.about.features.awardDesc },
+              { icon: Target, title: t.about.features.precision, desc: t.about.features.precisionDesc },
+            ].map((feature) => (
               <StaggerItem key={feature.title}>
                 <TiltCard glareColor="rgba(14,165,233,0.06)" maxTilt={8} scale={1.03}>
                   <div className="h-full glass rounded-3xl p-7 text-center hover:shadow-lg dark:hover:shadow-primary/[0.05] transition-all duration-500 group">
@@ -133,7 +130,7 @@ export default function About() {
         <ScrollReveal>
           <div className="glass rounded-3xl p-8 md:p-10">
             <h3 className="text-[20px] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-6 text-center">
-              Our Certifications & Accreditations
+              {t.about.certTitle}
             </h3>
             <div className="grid sm:grid-cols-2 gap-3">
               {certifications.map((cert) => (

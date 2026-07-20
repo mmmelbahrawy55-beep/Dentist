@@ -6,8 +6,10 @@ import { Calendar, Clock, User, Stethoscope, CheckCircle, ChevronDown, Phone, Ma
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
 import { services, doctors } from "@/lib/data";
+import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function Appointment() {
+  const { t } = useLang();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "", email: "", phone: "", date: "", time: "", doctor: "", service: "", message: "",
@@ -33,15 +35,15 @@ export default function Appointment() {
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Book Now
+              {t.appointment.badge}
             </span>
             <SplitText
-              text="Schedule Your"
+              text={t.appointment.title1}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight"
             />
             <SplitText
-              text="Appointment"
+              text={t.appointment.title2}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1"
               delay={0.15}
@@ -54,14 +56,14 @@ export default function Appointment() {
             <ScrollReveal direction="left" delay={0.1}>
               <div className="glass rounded-[1.75rem] p-6 md:p-7">
                 <h3 className="text-[18px] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-5">
-                  Contact Information
+                  {t.appointment.contactInfo}
                 </h3>
                 <div className="space-y-4">
                   {[
                     { icon: Phone, label: "Phone", value: "+1 (555) 012-3456", href: "tel:+15550123456" },
                     { icon: Mail, label: "Email", value: "hello@elitedental.com", href: "mailto:hello@elitedental.com" },
                     { icon: MessageCircle, label: "WhatsApp", value: "+1 (555) 012-3456", href: "https://wa.me/15550123456" },
-                    { icon: Clock, label: "Working Hours", value: "Mon-Fri: 8AM-6PM\nSat: 9AM-2PM" },
+                    { icon: Clock, label: t.appointment.workingHours, value: t.appointment.hours },
                   ].map((item) => (
                     <div key={item.label} className="flex gap-4 group/item">
                       <div className="w-11 h-11 rounded-xl bg-primary/[0.06] flex items-center justify-center shrink-0 group-hover/item:bg-primary/10 transition-colors">
@@ -94,8 +96,8 @@ export default function Appointment() {
                     <Phone className="w-4 h-4 text-red-500" />
                   </div>
                   <div>
-                    <p className="text-[11px] text-text-light dark:text-slate-600 uppercase tracking-widest font-semibold">Emergency</p>
-                    <p className="text-[14px] font-bold text-text-primary dark:text-white">24/7 Hotline</p>
+                    <p className="text-[11px] text-text-light dark:text-slate-600 uppercase tracking-widest font-semibold">{t.appointment.emergency}</p>
+                    <p className="text-[14px] font-bold text-text-primary dark:text-white">{t.appointment.hotline}</p>
                   </div>
                 </div>
                 <a href="tel:+15550123999" className="block text-center py-3 rounded-xl bg-red-500/[0.06] text-red-500 font-semibold text-[13px] hover:bg-red-500/10 transition-colors">
@@ -124,16 +126,16 @@ export default function Appointment() {
                     <CheckCircle className="w-10 h-10 text-green-500" />
                   </motion.div>
                   <h3 className="text-[24px] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-3">
-                    Appointment Booked!
+                    {t.appointment.successTitle}
                   </h3>
                   <p className="text-text-secondary dark:text-slate-400 mb-8 text-[15px]">
-                    We&apos;ll confirm your appointment shortly via email and phone. Thank you for choosing Elite Dental!
+                    {t.appointment.successText}
                   </p>
                   <button
                     onClick={() => { setSubmitted(false); setFormData({ name: "", email: "", phone: "", date: "", time: "", doctor: "", service: "", message: "" }); }}
                     className="btn-premium"
                   >
-                    Book Another
+                    {t.appointment.bookAnother}
                   </button>
                 </motion.div>
               ) : (
@@ -144,10 +146,10 @@ export default function Appointment() {
                 >
                   <div className="grid sm:grid-cols-2 gap-4">
                     {[
-                      { name: "name", label: "Full Name", type: "text", placeholder: "John Doe", icon: User, required: true },
-                      { name: "email", label: "Email", type: "email", placeholder: "john@example.com", icon: Mail, required: true },
-                      { name: "phone", label: "Phone", type: "tel", placeholder: "+1 (555) 000-0000", icon: Phone, required: true },
-                      { name: "date", label: "Preferred Date", type: "date", icon: Calendar, required: true },
+                      { name: "name", label: t.appointment.name, type: "text", placeholder: "John Doe", icon: User, required: true },
+                      { name: "email", label: t.appointment.email, type: "email", placeholder: "john@example.com", icon: Mail, required: true },
+                      { name: "phone", label: t.appointment.phone, type: "tel", placeholder: "+1 (555) 000-0000", icon: Phone, required: true },
+                      { name: "date", label: t.appointment.date, type: "date", icon: Calendar, required: true },
                     ].map((field) => (
                       <div key={field.name}>
                         <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">{field.label}</label>
@@ -167,11 +169,11 @@ export default function Appointment() {
                     ))}
 
                     <div>
-                      <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">Preferred Time</label>
+                      <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">{t.appointment.time}</label>
                       <div className="relative">
                         <Clock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-light dark:text-slate-600" />
                         <select name="time" value={formData.time} onChange={handleChange} required className={`${inputClass} appearance-none`}>
-                          <option value="">Select Time</option>
+                          <option value="">{t.appointment.selectTime}</option>
                           {timeSlots.map((slot) => (<option key={slot} value={slot}>{slot}</option>))}
                         </select>
                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-light dark:text-slate-600 pointer-events-none" />
@@ -179,11 +181,11 @@ export default function Appointment() {
                     </div>
 
                     <div>
-                      <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">Doctor</label>
+                      <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">{t.appointment.doctor}</label>
                       <div className="relative">
                         <Stethoscope className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-light dark:text-slate-600" />
                         <select name="doctor" value={formData.doctor} onChange={handleChange} className={`${inputClass} appearance-none`}>
-                          <option value="">Any Available Doctor</option>
+                          <option value="">{t.appointment.anyDoctor}</option>
                           {doctors.map((doc) => (<option key={doc.name} value={doc.name}>{doc.name}</option>))}
                         </select>
                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-light dark:text-slate-600 pointer-events-none" />
@@ -191,11 +193,11 @@ export default function Appointment() {
                     </div>
 
                     <div className="sm:col-span-2">
-                      <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">Service</label>
+                      <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">{t.appointment.service}</label>
                       <div className="relative">
                         <Stethoscope className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-light dark:text-slate-600" />
                         <select name="service" value={formData.service} onChange={handleChange} required className={`${inputClass} appearance-none`}>
-                          <option value="">Select Service</option>
+                          <option value="">{t.appointment.selectService}</option>
                           {services.map((s) => (<option key={s.title} value={s.title}>{s.title}</option>))}
                         </select>
                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-light dark:text-slate-600 pointer-events-none" />
@@ -203,13 +205,13 @@ export default function Appointment() {
                     </div>
 
                     <div className="sm:col-span-2">
-                      <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">Additional Message</label>
+                      <label className="block text-[13px] font-semibold text-text-primary dark:text-white mb-2">{t.appointment.message}</label>
                       <textarea
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
                         rows={3}
-                        placeholder="Tell us about your dental concerns..."
+                        placeholder={t.appointment.messagePlaceholder}
                         className="w-full px-4 py-3.5 rounded-xl bg-white/40 dark:bg-white/[0.04] border border-primary/[0.08] text-text-primary dark:text-white placeholder:text-text-light dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/20 transition-all duration-300 text-[14px] resize-none"
                       />
                     </div>
@@ -221,7 +223,7 @@ export default function Appointment() {
                     whileTap={{ scale: 0.99 }}
                     className="btn-premium w-full justify-center mt-6 text-[15px]"
                   >
-                    Confirm Appointment
+                    {t.appointment.confirmBtn}
                     <CheckCircle className="w-5 h-5" />
                   </motion.button>
                 </motion.form>

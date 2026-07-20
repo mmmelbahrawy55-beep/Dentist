@@ -6,39 +6,41 @@ import { motion } from "framer-motion";
 import { ArrowLeftRight } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
-
-const cases = [
-  {
-    beforeImg: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1445527815219-ecbfec455d5c?w=800&q=80&auto=format&fit=crop",
-    before: "Dental Concern",
-    after: "Hollywood Smile",
-    category: "Cosmetic",
-  },
-  {
-    beforeImg: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80&auto=format&fit=crop",
-    before: "Missing Teeth",
-    after: "Dental Implants",
-    category: "Implants",
-  },
-  {
-    beforeImg: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=80&auto=format&fit=crop",
-    before: "Discolored Teeth",
-    after: "Professional Whitening",
-    category: "Whitening",
-  },
-  {
-    beforeImg: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1619353115193-3f4ef1e4f5a7?w=800&q=80&auto=format&fit=crop",
-    before: "Crooked Teeth",
-    after: "Orthodontic Results",
-    category: "Orthodontics",
-  },
-];
+import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function Gallery() {
+  const { t } = useLang();
+
+  const cases = [
+    {
+      beforeImg: "https://images.unsplash.com/photo-1776400985210-92f654712d30?w=800&q=80&auto=format&fit=crop",
+      afterImg: "https://images.unsplash.com/photo-1776400985210-92f654712d30?w=800&q=80&auto=format&fit=crop&crop=top",
+      before: t.gallery.before,
+      after: t.gallery.after,
+      category: "Cosmetic",
+    },
+    {
+      beforeImg: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80&auto=format&fit=crop",
+      afterImg: "https://images.unsplash.com/photo-1445527815219-ecbfec455d5c?w=800&q=80&auto=format&fit=crop",
+      before: t.gallery.before,
+      after: t.gallery.after,
+      category: "Implants",
+    },
+    {
+      beforeImg: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80&auto=format&fit=crop",
+      afterImg: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=80&auto=format&fit=crop",
+      before: t.gallery.before,
+      after: t.gallery.after,
+      category: "Whitening",
+    },
+    {
+      beforeImg: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80&auto=format&fit=crop",
+      afterImg: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80&auto=format&fit=crop",
+      before: t.gallery.before,
+      after: t.gallery.after,
+      category: "Orthodontics",
+    },
+  ];
   const [sliderPositions, setSliderPositions] = useState<number[]>(cases.map(() => 50));
   const containerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -58,21 +60,21 @@ export default function Gallery() {
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Results
+              {t.gallery.badge}
             </span>
             <SplitText
-              text="Stunning"
+              text={t.gallery.title1}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight"
             />
             <SplitText
-              text="Transformations"
+              text={t.gallery.title2}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1"
               delay={0.15}
             />
             <p className="text-[16px] text-text-secondary dark:text-slate-400 mt-6 leading-relaxed max-w-2xl mx-auto">
-              See the life-changing results our patients have achieved. Drag the slider to compare before and after.
+              {t.gallery.description}
             </p>
           </div>
         </ScrollReveal>
@@ -127,10 +129,10 @@ export default function Gallery() {
                   </div>
 
                   <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-sm text-white text-[11px] font-semibold z-10 tracking-wide">
-                    Before
+                    {t.gallery.before}
                   </div>
                   <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-sm text-white text-[11px] font-semibold z-10 tracking-wide">
-                    After
+                    {t.gallery.after}
                   </div>
                 </div>
 

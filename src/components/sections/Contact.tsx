@@ -7,18 +7,20 @@ import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/Scro
 import { SplitText } from "@/components/ui/TextReveal";
 import { socialLinks } from "@/lib/data";
 import { FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon, YoutubeIcon } from "@/components/ui/SocialIcons";
-
-const contactInfo = [
-  { icon: MapPin, title: "Visit Us", lines: ["123 Dental Avenue, Suite 500", "Beverly Hills, CA 90210"], action: { label: "Get Directions", href: "https://maps.google.com" } },
-  { icon: Phone, title: "Call Us", lines: ["+1 (555) 012-3456", "+1 (555) 012-3457"], action: { label: "Call Now", href: "tel:+15550123456" } },
-  { icon: Mail, title: "Email Us", lines: ["hello@elitedental.com", "appointments@elitedental.com"], action: { label: "Send Email", href: "mailto:hello@elitedental.com" } },
-  { icon: Clock, title: "Working Hours", lines: ["Mon - Fri: 8:00 AM - 6:00 PM", "Saturday: 9:00 AM - 2:00 PM", "Sunday: Emergency Only"], action: null },
-];
+import { useLang } from "@/components/ui/LanguageProvider";
 
 const quickLinks = ["Home", "About Us", "Services", "Doctors", "Gallery", "Testimonials", "Blog", "Contact"];
 const serviceLinks = ["Dental Implants", "Hollywood Smile", "Veneers", "Teeth Whitening", "Orthodontics", "Root Canal"];
 
 export default function Contact() {
+  const { t } = useLang();
+
+  const contactInfo = [
+    { icon: MapPin, title: t.contact.visit, lines: t.contact.address.split("\n"), action: { label: t.contact.directions, href: "https://maps.google.com" } },
+    { icon: Phone, title: t.contact.call, lines: [t.contact.phone1, t.contact.phone2], action: { label: t.contact.callNow, href: "tel:+15550123456" } },
+    { icon: Mail, title: t.contact.email, lines: [t.contact.emailAddr, t.contact.emailAddr2], action: { label: t.contact.sendEmail, href: "mailto:hello@elitedental.com" } },
+    { icon: Clock, title: t.contact.hours, lines: t.contact.hoursDetail.split("\n"), action: null },
+  ];
   return (
     <section id="contact" className="section-padding bg-white dark:bg-[#080d1a] relative overflow-hidden mesh-bg">
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -26,10 +28,10 @@ export default function Contact() {
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Contact
+              {t.contact.badge}
             </span>
-            <SplitText text="Get In" tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight" />
-            <SplitText text="Touch" tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1" delay={0.15} />
+            <SplitText text={t.contact.title1} tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight" />
+            <SplitText text={t.contact.title2} tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1" delay={0.15} />
           </div>
         </ScrollReveal>
 
@@ -78,8 +80,8 @@ export default function Contact() {
                   <MapPin className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-[15px]">123 Dental Avenue, Suite 500</p>
-                  <p className="text-white/60 text-[13px]">Beverly Hills, CA 90210</p>
+                  <p className="text-white font-semibold text-[15px]">{t.contact.address.split("\n")[0]}</p>
+                  <p className="text-white/60 text-[13px]">{t.contact.address.split("\n")[1]}</p>
                 </div>
               </div>
             </div>
@@ -91,6 +93,7 @@ export default function Contact() {
 }
 
 export function Footer() {
+  const { t } = useLang();
   return (
     <footer className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #080d1a, #020617)" }}>
       <div className="absolute inset-0 hero-grid opacity-20" />
@@ -111,7 +114,7 @@ export function Footer() {
                   </div>
                 </div>
                 <p className="text-slate-500 text-[14px] leading-relaxed mb-6">
-                  Transforming smiles and changing lives through exceptional dental care since 2003.
+                  {t.footer.desc}
                 </p>
                 <div className="flex gap-2.5">
                   {[
@@ -138,7 +141,7 @@ export function Footer() {
 
             <ScrollReveal delay={0.1}>
               <div>
-                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">Quick Links</h3>
+                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">{t.footer.quickLinks}</h3>
                 <ul className="space-y-2.5">
                   {quickLinks.map((link) => (
                     <li key={link}>
@@ -154,7 +157,7 @@ export function Footer() {
 
             <ScrollReveal delay={0.2}>
               <div>
-                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">Our Services</h3>
+                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">{t.footer.ourServices}</h3>
                 <ul className="space-y-2.5">
                   {serviceLinks.map((link) => (
                     <li key={link}>
@@ -170,14 +173,14 @@ export function Footer() {
 
             <ScrollReveal delay={0.3}>
               <div>
-                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">Newsletter</h3>
+                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">{t.footer.newsletter}</h3>
                 <p className="text-slate-500 text-[14px] mb-4 leading-relaxed">
-                  Subscribe for dental tips, special offers, and clinic updates.
+                  {t.footer.newsletterDesc}
                 </p>
                 <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
                   <input
                     type="email"
-                    placeholder="Your email"
+                    placeholder={t.footer.emailPlaceholder}
                     className="flex-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.06] text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/20 text-[14px] transition-all duration-300"
                   />
                   <motion.button
@@ -193,12 +196,12 @@ export function Footer() {
                   <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#25D366]/[0.08] text-[#25D366] text-[13px] font-medium hover:bg-[#25D366]/15 transition-colors">
                     <MessageCircle className="w-3.5 h-3.5" />
-                    WhatsApp
+                    {t.footer.whatsapp}
                   </a>
                   <a href="tel:+15550123456"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/[0.06] text-primary text-[13px] font-medium hover:bg-primary/10 transition-colors">
                     <Phone className="w-3.5 h-3.5" />
-                    Call Now
+                    {t.footer.callNow}
                   </a>
                 </div>
               </div>
@@ -209,11 +212,11 @@ export function Footer() {
         <div className="border-t border-white/[0.04] py-6">
           <div className="max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-slate-600 text-[13px]">
-              &copy; {new Date().getFullYear()} Elite Dental Clinic. All rights reserved.
+              &copy; {new Date().getFullYear()} Elite Dental Clinic. {t.footer.rights}
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-slate-600 text-[13px] hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="text-slate-600 text-[13px] hover:text-primary transition-colors">Terms of Service</a>
+              <a href="#" className="text-slate-600 text-[13px] hover:text-primary transition-colors">{t.footer.privacy}</a>
+              <a href="#" className="text-slate-600 text-[13px] hover:text-primary transition-colors">{t.footer.terms}</a>
             </div>
           </div>
         </div>

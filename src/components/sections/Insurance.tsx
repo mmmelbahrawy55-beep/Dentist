@@ -6,8 +6,10 @@ import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/Scro
 import TiltCard from "@/components/ui/TiltCard";
 import { SplitText } from "@/components/ui/TextReveal";
 import { insurancePartners } from "@/lib/data";
+import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function Insurance() {
+  const { t } = useLang();
   return (
     <section className="section-padding bg-white dark:bg-[#080d1a] relative overflow-hidden mesh-bg">
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -15,12 +17,12 @@ export default function Insurance() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Insurance
+              {t.insurance.badge}
             </span>
-            <SplitText text="Trusted Insurance" tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight" />
-            <SplitText text="Partners" tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1" delay={0.15} />
+            <SplitText text={t.insurance.title1} tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight" />
+            <SplitText text={t.insurance.title2} tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1" delay={0.15} />
             <p className="text-[16px] text-text-secondary dark:text-slate-400 mt-6 leading-relaxed max-w-2xl mx-auto">
-              We work with most major insurance providers to make quality dental care accessible.
+              {t.insurance.description}
             </p>
           </div>
         </ScrollReveal>

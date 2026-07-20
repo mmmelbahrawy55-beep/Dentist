@@ -8,6 +8,7 @@ import TiltCard from "@/components/ui/TiltCard";
 import { SplitText } from "@/components/ui/TextReveal";
 import { LinkedinIcon, TwitterIcon } from "@/components/ui/SocialIcons";
 import { doctors } from "@/lib/data";
+import { useLang } from "@/components/ui/LanguageProvider";
 
 const doctorImages = [
   "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop",
@@ -17,6 +18,7 @@ const doctorImages = [
 ];
 
 export default function Doctors() {
+  const { t } = useLang();
   return (
     <section id="doctors" className="section-padding bg-surface dark:bg-surface-dark relative overflow-hidden mesh-bg">
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -24,22 +26,21 @@ export default function Doctors() {
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Our Team
+              {t.doctors.badge}
             </span>
             <SplitText
-              text="Meet Our Expert"
+              text={t.doctors.title1}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight"
             />
             <SplitText
-              text="Specialists"
+              text={t.doctors.title2}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1"
               delay={0.15}
             />
             <p className="text-[16px] text-text-secondary dark:text-slate-400 mt-6 leading-relaxed max-w-2xl mx-auto">
-              Our team of internationally trained, board-certified dental specialists brings decades of
-              combined experience to deliver exceptional results.
+              {t.doctors.description}
             </p>
           </div>
         </ScrollReveal>
@@ -100,7 +101,7 @@ export default function Doctors() {
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary/[0.06] text-primary text-[13px] font-semibold hover:bg-primary hover:text-white transition-all duration-500 group/btn"
                       >
                         <Calendar className="w-3.5 h-3.5" />
-                        Book Appointment
+                        {t.doctors.bookBtn}
                         <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all duration-300" />
                       </a>
                     </div>

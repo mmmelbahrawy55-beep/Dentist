@@ -7,8 +7,10 @@ import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/Scro
 import TiltCard from "@/components/ui/TiltCard";
 import { SplitText } from "@/components/ui/TextReveal";
 import { services } from "@/lib/data";
+import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function Services() {
+  const { t } = useLang();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -18,22 +20,21 @@ export default function Services() {
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Our Services
+              {t.services.badge}
             </span>
             <SplitText
-              text="Comprehensive Dental"
+              text={t.services.title1}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight"
             />
             <SplitText
-              text="Services"
+              text={t.services.title2}
               tag="h2"
               className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1"
               delay={0.15}
             />
             <p className="text-[16px] text-text-secondary dark:text-slate-400 mt-6 leading-relaxed max-w-2xl mx-auto">
-              From routine check-ups to complete smile makeovers, we offer a full spectrum of dental services
-              using the latest technology and techniques.
+              {t.services.description}
             </p>
           </div>
         </ScrollReveal>
@@ -76,7 +77,7 @@ export default function Services() {
                       </p>
 
                       <div className="flex items-center gap-2 text-[13px] font-semibold text-primary group-hover:gap-3 transition-all duration-500">
-                        Learn More
+                        {t.services.learnMore}
                         <motion.div
                           animate={hoveredIndex === i ? { x: 3, y: -3 } : { x: 0, y: 0 }}
                           transition={{ duration: 0.3 }}

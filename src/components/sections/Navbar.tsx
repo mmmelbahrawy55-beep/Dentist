@@ -1,26 +1,17 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
-import { Menu, X, Sun, Moon, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, Sun, Moon, Phone, ArrowRight, Globe } from "lucide-react";
 import { useTheme } from "@/components/ui/ThemeProvider";
-
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Doctors", href: "#doctors" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const { theme, toggle } = useTheme();
+  const { lang, toggle: toggleLang, t } = useLang();
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -28,6 +19,17 @@ export default function Navbar() {
     const total = typeof document !== "undefined" ? document.documentElement.scrollHeight - window.innerHeight : 1;
     setScrollProgress(total > 0 ? (latest / total) * 100 : 0);
   });
+
+  const navLinks = [
+    { label: t.nav.home, href: "#home" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.doctors, href: "#doctors" },
+    { label: t.nav.gallery, href: "#gallery" },
+    { label: t.nav.testimonials, href: "#testimonials" },
+    { label: t.nav.faq, href: "#faq" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
   return (
     <>
@@ -54,8 +56,7 @@ export default function Navbar() {
             boxShadow: scrolled ? "var(--shadow-md)" : "none",
           }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 rounded-none"
-          style={{ borderRadius: 0 }}
+          className="absolute inset-0"
         />
 
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 relative z-10">
@@ -92,7 +93,18 @@ export default function Navbar() {
               ))}
             </nav>
 
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2.5">
+              <motion.button
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
+                onClick={toggleLang}
+                className="h-10 px-3 rounded-xl flex items-center justify-center gap-1.5 hover:bg-primary/[0.06] transition-colors duration-300 text-text-secondary dark:text-slate-300 text-[13px] font-semibold"
+                aria-label="Toggle language"
+              >
+                <Globe className="w-4 h-4" />
+                {lang === "en" ? "عربي" : "EN"}
+              </motion.button>
+
               <motion.button
                 whileHover={{ scale: 1.08, rotate: 15 }}
                 whileTap={{ scale: 0.92 }}
@@ -110,10 +122,7 @@ export default function Navbar() {
                 </motion.div>
               </motion.button>
 
-              <a
-                href="tel:+15550123"
-                className="flex items-center gap-2 text-[13px] font-semibold text-text-primary dark:text-white hover:text-primary transition-colors"
-              >
+              <a href="tel:+15550123" className="flex items-center gap-2 text-[13px] font-semibold text-text-primary dark:text-white hover:text-primary transition-colors">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
                   <Phone className="w-3.5 h-3.5 text-primary" />
                 </div>
@@ -126,12 +135,19 @@ export default function Navbar() {
                 whileTap={{ scale: 0.97 }}
                 className="btn-premium text-[13px] py-2.5 px-6 rounded-xl"
               >
-                Book Now
+                {t.nav.bookNow}
                 <ArrowRight className="w-3.5 h-3.5" />
               </motion.a>
             </div>
 
             <div className="flex items-center gap-2 lg:hidden">
+              <motion.button
+                whileTap={{ scale: 0.92 }}
+                onClick={toggleLang}
+                className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-primary/[0.06] transition-colors text-[12px] font-bold text-text-secondary dark:text-slate-300"
+              >
+                {lang === "en" ? "عربي" : "EN"}
+              </motion.button>
               <button
                 onClick={toggle}
                 className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-primary/[0.06] transition-colors"
@@ -175,7 +191,7 @@ export default function Navbar() {
                     <motion.a
                       key={link.href}
                       href={link.href}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: lang === "ar" ? 20 : -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
                       onClick={() => setIsOpen(false)}
@@ -186,7 +202,7 @@ export default function Navbar() {
                   ))}
                   <div className="pt-4 border-t border-primary/[0.06]">
                     <a href="#appointment" onClick={() => setIsOpen(false)} className="btn-premium w-full justify-center text-center text-[15px]">
-                      Book Appointment
+                      {t.nav.bookAppointment}
                       <ArrowRight className="w-4 h-4" />
                     </a>
                   </div>

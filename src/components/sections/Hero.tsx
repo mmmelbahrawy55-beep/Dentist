@@ -9,8 +9,10 @@ import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/Scro
 import MagneticButton from "@/components/ui/MagneticButton";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { stats } from "@/lib/data";
+import { useLang } from "@/components/ui/LanguageProvider";
 
 export default function Hero() {
+  const { t } = useLang();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -83,7 +85,7 @@ export default function Hero() {
                   ))}
                 </span>
                 <span className="w-px h-3.5 bg-white/20" />
-                #1 Rated Dental Clinic
+                {t.hero.badge}
               </span>
             </motion.div>
 
@@ -94,7 +96,7 @@ export default function Hero() {
                 transition={{ duration: 0.3, delay: 0.4 }}
               >
                 <SplitText
-                  text="Your Perfect"
+                  text={t.hero.title1}
                   tag="h1"
                   className="text-[clamp(2.5rem,6vw,5rem)] font-bold font-[family-name:var(--font-heading)] text-white leading-[1.05] tracking-tight"
                   delay={0.4}
@@ -106,7 +108,7 @@ export default function Hero() {
                 transition={{ duration: 0.3, delay: 0.7 }}
               >
                 <SplitText
-                  text="Smile Awaits"
+                  text={t.hero.title2}
                   tag="h1"
                   className="text-[clamp(2.5rem,6vw,5rem)] font-bold font-[family-name:var(--font-heading)] leading-[1.05] tracking-tight text-gradient"
                   delay={0.7}
@@ -120,8 +122,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 1 }}
               className="text-[17px] text-white/55 mb-10 max-w-lg leading-relaxed"
             >
-              Experience world-class dental care where cutting-edge technology meets luxury comfort. Our
-              award-winning specialists craft smiles that change lives.
+              {t.hero.subtitle}
             </motion.p>
 
             <motion.div
@@ -133,7 +134,7 @@ export default function Hero() {
               <MagneticButton strength={0.2}>
                 <a href="#appointment" className="btn-premium text-[15px] py-4 px-8 rounded-2xl bg-white text-[#0c4a6e] shadow-2xl shadow-black/20 hover:shadow-black/30"
                   style={{ boxShadow: "0 20px 60px -10px rgba(0,0,0,0.3)" }}>
-                  Book Appointment
+                  {t.hero.bookBtn}
                   <ArrowRight className="w-5 h-5" />
                 </a>
               </MagneticButton>
@@ -142,7 +143,7 @@ export default function Hero() {
                   className="btn-premium text-[15px] py-4 px-8 rounded-2xl bg-[#25D366] shadow-2xl"
                   style={{ boxShadow: "0 20px 60px -10px rgba(37,211,102,0.3)" }}>
                   <MessageCircle className="w-5 h-5" />
-                  WhatsApp Us
+                  {t.hero.whatsappBtn}
                 </a>
               </MagneticButton>
             </motion.div>
@@ -265,7 +266,7 @@ export default function Hero() {
           transition={{ duration: 2, repeat: Infinity }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-white/30 text-[11px] tracking-widest uppercase">Scroll</span>
+          <span className="text-white/30 text-[11px] tracking-widest uppercase">{t.hero.scroll}</span>
           <ChevronDown className="w-4 h-4 text-white/30" />
         </motion.div>
       </motion.div>
