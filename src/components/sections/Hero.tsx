@@ -1,41 +1,68 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ChevronRight, MessageCircle, Star, Shield, Award, Sparkles } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, MessageCircle, Star, Shield, Award, Sparkles, ChevronDown } from "lucide-react";
+import { SplitText } from "@/components/ui/TextReveal";
+import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
+import MagneticButton from "@/components/ui/MagneticButton";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { stats } from "@/lib/data";
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0c4a6e] via-[#0e7490] to-[#0d9488]">
-        <div className="absolute inset-0 opacity-[0.03]"
+    <section
+      ref={containerRef}
+      id="home"
+      className="relative min-h-[100vh] flex items-center overflow-hidden"
+    >
+      <motion.div
+        style={{ y: bgY }}
+        className="absolute inset-0 bg-[#020617]"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0c4a6e]/80 via-[#0e7490]/60 to-[#0d9488]/50" />
+        <div className="absolute inset-0 hero-grid opacity-100" />
+
+        <div className="absolute top-[-10%] right-[-5%] w-[700px] h-[700px] bg-primary/15 rounded-full blur-[120px] animate-blob" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-secondary/15 rounded-full blur-[120px] animate-blob" style={{ animationDelay: "3s" }} />
+        <div className="absolute top-[40%] left-[30%] w-[400px] h-[400px] bg-accent/8 rounded-full blur-[100px] animate-blob" style={{ animationDelay: "5s" }} />
+
+        <div className="absolute inset-0 opacity-[0.015]"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
-        <div className="absolute top-20 right-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-blob" />
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: "2s" }} />
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: "4s" }} />
-      </div>
+      </motion.div>
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-white/5"
+            className="absolute rounded-full border border-white/[0.03]"
             style={{
-              width: [80, 120, 60, 100, 90][i],
-              height: [80, 120, 60, 100, 90][i],
-              left: `${[10, 70, 30, 80, 50][i]}%`,
-              top: `${[20, 60, 80, 30, 50][i]}%`,
+              width: [60, 90, 45, 75, 55, 85][i],
+              height: [60, 90, 45, 75, 55, 85][i],
+              left: `${[8, 75, 25, 85, 50, 15][i]}%`,
+              top: `${[15, 55, 80, 25, 45, 70][i]}%`,
             }}
             animate={{
-              y: [0, -30, 0],
-              rotate: [0, 180, 360],
+              y: [0, -25, 0],
+              rotate: [0, 90, 180],
+              opacity: [0.3, 0.6, 0.3],
             }}
             transition={{
-              duration: [6, 8, 7, 9, 10][i],
+              duration: [7, 9, 8, 10, 6, 11][i],
               repeat: Infinity,
               ease: "easeInOut",
             }}
@@ -43,153 +70,204 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+      <motion.div
+        style={{ y: contentY, opacity, scale }}
+        className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-8 pt-36 pb-20 w-full"
+      >
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+          <div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium mb-6"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Sparkles className="w-4 h-4 text-accent" />
-              #1 Rated Dental Clinic
-              <span className="flex items-center gap-1 ml-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 fill-accent text-accent" />
-                ))}
+              <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/[0.06] backdrop-blur-sm border border-white/[0.08] text-white/80 text-[13px] font-medium tracking-wide">
+                <span className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 fill-accent text-accent" />
+                  ))}
+                </span>
+                <span className="w-px h-3.5 bg-white/20" />
+                #1 Rated Dental Clinic
               </span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold font-[family-name:var(--font-heading)] text-white leading-[1.1] mb-6">
-              Your Perfect
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-light via-accent to-amber-300">
-                Smile Awaits
-              </span>
-            </h1>
+            <div className="mt-8 mb-7">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.4 }}
+              >
+                <SplitText
+                  text="Your Perfect"
+                  tag="h1"
+                  className="text-[clamp(2.5rem,6vw,5rem)] font-bold font-[family-name:var(--font-heading)] text-white leading-[1.05] tracking-tight"
+                  delay={0.4}
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.7 }}
+              >
+                <SplitText
+                  text="Smile Awaits"
+                  tag="h1"
+                  className="text-[clamp(2.5rem,6vw,5rem)] font-bold font-[family-name:var(--font-heading)] leading-[1.05] tracking-tight text-gradient"
+                  delay={0.7}
+                />
+              </motion.div>
+            </div>
 
-            <p className="text-lg md:text-xl text-white/70 mb-8 max-w-xl leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1 }}
+              className="text-[17px] text-white/55 mb-10 max-w-lg leading-relaxed"
+            >
               Experience world-class dental care where cutting-edge technology meets luxury comfort. Our
               award-winning specialists craft smiles that change lives.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <motion.a
-                href="#appointment"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-2 bg-white text-primary-dark px-8 py-4 rounded-2xl font-bold text-base font-[family-name:var(--font-heading)] shadow-xl shadow-black/10 hover:shadow-2xl transition-shadow"
-              >
-                Book Appointment
-                <ChevronRight className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="https://wa.me/15550123456"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-2xl font-bold text-base font-[family-name:var(--font-heading)] shadow-xl shadow-black/10 hover:shadow-2xl transition-shadow"
-              >
-                <MessageCircle className="w-5 h-5" />
-                WhatsApp Us
-              </motion.a>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.2 }}
+              className="flex flex-col sm:flex-row gap-4 mb-14"
+            >
+              <MagneticButton strength={0.2}>
+                <a href="#appointment" className="btn-premium text-[15px] py-4 px-8 rounded-2xl bg-white text-[#0c4a6e] shadow-2xl shadow-black/20 hover:shadow-black/30"
+                  style={{ boxShadow: "0 20px 60px -10px rgba(0,0,0,0.3)" }}>
+                  Book Appointment
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+              </MagneticButton>
+              <MagneticButton strength={0.2}>
+                <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer"
+                  className="btn-premium text-[15px] py-4 px-8 rounded-2xl bg-[#25D366] shadow-2xl"
+                  style={{ boxShadow: "0 20px 60px -10px rgba(37,211,102,0.3)" }}>
+                  <MessageCircle className="w-5 h-5" />
+                  WhatsApp Us
+                </a>
+              </MagneticButton>
+            </motion.div>
 
-            <div className="flex items-center gap-4 text-white/60 text-sm">
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-secondary-light" />
-                FDA Approved
-              </div>
-              <div className="w-px h-4 bg-white/20" />
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-accent" />
-                50+ Awards
-              </div>
-              <div className="w-px h-4 bg-white/20" />
-              <div className="flex items-center gap-2">
-                <Star className="w-4 h-4 fill-accent text-accent" />
-                4.9 Rating
-              </div>
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.4 }}
+              className="flex flex-wrap items-center gap-5 text-white/40 text-[13px]"
+            >
+              {[
+                { icon: Shield, text: "FDA Approved", color: "text-secondary-light" },
+                { icon: Award, text: "50+ Awards", color: "text-accent" },
+                { icon: Star, text: "4.9 Rating", color: "text-accent", fill: true },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <item.icon className={`w-4 h-4 ${item.color} ${item.fill ? "fill-current" : ""}`} />
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            initial={{ opacity: 0, x: 60, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="relative hidden lg:block"
           >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-[2rem] blur-2xl" />
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-[2rem] border border-white/20 p-8 overflow-hidden">
-                <div className="aspect-[4/5] bg-gradient-to-br from-white/20 to-white/5 rounded-2xl flex items-center justify-center">
-                  <div className="text-center text-white/40">
-                    <svg className="w-24 h-24 mx-auto mb-4 opacity-50" fill="currentColor" viewBox="0 0 24 24">
+            <div className="relative perspective-2000">
+              <motion.div
+                animate={{ rotateY: [-3, 3, -3], rotateX: [2, -2, 2] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="relative"
+              >
+                <div className="absolute -inset-8 bg-gradient-to-r from-primary/25 to-secondary/25 rounded-[2.5rem] blur-3xl" />
+                <div className="relative rounded-[2rem] border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm overflow-hidden">
+                  <div className="aspect-[4/5] bg-gradient-to-br from-white/[0.08] to-white/[0.02] flex items-center justify-center">
+                    <svg className="w-28 h-28 text-white/10" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
-                    <p className="text-sm font-medium">Professional Dentist Photo</p>
                   </div>
+
+                  <motion.div
+                    animate={{ y: [0, -12, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-8 -right-6 glass rounded-2xl px-5 py-4 border border-white/[0.08]"
+                    style={{ transform: "translateZ(40px)" }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-xl bg-green-500/15 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-white text-sm font-bold">15,000+</p>
+                        <p className="text-white/40 text-[11px]">Happy Patients</p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    animate={{ y: [0, -12, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute bottom-16 -left-6 glass rounded-2xl px-5 py-4 border border-white/[0.08]"
+                    style={{ transform: "translateZ(30px)" }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-xl bg-accent/15 flex items-center justify-center">
+                        <Award className="w-5 h-5 text-accent" />
+                      </div>
+                      <div>
+                        <p className="text-white text-sm font-bold">Award Winning</p>
+                        <p className="text-white/40 text-[11px]">Best Clinic 2024</p>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
-
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute top-8 -right-4 glass rounded-2xl px-4 py-3 border border-white/20"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-white text-xs font-semibold">15,000+</p>
-                      <p className="text-white/50 text-[10px]">Happy Patients</p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-                  className="absolute bottom-12 -left-4 glass rounded-2xl px-4 py-3 border border-white/20"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-                      <Award className="w-5 h-5 text-accent" />
-                    </div>
-                    <div>
-                      <p className="text-white text-xs font-semibold">Award Winning</p>
-                      <p className="text-white/50 text-[10px]">Best Clinic 2024</p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 lg:mt-24"
+          transition={{ duration: 0.8, delay: 1.6 }}
+          className="mt-20 lg:mt-28"
         >
-          <div className="glass rounded-3xl p-8 md:p-10 border border-white/10">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat) => (
-                <AnimatedCounter key={stat.label} {...stat} />
-              ))}
-            </div>
+          <div className="glass rounded-3xl p-8 md:p-10 border border-white/[0.06]">
+            <StaggerChildren stagger={0.1} delay={1.8}>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {stats.map((stat) => (
+                  <StaggerItem key={stat.label}>
+                    <AnimatedCounter {...stat} />
+                  </StaggerItem>
+                ))}
+              </div>
+            </StaggerChildren>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="flex flex-col items-center gap-2"
+        >
+          <span className="text-white/30 text-[11px] tracking-widest uppercase">Scroll</span>
+          <ChevronDown className="w-4 h-4 text-white/30" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

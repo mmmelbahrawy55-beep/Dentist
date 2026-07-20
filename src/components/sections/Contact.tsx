@@ -1,123 +1,79 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  MessageCircle,
-  ChevronRight,
-  Send,
-} from "lucide-react";
-import { FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon, YoutubeIcon } from "@/components/ui/SocialIcons";
-import SectionTitle from "@/components/ui/SectionTitle";
+import { MapPin, Phone, Mail, Clock, MessageCircle, ChevronRight, Send } from "lucide-react";
+import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
+import { SplitText } from "@/components/ui/TextReveal";
 import { socialLinks } from "@/lib/data";
+import { FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon, YoutubeIcon } from "@/components/ui/SocialIcons";
 
 const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Visit Us",
-    lines: ["123 Dental Avenue, Suite 500", "Beverly Hills, CA 90210"],
-    action: { label: "Get Directions", href: "https://maps.google.com" },
-  },
-  {
-    icon: Phone,
-    title: "Call Us",
-    lines: ["+1 (555) 012-3456", "+1 (555) 012-3457"],
-    action: { label: "Call Now", href: "tel:+15550123456" },
-  },
-  {
-    icon: Mail,
-    title: "Email Us",
-    lines: ["hello@elitedental.com", "appointments@elitedental.com"],
-    action: { label: "Send Email", href: "mailto:hello@elitedental.com" },
-  },
-  {
-    icon: Clock,
-    title: "Working Hours",
-    lines: ["Mon - Fri: 8:00 AM - 6:00 PM", "Saturday: 9:00 AM - 2:00 PM", "Sunday: Emergency Only"],
-    action: null,
-  },
+  { icon: MapPin, title: "Visit Us", lines: ["123 Dental Avenue, Suite 500", "Beverly Hills, CA 90210"], action: { label: "Get Directions", href: "https://maps.google.com" } },
+  { icon: Phone, title: "Call Us", lines: ["+1 (555) 012-3456", "+1 (555) 012-3457"], action: { label: "Call Now", href: "tel:+15550123456" } },
+  { icon: Mail, title: "Email Us", lines: ["hello@elitedental.com", "appointments@elitedental.com"], action: { label: "Send Email", href: "mailto:hello@elitedental.com" } },
+  { icon: Clock, title: "Working Hours", lines: ["Mon - Fri: 8:00 AM - 6:00 PM", "Saturday: 9:00 AM - 2:00 PM", "Sunday: Emergency Only"], action: null },
 ];
 
-const quickLinks = [
-  "Home", "About Us", "Services", "Doctors",
-  "Gallery", "Testimonials", "Blog", "Contact",
-];
-
-const serviceLinks = [
-  "Dental Implants", "Hollywood Smile", "Veneers",
-  "Teeth Whitening", "Orthodontics", "Root Canal",
-];
+const quickLinks = ["Home", "About Us", "Services", "Doctors", "Gallery", "Testimonials", "Blog", "Contact"];
+const serviceLinks = ["Dental Implants", "Hollywood Smile", "Veneers", "Teeth Whitening", "Orthodontics", "Root Canal"];
 
 export default function Contact() {
   return (
-    <section id="contact" className="section-padding bg-white dark:bg-[#0a1628] relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+    <section id="contact" className="section-padding bg-white dark:bg-[#080d1a] relative overflow-hidden mesh-bg">
+      <div className="max-w-[1400px] mx-auto relative z-10">
+        <ScrollReveal>
+          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.06] text-primary text-[13px] font-semibold mb-5 tracking-wide uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              Contact
+            </span>
+            <SplitText text="Get In" tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white leading-tight" />
+            <SplitText text="Touch" tag="h2" className="text-[clamp(2rem,4vw,3.2rem)] font-bold font-[family-name:var(--font-heading)] leading-tight text-gradient mt-1" delay={0.15} />
+          </div>
+        </ScrollReveal>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <SectionTitle
-          badge="Contact"
-          title="Get In"
-          highlight="Touch"
-          description="Have questions? We'd love to hear from you. Reach out through any of the channels below."
-        />
+        <StaggerChildren stagger={0.08}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+            {contactInfo.map((info) => (
+              <StaggerItem key={info.title}>
+                <div className="glass rounded-[1.5rem] p-6 group hover:shadow-lg transition-all duration-500 h-full">
+                  <div className="w-12 h-12 rounded-xl bg-primary/[0.06] flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors duration-500">
+                    <info.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-3 text-[16px]">
+                    {info.title}
+                  </h3>
+                  <div className="space-y-1 mb-4">
+                    {info.lines.map((line) => (
+                      <p key={line} className="text-[13px] text-text-secondary dark:text-slate-400 leading-relaxed">{line}</p>
+                    ))}
+                  </div>
+                  {info.action && (
+                    <a href={info.action.href} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[13px] font-semibold text-primary hover:gap-2 transition-all duration-300">
+                      {info.action.label}
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              </StaggerItem>
+            ))}
+          </div>
+        </StaggerChildren>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {contactInfo.map((info, i) => (
-            <motion.div
-              key={info.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass rounded-3xl p-6 group hover:premium-shadow transition-all duration-300"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <info.icon className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white mb-3">
-                {info.title}
-              </h3>
-              <div className="space-y-1 mb-4">
-                {info.lines.map((line) => (
-                  <p key={line} className="text-sm text-text-secondary dark:text-slate-400">
-                    {line}
-                  </p>
-                ))}
-              </div>
-              {info.action && (
-                <a
-                  href={info.action.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:gap-2 transition-all"
-                >
-                  {info.action.label}
-                  <ChevronRight className="w-4 h-4" />
-                </a>
-              )}
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="rounded-3xl overflow-hidden premium-shadow mb-16"
-        >
-          <div className="aspect-[21/9] bg-gradient-to-br from-primary/10 to-secondary/10 relative">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="w-16 h-16 text-primary/30 mx-auto mb-3" />
-                <p className="text-text-secondary dark:text-slate-400 font-medium">Interactive Google Map</p>
-                <p className="text-text-light dark:text-slate-500 text-sm mt-1">123 Dental Avenue, Beverly Hills, CA 90210</p>
+        <ScrollReveal>
+          <div className="rounded-[2rem] overflow-hidden premium-shadow-xl mb-0">
+            <div className="aspect-[21/9] bg-gradient-to-br from-primary/[0.06] to-secondary/[0.04] relative">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <MapPin className="w-16 h-16 text-primary/20 mx-auto mb-3" />
+                  <p className="text-text-secondary dark:text-slate-400 font-medium">Interactive Google Map</p>
+                  <p className="text-text-light dark:text-slate-500 text-[13px] mt-1">123 Dental Avenue, Beverly Hills, CA 90210</p>
+                </div>
               </div>
             </div>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );
@@ -125,161 +81,128 @@ export default function Contact() {
 
 export function Footer() {
   return (
-    <footer className="bg-[#0a1628] text-white relative overflow-hidden">
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+    <footer className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #080d1a, #020617)" }}>
+      <div className="absolute inset-0 hero-grid opacity-20" />
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="section-padding pb-12">
+      <div className="max-w-[1400px] mx-auto relative z-10">
+        <div className="section-padding pb-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                  <span className="text-white font-bold text-lg font-[family-name:var(--font-heading)]">E</span>
+            <ScrollReveal delay={0}>
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-11 h-11 rounded-[14px] bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
+                    <span className="text-white font-bold text-lg font-[family-name:var(--font-heading)]">E</span>
+                  </div>
+                  <div>
+                    <span className="text-lg font-bold font-[family-name:var(--font-heading)] leading-none block text-white">Elite</span>
+                    <span className="text-[9px] tracking-[0.25em] text-primary font-semibold uppercase">Dental Clinic</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-lg font-bold font-[family-name:var(--font-heading)] leading-none block">
-                    Elite
-                  </span>
-                  <span className="text-[10px] tracking-[0.2em] text-primary font-semibold uppercase">
-                    Dental Clinic
-                  </span>
+                <p className="text-slate-500 text-[14px] leading-relaxed mb-6">
+                  Transforming smiles and changing lives through exceptional dental care since 2003.
+                </p>
+                <div className="flex gap-2.5">
+                  {[
+                    { icon: FacebookIcon, href: socialLinks.facebook },
+                    { icon: InstagramIcon, href: socialLinks.instagram },
+                    { icon: TwitterIcon, href: socialLinks.twitter },
+                    { icon: LinkedinIcon, href: socialLinks.linkedin },
+                    { icon: YoutubeIcon, href: socialLinks.youtube },
+                  ].map((social) => (
+                    <motion.a
+                      key={social.href}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      className="w-10 h-10 rounded-xl bg-white/[0.04] flex items-center justify-center hover:bg-primary/15 hover:text-primary text-slate-500 transition-colors duration-300"
+                    >
+                      <social.icon className="w-4 h-4" />
+                    </motion.a>
+                  ))}
                 </div>
               </div>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                Transforming smiles and changing lives through exceptional dental care since 2003.
-              </p>
-              <div className="flex gap-3">
-                {[
-                  { icon: FacebookIcon, href: socialLinks.facebook },
-                  { icon: InstagramIcon, href: socialLinks.instagram },
-                  { icon: TwitterIcon, href: socialLinks.twitter },
-                  { icon: LinkedinIcon, href: socialLinks.linkedin },
-                  { icon: YoutubeIcon, href: socialLinks.youtube },
-                ].map((social) => (
-                  <a
-                    key={social.href}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all"
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.1}>
+              <div>
+                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">Quick Links</h3>
+                <ul className="space-y-2.5">
+                  {quickLinks.map((link) => (
+                    <li key={link}>
+                      <a href={`#${link.toLowerCase().replace(" ", "")}`} className="text-slate-500 text-[14px] hover:text-primary transition-colors duration-300 inline-flex items-center gap-2 hover:gap-3">
+                        <ChevronRight className="w-3 h-3" />
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <div>
+                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">Our Services</h3>
+                <ul className="space-y-2.5">
+                  {serviceLinks.map((link) => (
+                    <li key={link}>
+                      <a href="#services" className="text-slate-500 text-[14px] hover:text-primary transition-colors duration-300 inline-flex items-center gap-2 hover:gap-3">
+                        <ChevronRight className="w-3 h-3" />
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.3}>
+              <div>
+                <h3 className="font-bold font-[family-name:var(--font-heading)] text-white text-[16px] mb-6">Newsletter</h3>
+                <p className="text-slate-500 text-[14px] mb-4 leading-relaxed">
+                  Subscribe for dental tips, special offers, and clinic updates.
+                </p>
+                <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    className="flex-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.06] text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/20 text-[14px] transition-all duration-300"
+                  />
+                  <motion.button
+                    type="submit"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center hover:bg-primary-dark transition-colors shrink-0"
                   >
-                    <social.icon className="w-4 h-4" />
+                    <Send className="w-4 h-4 text-white" />
+                  </motion.button>
+                </form>
+                <div className="mt-5 flex items-center gap-2">
+                  <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#25D366]/[0.08] text-[#25D366] text-[13px] font-medium hover:bg-[#25D366]/15 transition-colors">
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    WhatsApp
                   </a>
-                ))}
+                  <a href="tel:+15550123456"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/[0.06] text-primary text-[13px] font-medium hover:bg-primary/10 transition-colors">
+                    <Phone className="w-3.5 h-3.5" />
+                    Call Now
+                  </a>
+                </div>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <h3 className="font-bold font-[family-name:var(--font-heading)] text-lg mb-6">
-                Quick Links
-              </h3>
-              <ul className="space-y-3">
-                {quickLinks.map((link) => (
-                  <li key={link}>
-                    <a
-                      href={`#${link.toLowerCase().replace(" ", "")}`}
-                      className="text-slate-400 text-sm hover:text-primary transition-colors inline-flex items-center gap-2 hover:gap-3"
-                    >
-                      <ChevronRight className="w-3 h-3" />
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <h3 className="font-bold font-[family-name:var(--font-heading)] text-lg mb-6">
-                Our Services
-              </h3>
-              <ul className="space-y-3">
-                {serviceLinks.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#services"
-                      className="text-slate-400 text-sm hover:text-primary transition-colors inline-flex items-center gap-2 hover:gap-3"
-                    >
-                      <ChevronRight className="w-3 h-3" />
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <h3 className="font-bold font-[family-name:var(--font-heading)] text-lg mb-6">
-                Newsletter
-              </h3>
-              <p className="text-slate-400 text-sm mb-4">
-                Subscribe for dental tips, special offers, and clinic updates.
-              </p>
-              <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
-                />
-                <button
-                  type="submit"
-                  className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center hover:bg-primary-dark transition-colors shrink-0"
-                >
-                  <Send className="w-4 h-4 text-white" />
-                </button>
-              </form>
-              <div className="mt-6 flex items-center gap-2">
-                <a
-                  href="https://wa.me/15550123456"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#25D366]/10 text-[#25D366] text-sm font-medium hover:bg-[#25D366]/20 transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  WhatsApp
-                </a>
-                <a
-                  href="tel:+15550123456"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                  Call Now
-                </a>
-              </div>
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
 
-        <div className="border-t border-white/10 py-6">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-slate-500 text-sm">
+        <div className="border-t border-white/[0.04] py-6">
+          <div className="max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-slate-600 text-[13px]">
               &copy; {new Date().getFullYear()} Elite Dental Clinic. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-slate-500 text-sm hover:text-primary transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-slate-500 text-sm hover:text-primary transition-colors">
-                Terms of Service
-              </a>
+              <a href="#" className="text-slate-600 text-[13px] hover:text-primary transition-colors">Privacy Policy</a>
+              <a href="#" className="text-slate-600 text-[13px] hover:text-primary transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>
