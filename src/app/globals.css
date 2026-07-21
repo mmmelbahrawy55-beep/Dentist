@@ -80,6 +80,7 @@
 
   .animate-blob { animation: blob 8s infinite; }
   .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-kenburns { animation: kenburns 20s ease-in-out infinite; }
 
   [dir="rtl"] { font-family: var(--font-arabic); }
   [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] a, [dir="rtl"] button, [dir="rtl"] label, [dir="rtl"] input, [dir="rtl"] select, [dir="rtl"] textarea { font-family: var(--font-arabic); }
@@ -107,4 +108,22 @@
   33% { transform: translate(30px, -50px) scale(1.1); }
   66% { transform: translate(-20px, 20px) scale(0.9); }
   100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  25% {
+    transform: scale(1.1) translate(-2%, -1%);
+  }
+  50% {
+    transform: scale(1.15) translate(-1%, -2%);
+  }
+  75% {
+    transform: scale(1.1) translate(1%, -1%);
+  }
+  100% {
+    transform: scale(1) translate(0%, 0%);
+  }
 }

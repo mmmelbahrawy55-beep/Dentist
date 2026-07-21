@@ -18,16 +18,18 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0A0F]">
-      {/* Full-screen background image */}
+      {/* Full-screen animated background image */}
       <motion.div style={{ y: bgY }} className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1920&q=90&auto=format&fit=crop"
-          alt="Perfect white smile"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+        <div className="absolute inset-0 animate-kenburns">
+          <Image
+            src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1920&q=90&auto=format&fit=crop"
+            alt="Perfect white smile"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0F]/95 via-[#0A0A0F]/70 to-[#0A0A0F]/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/80 via-transparent to-[#0A0A0F]/30" />
       </motion.div>
