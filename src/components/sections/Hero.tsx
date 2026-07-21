@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, MessageCircle, Star, Shield, Award, ChevronDown } from "lucide-react";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import MagneticButton from "@/components/ui/MagneticButton";
 import { stats } from "@/lib/data";
 import { useLang } from "@/components/ui/LanguageProvider";
 
@@ -105,14 +106,18 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 1.1 }}
             className="flex flex-col sm:flex-row gap-4 mb-14"
           >
-            <a href="#appointment" className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#C9A96E] to-[#E8D5A8] text-[#0A0A0F] font-bold font-[family-name:var(--font-heading)] py-4 px-8 rounded-full text-[14px] transition-all duration-500 hover:shadow-[0_0_40px_rgba(201,169,110,0.3)] hover:scale-105">
-              {t.hero.bookBtn}
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 bg-white/[0.08] backdrop-blur-md border border-white/[0.15] text-white font-bold font-[family-name:var(--font-heading)] py-4 px-8 rounded-full text-[14px] transition-all duration-500 hover:bg-white/[0.15] hover:border-white/[0.25]">
-              <MessageCircle className="w-4 h-4" />
-              {t.hero.whatsappBtn}
-            </a>
+            <MagneticButton>
+              <a href="#appointment" className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#C9A96E] to-[#E8D5A8] text-[#0A0A0F] font-bold font-[family-name:var(--font-heading)] py-4 px-8 rounded-full text-[14px] transition-all duration-500 hover:shadow-[0_0_40px_rgba(201,169,110,0.3)]">
+                {t.hero.bookBtn}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </MagneticButton>
+            <MagneticButton>
+              <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 bg-white/[0.08] backdrop-blur-md border border-white/[0.15] text-white font-bold font-[family-name:var(--font-heading)] py-4 px-8 rounded-full text-[14px] transition-all duration-500 hover:bg-white/[0.15] hover:border-white/[0.25]">
+                <MessageCircle className="w-4 h-4" />
+                {t.hero.whatsappBtn}
+              </a>
+            </MagneticButton>
           </motion.div>
 
           {/* Trust badges */}
@@ -142,7 +147,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="mt-20 lg:mt-28"
         >
-          <div className="bg-white/[0.06] backdrop-blur-xl border border-white/[0.08] rounded-3xl p-8 md:p-10">
+          <div className="bg-white/[0.06] backdrop-blur-xl border border-white/[0.08] rounded-3xl p-8 md:p-10 gold-glow">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat) => (
                 <AnimatedCounter key={stat.label} {...stat} />

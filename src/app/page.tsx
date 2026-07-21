@@ -13,21 +13,36 @@ import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import { WhatsAppButton, ScrollToTop } from "@/components/sections/FloatingButtons";
+import CustomCursor from "@/components/ui/CustomCursor";
+import PageLoader from "@/components/ui/PageLoader";
+import NoiseOverlay from "@/components/ui/NoiseOverlay";
 
 export default function Home() {
   return (
     <>
+      <PageLoader />
+      <CustomCursor />
+      <NoiseOverlay />
       <Navbar />
       <main>
         <Hero />
+        <div className="section-divider" />
         <About />
+        <div className="section-divider" />
         <Services />
+        <div className="section-divider" />
         <Doctors />
+        <div className="section-divider" />
         <Gallery />
+        <div className="section-divider" />
         <Testimonials />
+        <div className="section-divider" />
         <Appointment />
+        <div className="section-divider" />
         <Insurance />
+        <div className="section-divider" />
         <FAQ />
+        <div className="section-divider" />
         <Contact />
       </main>
       <Footer />

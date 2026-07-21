@@ -3,9 +3,10 @@
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeftRight, ChevronLeft, ChevronRight, Sparkles, Star } from "lucide-react";
+import { ArrowLeftRight, ChevronLeft, ChevronRight, Sparkles, Star, ZoomIn } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
+import TiltCard from "@/components/ui/TiltCard";
 import { useLang } from "@/components/ui/LanguageProvider";
 
 const cases = [
@@ -58,7 +59,6 @@ export default function Gallery() {
 
   return (
     <section id="gallery" className="section-padding bg-[#0A0A0F] relative overflow-hidden">
-      {/* Background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0F766E]/[0.06] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -87,21 +87,30 @@ export default function Gallery() {
               >
                 <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center">
                   {/* Before */}
-                  <div className="relative rounded-[1.5rem] overflow-hidden group">
-                    <div className="aspect-[4/3] relative">
-                      <Image
-                        src={cases[activeIndex].beforeImg}
-                        alt="Before treatment"
-                        fill
-                        className="object-cover saturate-[0.6] brightness-[0.75] sepia-[0.15] group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 1024px) 100vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                      <div className="absolute top-4 left-4 px-4 py-2 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase">
-                        {t.gallery.before}
+                  <TiltCard glareColor="rgba(201,169,110,0.06)" maxTilt={5} scale={1.01}>
+                    <div className="relative rounded-[1.5rem] overflow-hidden group">
+                      <div className="aspect-[4/3] relative">
+                        <Image
+                          src={cases[activeIndex].beforeImg}
+                          alt="Before treatment"
+                          fill
+                          className="object-cover saturate-[0.6] brightness-[0.75] sepia-[0.15] group-hover:scale-110 transition-transform duration-700"
+                          sizes="(max-width: 1024px) 100vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                        <div className="absolute inset-0 bg-[#C9A96E]/0 group-hover:bg-[#C9A96E]/5 transition-colors duration-500" />
+                        <div className="absolute top-4 left-4 px-4 py-2 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-white/40" />
+                          {t.gallery.before}
+                        </div>
+                        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                            <ZoomIn className="w-4 h-4 text-white" />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </TiltCard>
 
                   {/* Center info */}
                   <div className="text-center px-4 lg:px-8">
@@ -170,21 +179,30 @@ export default function Gallery() {
                   </div>
 
                   {/* After */}
-                  <div className="relative rounded-[1.5rem] overflow-hidden group">
-                    <div className="aspect-[4/3] relative">
-                      <Image
-                        src={cases[activeIndex].afterImg}
-                        alt="After treatment"
-                        fill
-                        className="object-cover saturate-[1.15] brightness-[1.1] contrast-[1.05] group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 1024px) 100vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                      <div className="absolute top-4 right-4 px-4 py-2 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase">
-                        {t.gallery.after}
+                  <TiltCard glareColor="rgba(15,118,110,0.06)" maxTilt={5} scale={1.01}>
+                    <div className="relative rounded-[1.5rem] overflow-hidden group">
+                      <div className="aspect-[4/3] relative">
+                        <Image
+                          src={cases[activeIndex].afterImg}
+                          alt="After treatment"
+                          fill
+                          className="object-cover saturate-[1.15] brightness-[1.1] contrast-[1.05] group-hover:scale-110 transition-transform duration-700"
+                          sizes="(max-width: 1024px) 100vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                        <div className="absolute inset-0 bg-[#0F766E]/0 group-hover:bg-[#0F766E]/5 transition-colors duration-500" />
+                        <div className="absolute top-4 right-4 px-4 py-2 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2">
+                          {t.gallery.after}
+                          <div className="w-2 h-2 rounded-full bg-white/60" />
+                        </div>
+                        <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                            <ZoomIn className="w-4 h-4 text-white" />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </TiltCard>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -193,44 +211,48 @@ export default function Gallery() {
 
         {/* Interactive Slider */}
         <ScrollReveal>
-          <div
-            ref={sliderRef}
-            className="relative aspect-[21/9] rounded-[2rem] overflow-hidden cursor-col-resize select-none"
-            onMouseMove={(e) => handleMove(e.clientX)}
-            onTouchMove={(e) => handleMove(e.touches[0].clientX)}
-          >
-            {/* Before layer */}
-            <div className="absolute inset-0">
-              <Image
-                src="https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1600&q=90&auto=format&fit=crop"
-                alt="Before"
-                fill
-                className="object-cover saturate-[0.5] brightness-[0.7] sepia-[0.2]"
-                sizes="100vw"
-              />
-            </div>
-            {/* After layer */}
-            <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}>
-              <Image
-                src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1600&q=90&auto=format&fit=crop"
-                alt="After"
-                fill
-                className="object-cover saturate-[1.2] brightness-[1.15] contrast-[1.05]"
-                sizes="100vw"
-              />
-            </div>
-            {/* Slider line */}
-            <div className="absolute top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#C9A96E] via-white to-[#C9A96E] z-10" style={{ left: `${sliderPos}%` }}>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white shadow-2xl flex items-center justify-center">
-                <ArrowLeftRight className="w-5 h-5 text-[#0A0A0F]" />
+          <div className="relative rounded-[2rem] overflow-hidden border border-white/[0.06]">
+            <div
+              ref={sliderRef}
+              className="relative aspect-[21/9] cursor-col-resize select-none"
+              onMouseMove={(e) => handleMove(e.clientX)}
+              onTouchMove={(e) => handleMove(e.touches[0].clientX)}
+            >
+              {/* Before layer */}
+              <div className="absolute inset-0">
+                <Image
+                  src="https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1600&q=90&auto=format&fit=crop"
+                  alt="Before"
+                  fill
+                  className="object-cover saturate-[0.5] brightness-[0.7] sepia-[0.2]"
+                  sizes="100vw"
+                />
               </div>
-            </div>
-            {/* Labels */}
-            <div className="absolute bottom-6 left-6 px-5 py-2.5 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase">
-              {t.gallery.before}
-            </div>
-            <div className="absolute bottom-6 right-6 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase">
-              {t.gallery.after}
+              {/* After layer */}
+              <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}>
+                <Image
+                  src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1600&q=90&auto=format&fit=crop"
+                  alt="After"
+                  fill
+                  className="object-cover saturate-[1.2] brightness-[1.15] contrast-[1.05]"
+                  sizes="100vw"
+                />
+              </div>
+              {/* Slider line */}
+              <div className="absolute top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#C9A96E] via-white to-[#C9A96E] z-10" style={{ left: `${sliderPos}%` }}>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform">
+                  <ArrowLeftRight className="w-5 h-5 text-[#0A0A0F]" />
+                </div>
+              </div>
+              {/* Labels */}
+              <div className="absolute bottom-6 left-6 px-5 py-2.5 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-white/40" />
+                {t.gallery.before}
+              </div>
+              <div className="absolute bottom-6 right-6 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2">
+                {t.gallery.after}
+                <div className="w-2 h-2 rounded-full bg-white/60" />
+              </div>
             </div>
           </div>
         </ScrollReveal>

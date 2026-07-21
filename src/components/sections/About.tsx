@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CheckCircle, Award, Shield, Heart, Target, Gem, ArrowRight } from "lucide-react";
+import { CheckCircle, Award, Shield, Heart, Target, Gem } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
+import TiltCard from "@/components/ui/TiltCard";
 import { useLang } from "@/components/ui/LanguageProvider";
 
 const certifications = ["American Dental Association (ADA)", "International Congress of Oral Implantologists (ICOI)", "American Academy of Cosmetic Dentistry (AACD)", "Joint Commission Accreditation"];
@@ -13,11 +14,9 @@ export default function About() {
   const { t } = useLang();
   return (
     <section id="about" className="relative overflow-hidden bg-[#0A0A0F]">
-      {/* Background glow */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0F766E]/[0.04] rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C9A96E]/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Top section - Split layout */}
       <div className="section-padding pb-0">
         <div className="max-w-[1400px] mx-auto relative z-10">
           <ScrollReveal>
@@ -33,39 +32,41 @@ export default function About() {
           </ScrollReveal>
 
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center mb-20">
-            {/* Image side */}
+            {/* Image side with TiltCard */}
             <ScrollReveal direction="left" distance={50}>
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-[#0F766E]/10 to-[#C9A96E]/10 rounded-[2.5rem] blur-3xl" />
-                <div className="relative rounded-[2rem] overflow-hidden">
-                  <div className="aspect-[4/5] relative">
-                    <Image
-                      src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=85&auto=format&fit=crop"
-                      alt="Modern dental clinic"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/60 via-transparent to-transparent" />
+                <TiltCard glareColor="rgba(201,169,110,0.08)" maxTilt={6} scale={1.01}>
+                  <div className="relative rounded-[2rem] overflow-hidden gradient-border">
+                    <div className="aspect-[4/5] relative">
+                      <Image
+                        src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=85&auto=format&fit=crop"
+                        alt="Modern dental clinic"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/60 via-transparent to-transparent" />
 
-                    {/* Floating card */}
-                    <motion.div
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 5, repeat: Infinity }}
-                      className="absolute bottom-6 left-6 right-6 bg-white/[0.08] backdrop-blur-xl border border-white/[0.1] rounded-2xl px-6 py-5"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A96E] to-[#E8D5A8] flex items-center justify-center">
-                          <Gem className="w-7 h-7 text-[#0A0A0F]" />
+                      {/* Floating card */}
+                      <motion.div
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 5, repeat: Infinity }}
+                        className="absolute bottom-6 left-6 right-6 bg-white/[0.08] backdrop-blur-xl border border-white/[0.1] rounded-2xl px-6 py-5"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A96E] to-[#E8D5A8] flex items-center justify-center shadow-lg shadow-[#C9A96E]/20">
+                            <Gem className="w-7 h-7 text-[#0A0A0F]" />
+                          </div>
+                          <div>
+                            <p className="text-white font-bold text-[16px]">Since 2005</p>
+                            <p className="text-white/50 text-[13px]">18+ Years of Excellence</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-white font-bold text-[16px]">Since 2005</p>
-                          <p className="text-white/50 text-[13px]">18+ Years of Excellence</p>
-                        </div>
-                      </div>
-                    </motion.div>
+                      </motion.div>
+                    </div>
                   </div>
-                </div>
+                </TiltCard>
               </div>
             </ScrollReveal>
 
@@ -124,13 +125,15 @@ export default function About() {
                 { icon: Target, title: t.about.features.precision, desc: t.about.features.precisionDesc }
               ].map((f) => (
                 <StaggerItem key={f.title}>
-                  <div className="h-full bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-7 text-center hover:bg-white/[0.07] transition-all duration-500 group">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0F766E]/20 to-[#0F766E]/5 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-all duration-500">
-                      <f.icon className="w-6 h-6 text-[#0F766E]" />
+                  <TiltCard glareColor="rgba(15,118,110,0.06)" maxTilt={5} scale={1.02} className="h-full">
+                    <div className="h-full bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-7 text-center hover:bg-white/[0.07] transition-all duration-500 group">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0F766E]/20 to-[#0F766E]/5 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-all duration-500">
+                        <f.icon className="w-6 h-6 text-[#0F766E]" />
+                      </div>
+                      <h3 className="font-bold font-[family-name:var(--font-heading)] text-white mb-2 text-[15px]">{f.title}</h3>
+                      <p className="text-[13px] text-white/40 leading-relaxed">{f.desc}</p>
                     </div>
-                    <h3 className="font-bold font-[family-name:var(--font-heading)] text-white mb-2 text-[15px]">{f.title}</h3>
-                    <p className="text-[13px] text-white/40 leading-relaxed">{f.desc}</p>
-                  </div>
+                  </TiltCard>
                 </StaggerItem>
               ))}
             </div>
