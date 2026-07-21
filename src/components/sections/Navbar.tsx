@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useMotionValueEvent, useScroll, useMotionValue } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, X, Sun, Moon, Phone, ArrowRight, Globe } from "lucide-react";
 import { useTheme } from "@/components/ui/ThemeProvider";
 import { useLang } from "@/components/ui/LanguageProvider";
@@ -20,12 +20,8 @@ export default function Navbar() {
     setScrolled(latest > 50);
     const total = typeof document !== "undefined" ? document.documentElement.scrollHeight - window.innerHeight : 1;
     setScrollProgress(total > 0 ? (latest / total) * 100 : 0);
-
-    if (latest > lastScrollY && latest > 300) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
+    if (latest > lastScrollY && latest > 300) setHidden(true);
+    else setHidden(false);
     setLastScrollY(latest);
   });
 
@@ -35,7 +31,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Scroll progress bar - gold */}
+      {/* Scroll progress bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left"
         style={{
@@ -50,15 +46,19 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-[2px] left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
       >
-        {/* Glass background */}
+        {/* Glass background - theme aware */}
         <motion.div
           animate={{
-            backgroundColor: scrolled ? "rgba(10,10,15,0.85)" : "transparent",
+            backgroundColor: scrolled
+              ? (theme === "dark" ? "rgba(10,10,15,0.85)" : "rgba(253,251,247,0.92)")
+              : "transparent",
             backdropFilter: scrolled ? "blur(40px) saturate(200%)" : "blur(0px)",
-            boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)" : "none",
+            boxShadow: scrolled
+              ? (theme === "dark" ? "0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)" : "0 4px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)")
+              : "none",
           }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0 border-b border-white/[0.04]"
+          className="absolute inset-0 border-b border-black/[0.04] dark:border-white/[0.04]"
         />
 
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 relative z-10">
@@ -69,8 +69,8 @@ export default function Navbar() {
                 <span className="text-[#0A0A0F] font-bold text-lg font-[family-name:var(--font-heading)]">E</span>
               </div>
               <div className="hidden sm:block">
-                <span className="text-lg font-bold font-[family-name:var(--font-heading)] text-white leading-none block tracking-tight">Elite</span>
-                <span className="text-[9px] tracking-[0.25em] text-[#C9A96E] font-semibold uppercase">Dental Clinic</span>
+                <span className="text-lg font-bold font-[family-name:var(--font-heading)] text-[#1A1A2E] dark:text-white leading-none block tracking-tight">Elite</span>
+                <span className="text-[9px] tracking-[0.25em] text-[#B08D4F] dark:text-[#C9A96E] font-semibold uppercase">Dental Clinic</span>
               </div>
             </motion.a>
 
@@ -80,27 +80,27 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="relative px-4 py-2 text-[13px] font-medium text-white/50 hover:text-[#C9A96E] transition-all duration-300 rounded-xl hover:bg-white/[0.04] group"
+                  className="relative px-4 py-2 text-[13px] font-medium text-[#555] dark:text-white/50 hover:text-[#B08D4F] dark:hover:text-[#C9A96E] transition-all duration-300 rounded-xl hover:bg-[#B08D4F]/[0.04] dark:hover:bg-white/[0.04] group"
                 >
                   {link.label}
-                  <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#C9A96E] group-hover:w-6 transition-all duration-500 ease-out rounded-full" />
+                  <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#B08D4F] dark:bg-[#C9A96E] group-hover:w-6 transition-all duration-500 ease-out rounded-full" />
                 </a>
               ))}
             </nav>
 
             {/* Desktop actions */}
             <div className="hidden lg:flex items-center gap-2.5">
-              <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.92 }} onClick={toggleLang} className="h-10 px-3 rounded-xl flex items-center justify-center gap-1.5 hover:bg-white/[0.06] transition-colors text-white/50 text-[13px] font-semibold">
+              <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.92 }} onClick={toggleLang} className="h-10 px-3 rounded-xl flex items-center justify-center gap-1.5 hover:bg-[#B08D4F]/[0.06] dark:hover:bg-white/[0.06] transition-colors text-[#555] dark:text-white/50 text-[13px] font-semibold">
                 <Globe className="w-4 h-4" />{lang === "en" ? "عربي" : "EN"}
               </motion.button>
-              <motion.button whileHover={{ scale: 1.08, rotate: 15 }} whileTap={{ scale: 0.92 }} onClick={toggle} className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/[0.06] transition-colors text-white/50">
+              <motion.button whileHover={{ scale: 1.08, rotate: 15 }} whileTap={{ scale: 0.92 }} onClick={toggle} className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[#B08D4F]/[0.06] dark:hover:bg-white/[0.06] transition-colors text-[#555] dark:text-white/50">
                 <motion.div key={theme} initial={{ rotate: -90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} transition={{ duration: 0.3 }}>
                   {theme === "dark" ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
                 </motion.div>
               </motion.button>
-              <a href="tel:+15550123" className="flex items-center gap-2 text-[13px] font-semibold text-white/60 hover:text-[#C9A96E] transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-white/[0.06] flex items-center justify-center">
-                  <Phone className="w-3.5 h-3.5 text-[#C9A96E]" />
+              <a href="tel:+15550123" className="flex items-center gap-2 text-[13px] font-semibold text-[#1A1A2E] dark:text-white/60 hover:text-[#B08D4F] dark:hover:text-[#C9A96E] transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-[#B08D4F]/[0.06] dark:bg-white/[0.06] flex items-center justify-center">
+                  <Phone className="w-3.5 h-3.5 text-[#B08D4F] dark:text-[#C9A96E]" />
                 </div>
                 +1 (555) 0123
               </a>
@@ -116,13 +116,13 @@ export default function Navbar() {
 
             {/* Mobile actions */}
             <div className="flex items-center gap-2 lg:hidden">
-              <motion.button whileTap={{ scale: 0.92 }} onClick={toggleLang} className="w-10 h-10 rounded-xl flex items-center justify-center text-[12px] font-bold text-white/50">
+              <motion.button whileTap={{ scale: 0.92 }} onClick={toggleLang} className="w-10 h-10 rounded-xl flex items-center justify-center text-[12px] font-bold text-[#555] dark:text-white/50">
                 {lang === "en" ? "عربي" : "EN"}
               </motion.button>
-              <button onClick={toggle} className="w-10 h-10 rounded-xl flex items-center justify-center text-white/50">
+              <button onClick={toggle} className="w-10 h-10 rounded-xl flex items-center justify-center text-[#555] dark:text-white/50">
                 {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
-              <button onClick={() => setIsOpen(!isOpen)} className="w-10 h-10 rounded-xl flex items-center justify-center text-white/50">
+              <button onClick={() => setIsOpen(!isOpen)} className="w-10 h-10 rounded-xl flex items-center justify-center text-[#555] dark:text-white/50">
                 <AnimatePresence mode="wait">
                   {isOpen ? (
                     <motion.div key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}><X className="w-5 h-5" /></motion.div>
@@ -145,7 +145,7 @@ export default function Navbar() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="lg:hidden overflow-hidden"
             >
-              <motion.div className="bg-[#0A0A0F]/95 backdrop-blur-2xl border-t border-white/[0.06]">
+              <div className="bg-white/95 dark:bg-[#0A0A0F]/95 backdrop-blur-2xl border-t border-black/[0.06] dark:border-white/[0.06]">
                 <div className="max-w-[1400px] mx-auto px-5 py-6 space-y-1">
                   {navLinks.map((link, i) => (
                     <motion.a
@@ -155,12 +155,12 @@ export default function Navbar() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.04 }}
                       onClick={() => setIsOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-white/50 hover:text-[#C9A96E] hover:bg-white/[0.04] font-medium transition-all text-[15px]"
+                      className="block px-4 py-3 rounded-xl text-[#555] dark:text-white/50 hover:text-[#B08D4F] dark:hover:text-[#C9A96E] hover:bg-[#B08D4F]/[0.04] dark:hover:bg-white/[0.04] font-medium transition-all text-[15px]"
                     >
                       {link.label}
                     </motion.a>
                   ))}
-                  <div className="pt-4 border-t border-white/[0.06]">
+                  <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.06]">
                     <a
                       href="#appointment"
                       onClick={() => setIsOpen(false)}
@@ -170,7 +170,7 @@ export default function Navbar() {
                     </a>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

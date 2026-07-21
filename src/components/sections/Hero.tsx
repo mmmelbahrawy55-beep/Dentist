@@ -18,7 +18,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={containerRef} id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0A0F]">
+    <section ref={containerRef} id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#FDFBF7] dark:bg-[#0A0A0F]">
       {/* Full-screen animated background image */}
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0 animate-kenburns">
@@ -31,8 +31,8 @@ export default function Hero() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0F]/95 via-[#0A0A0F]/70 to-[#0A0A0F]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/80 via-transparent to-[#0A0A0F]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7]/95 via-[#FDFBF7]/70 to-[#FDFBF7]/40 dark:from-[#0A0A0F]/95 dark:via-[#0A0A0F]/70 dark:to-[#0A0A0F]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/80 via-transparent to-[#FDFBF7]/30 dark:from-[#0A0A0F]/80 dark:via-transparent dark:to-[#0A0A0F]/30" />
       </motion.div>
 
       {/* Floating sparkle dots */}
@@ -62,9 +62,9 @@ export default function Hero() {
         <div className="max-w-3xl">
           {/* Badge */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-            <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/[0.1] text-white/80 text-[12px] font-semibold tracking-[2px] uppercase">
+            <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/80 dark:bg-white/[0.08] backdrop-blur-md border border-[#B08D4F]/15 dark:border-white/[0.1] text-[#1A1A2E]/80 dark:text-white/80 text-[12px] font-semibold tracking-[2px] uppercase">
               <span className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-[#C9A96E] text-[#C9A96E]" />)}</span>
-              <span className="w-px h-3.5 bg-white/20" />
+              <span className="w-px h-3.5 bg-[#B08D4F]/20 dark:bg-white/20" />
               {t.hero.badge}
             </span>
           </motion.div>
@@ -75,7 +75,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-[clamp(2.8rem,7vw,5.5rem)] font-bold font-[family-name:var(--font-heading)] text-white leading-[1.05] tracking-[-0.03em]"
+              className="text-[clamp(2.8rem,7vw,5.5rem)] font-bold font-[family-name:var(--font-heading)] text-[#1A1A2E] dark:text-white leading-[1.05] tracking-[-0.03em]"
             >
               {t.hero.title1}
             </motion.h1>
@@ -83,7 +83,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-[clamp(2.8rem,7vw,5.5rem)] font-bold font-[family-name:var(--font-heading)] leading-[1.05] tracking-[-0.03em] bg-gradient-to-r from-[#C9A96E] via-[#E8D5A8] to-[#C9A96E] bg-clip-text text-transparent"
+              className="text-[clamp(2.8rem,7vw,5.5rem)] font-bold font-[family-name:var(--font-heading)] leading-[1.05] tracking-[-0.03em] bg-gradient-to-r from-[#B08D4F] via-[#C9A96E] to-[#B08D4F] dark:from-[#C9A96E] dark:via-[#E8D5A8] dark:to-[#C9A96E] bg-clip-text text-transparent"
             >
               {t.hero.title2}
             </motion.h1>
@@ -94,7 +94,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="text-[17px] text-white/60 mb-10 max-w-lg leading-relaxed"
+            className="text-[17px] text-[#555] dark:text-white/60 mb-10 max-w-lg leading-relaxed"
           >
             {t.hero.subtitle}
           </motion.p>
@@ -113,7 +113,7 @@ export default function Hero() {
               </a>
             </MagneticButton>
             <MagneticButton>
-              <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 bg-white/[0.08] backdrop-blur-md border border-white/[0.15] text-white font-bold font-[family-name:var(--font-heading)] py-4 px-8 rounded-full text-[14px] transition-all duration-500 hover:bg-white/[0.15] hover:border-white/[0.25]">
+              <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 bg-white/80 dark:bg-white/[0.08] backdrop-blur-md border border-[#B08D4F]/15 dark:border-white/[0.15] text-[#1A1A2E] dark:text-white font-bold font-[family-name:var(--font-heading)] py-4 px-8 rounded-full text-[14px] transition-all duration-500 hover:bg-white dark:hover:bg-white/[0.15] hover:border-[#B08D4F]/30 dark:hover:border-white/[0.25]">
                 <MessageCircle className="w-4 h-4" />
                 {t.hero.whatsappBtn}
               </a>
@@ -125,12 +125,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.3 }}
-            className="flex flex-wrap items-center gap-6 text-white/40 text-[12px] tracking-wide uppercase"
+            className="flex flex-wrap items-center gap-6 text-[#555] dark:text-white/40 text-[12px] tracking-wide uppercase"
           >
             {[
               { icon: Shield, text: "FDA Approved", color: "text-[#0F766E]" },
-              { icon: Award, text: "50+ Awards", color: "text-[#C9A96E]" },
-              { icon: Star, text: "4.9 Rating", color: "text-[#C9A96E]", fill: true }
+              { icon: Award, text: "50+ Awards", color: "text-[#B08D4F] dark:text-[#C9A96E]" },
+              { icon: Star, text: "4.9 Rating", color: "text-[#B08D4F] dark:text-[#C9A96E]", fill: true }
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-2">
                 <item.icon className={`w-4 h-4 ${item.color} ${item.fill ? "fill-current" : ""}`} />
@@ -147,7 +147,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="mt-20 lg:mt-28"
         >
-          <div className="bg-white/[0.06] backdrop-blur-xl border border-white/[0.08] rounded-3xl p-8 md:p-10 gold-glow">
+          <div className="bg-white/80 dark:bg-white/[0.06] backdrop-blur-xl border border-[#B08D4F]/10 dark:border-white/[0.08] rounded-3xl p-8 md:p-10 gold-glow">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat) => (
                 <AnimatedCounter key={stat.label} {...stat} />
@@ -165,8 +165,8 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }} className="flex flex-col items-center gap-2">
-          <span className="text-white/30 text-[10px] tracking-[3px] uppercase">{t.hero.scroll}</span>
-          <ChevronDown className="w-4 h-4 text-white/30" />
+          <span className="text-[#555] dark:text-white/30 text-[10px] tracking-[3px] uppercase">{t.hero.scroll}</span>
+          <ChevronDown className="w-4 h-4 text-[#555] dark:text-white/30" />
         </motion.div>
       </motion.div>
     </section>

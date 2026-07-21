@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Heart, MapPin, Phone, Mail, ChevronRight, Send, ArrowRight } from "lucide-react";
+import { Heart, MapPin, Phone, Mail, ChevronRight, Send } from "lucide-react";
 import { useLang } from "@/components/ui/LanguageProvider";
 import { services, socialLinks } from "@/lib/data";
 import { FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon, YoutubeIcon } from "@/components/ui/SocialIcons";
@@ -31,8 +31,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#050508] border-t border-white/[0.04] relative overflow-hidden">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#C9A96E]/[0.02] rounded-full blur-[120px] pointer-events-none" />
+    <footer className="bg-[#1A1A2E] dark:bg-[#050508] border-t border-[#B08D4F]/[0.06] dark:border-white/[0.04] relative overflow-hidden">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#C9A96E]/[0.03] dark:bg-[#C9A96E]/[0.02] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         <div className="section-padding pb-12">
@@ -51,7 +51,7 @@ export default function Footer() {
               <p className="text-[14px] text-white/40 leading-relaxed mb-8 max-w-sm">{t.footer.desc}</p>
 
               {/* Newsletter */}
-              <div className="bg-white/[0.03] rounded-2xl p-6 border border-white/[0.06]">
+              <div className="bg-white/[0.04] rounded-2xl p-6 border border-white/[0.06]">
                 <h4 className="font-bold font-[family-name:var(--font-heading)] text-white text-[15px] mb-2">Stay Updated</h4>
                 <p className="text-[13px] text-white/40 mb-4">Get the latest dental tips and exclusive offers.</p>
                 <form onSubmit={handleSubscribe} className="flex gap-2">

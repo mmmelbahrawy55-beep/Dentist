@@ -45,14 +45,14 @@ export default function AnimatedCounter({ value, suffix = "", label, icon: Icon 
       transition={{ duration: 0.5 }}
       className="text-center group"
     >
-      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-        <Icon className="w-8 h-8 text-primary" />
+      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#B08D4F]/[0.08] dark:bg-[#0F766E]/10 flex items-center justify-center group-hover:bg-[#B08D4F]/[0.12] dark:group-hover:bg-[#0F766E]/20 transition-colors">
+        <Icon className="w-8 h-8 text-[#B08D4F] dark:text-[#0F766E]" />
       </div>
-      <div className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-heading)] text-text-primary dark:text-white">
+      <div className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-heading)] text-[#1A1A2E] dark:text-white">
         {count.toLocaleString()}
         {suffix}
       </div>
-      <div className="text-sm text-text-secondary dark:text-slate-400 mt-1 font-medium">
+      <div className="text-sm text-[#555] dark:text-white/40 mt-1 font-medium">
         {label}
       </div>
     </motion.div>
