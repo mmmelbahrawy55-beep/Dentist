@@ -148,28 +148,28 @@ export const doctors: Doctor[] = [
     specialty: "Cosmetic Dentistry & Smile Design",
     experience: "15+ Years",
     qualifications: ["DDS - Harvard School", "Fellowship in Cosmetic Dentistry", "AACD Accredited"],
-    image: "/doctors/doctor1.jpg",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=85&auto=format&fit=crop",
   },
   {
     name: "Dr. James Anderson",
     specialty: "Oral Surgery & Implantology",
     experience: "20+ Years",
     qualifications: ["DMD - University of Pennsylvania", "Board Certified Oral Surgeon", "ITI Fellow"],
-    image: "/doctors/doctor2.jpg",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=85&auto=format&fit=crop",
   },
   {
     name: "Dr. Emily Chen",
     specialty: "Orthodontics & Aligners",
     experience: "12+ Years",
     qualifications: ["DDS - NYU", "Invisalign Diamond Provider", "ABO Certified"],
-    image: "/doctors/doctor3.jpg",
+    image: "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=600&q=85&auto=format&fit=crop",
   },
   {
     name: "Dr. Michael Roberts",
     specialty: "Endodontics & Root Canal",
     experience: "18+ Years",
     qualifications: ["DDS - Columbia University", "Microscopic Endodontics Specialist", "AAE Member"],
-    image: "/doctors/doctor4.jpg",
+    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=85&auto=format&fit=crop",
   },
 ];
 
