@@ -71,48 +71,6 @@
     background-clip: text;
   }
 
-  .btn-premium {
-    background: linear-gradient(135deg, #0F766E, #14B8A6);
-    color: white;
-    padding: 16px 40px;
-    border-radius: 60px;
-    font-weight: 600;
-    font-family: var(--font-heading);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 8px 30px -4px rgba(15,118,110,0.25);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-premium:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 48px -4px rgba(15,118,110,0.3);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: #0F766E;
-    padding: 16px 40px;
-    border-radius: 60px;
-    font-weight: 600;
-    font-family: var(--font-heading);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    border: 2px solid rgba(15,118,110,0.2);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .btn-outline:hover {
-    transform: translateY(-3px);
-    border-color: #0F766E;
-    background: rgba(15,118,110,0.04);
-    box-shadow: 0 12px 40px rgba(15,118,110,0.08);
-  }
-
   .section-padding { padding: 6rem 1.5rem; }
   @media (min-width: 768px) { .section-padding { padding: 8rem 2rem; } }
 
