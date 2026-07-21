@@ -9,10 +9,10 @@ import { SplitText } from "@/components/ui/TextReveal";
 import { useLang } from "@/components/ui/LanguageProvider";
 
 const cases = [
-  { beforeImg: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=90&auto=format&fit=crop", afterImg: "https://images.unsplash.com/photo-1619353115193-3f4ef1e4f5a7?w=1200&q=90&auto=format&fit=crop", title: "Hollywood Smile Makeover", subtitle: "Full smile transformation with porcelain veneers", category: "Cosmetic", duration: "2 Weeks" },
-  { beforeImg: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=90&auto=format&fit=crop", afterImg: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1200&q=90&auto=format&fit=crop", title: "Dental Implant Restoration", subtitle: "Natural-looking implants replacing missing teeth", category: "Implants", duration: "3 Months" },
-  { beforeImg: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=90&auto=format&fit=crop", afterImg: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=1200&q=90&auto=format&fit=crop", title: "Professional Teeth Whitening", subtitle: "8 shades brighter in a single session", category: "Whitening", duration: "1 Hour" },
-  { beforeImg: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=90&auto=format&fit=crop&crop=faces", afterImg: "https://images.unsplash.com/photo-1445527815219-ecbfec455d5c?w=1200&q=90&auto=format&fit=crop", title: "Orthodontic Alignment", subtitle: "Perfect teeth alignment with clear aligners", category: "Orthodontics", duration: "12 Months" },
+  { beforeImg: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=90&auto=format&fit=crop", afterImg: "https://images.unsplash.com/photo-1619353115193-3f4ef1e4f5a7?w=1200&q=90&auto=format&fit=crop", title: "Hollywood Smile Makeover", subtitle: "Full smile transformation with porcelain veneers", category: "Cosmetic", duration: "2 Weeks" },
+  { beforeImg: "https://images.unsplash.com/photo-1679741919483-acf704e00495?w=1200&q=90&auto=format&fit=crop", afterImg: "https://images.unsplash.com/photo-1619353115193-3f4ef1e4f5a7?w=1200&q=90&auto=format&fit=crop", title: "Dental Implant Restoration", subtitle: "Natural-looking implants replacing missing teeth", category: "Implants", duration: "3 Months" },
+  { beforeImg: "https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1200&q=90&auto=format&fit=crop", afterImg: "https://images.unsplash.com/photo-1445527815219-ecbfec455d5c?w=1200&q=90&auto=format&fit=crop", title: "Professional Teeth Whitening", subtitle: "8 shades brighter in a single session", category: "Whitening", duration: "1 Hour" },
+  { beforeImg: "https://images.unsplash.com/photo-1679911522750-aeedd9c88550?w=1200&q=90&auto=format&fit=crop", afterImg: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=1200&q=90&auto=format&fit=crop", title: "Orthodontic Alignment", subtitle: "Perfect teeth alignment with clear aligners", category: "Orthodontics", duration: "12 Months" },
 ];
 
 export default function Gallery() {
@@ -40,7 +40,7 @@ export default function Gallery() {
               <motion.div key={activeIndex} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
                 <div className="grid lg:grid-cols-3 gap-8 items-center">
                   <div className="relative rounded-[1.5rem] overflow-hidden premium-shadow-xl">
-                    <div className="aspect-[4/5] relative"><Image src={cases[activeIndex].beforeImg} alt="Before" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
+                    <div className="aspect-[4/5] relative"><Image src={cases[activeIndex].beforeImg} alt="Before" fill className="object-cover saturate-[0.7] brightness-[0.85] sepia-[0.2]" sizes="(max-width: 1024px) 100vw, 33vw" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A2E]/40 via-transparent to-transparent" />
                       <div className="absolute top-4 left-4 px-4 py-2 rounded-xl bg-[#1A1A2E]/70 backdrop-blur-sm text-white text-[12px] font-bold">{t.gallery.before}</div>
                     </div>
@@ -62,7 +62,7 @@ export default function Gallery() {
                     </div>
                   </div>
                   <div className="relative rounded-[1.5rem] overflow-hidden premium-shadow-xl">
-                    <div className="aspect-[4/5] relative"><Image src={cases[activeIndex].afterImg} alt="After" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
+                    <div className="aspect-[4/5] relative"><Image src={cases[activeIndex].afterImg} alt="After" fill className="object-cover saturate-[1.1] brightness-[1.05] contrast-[1.05]" sizes="(max-width: 1024px) 100vw, 33vw" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A2E]/40 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4 px-4 py-2 rounded-xl bg-[#0F766E] text-white text-[12px] font-bold">{t.gallery.after}</div>
                     </div>
@@ -75,8 +75,8 @@ export default function Gallery() {
 
         <ScrollReveal>
           <div ref={sliderRef} className="relative aspect-[21/9] rounded-[2rem] overflow-hidden cursor-col-resize select-none premium-shadow-xl" onMouseMove={(e) => handleMove(e.clientX)} onTouchMove={(e) => handleMove(e.touches[0].clientX)}>
-            <div className="absolute inset-0"><Image src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=90&auto=format&fit=crop" alt="Before" fill className="object-cover" sizes="100vw" /></div>
-            <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}><Image src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=1600&q=90&auto=format&fit=crop" alt="After" fill className="object-cover" sizes="100vw" /></div>
+            <div className="absolute inset-0"><Image src="https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1600&q=90&auto=format&fit=crop" alt="Before" fill className="object-cover saturate-[0.6] brightness-[0.8] sepia-[0.25]" sizes="100vw" /></div>
+            <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}><Image src="https://images.unsplash.com/photo-1445527815219-ecbfec455d5c?w=1600&q=90&auto=format&fit=crop" alt="After" fill className="object-cover saturate-[1.15] brightness-[1.1] contrast-[1.05]" sizes="100vw" /></div>
             <div className="absolute top-0 bottom-0 w-[3px] bg-[#0F766E] z-10" style={{ left: `${sliderPos}%` }}><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center"><ArrowLeftRight className="w-5 h-5 text-[#0F766E]" /></div></div>
             <div className="absolute bottom-6 left-6 px-4 py-2 rounded-xl bg-[#1A1A2E]/70 backdrop-blur-sm text-white text-[12px] font-bold">{t.gallery.before}</div>
             <div className="absolute bottom-6 right-6 px-4 py-2 rounded-xl bg-[#0F766E] text-white text-[12px] font-bold">{t.gallery.after}</div>
