@@ -11,8 +11,8 @@ import { useLang } from "@/components/ui/LanguageProvider";
 
 const cases = [
   {
-    beforeImg: "https://images.unsplash.com/photo-1733685373334-c5ea7c0ee009?w=900&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=900&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1733685373334-c5ea7c0ee009?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=1100&q=95&auto=format&fit=crop",
     title: "Complete Smile Makeover",
     subtitle: "Full mouth rehabilitation with premium porcelain veneers",
     category: "Cosmetic",
@@ -20,8 +20,8 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1758205307804-097f5437189f?w=900&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=900&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1758205307804-097f5437189f?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=1100&q=95&auto=format&fit=crop",
     title: "Professional Teeth Whitening",
     subtitle: "Advanced laser whitening for dramatically brighter teeth",
     category: "Whitening",
@@ -29,8 +29,8 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1758205307745-84a7132fd91b?w=900&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1567516364473-233c4b6fcfbe?w=900&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1758205307745-84a7132fd91b?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1567516364473-233c4b6fcfbe?w=1100&q=95&auto=format&fit=crop",
     title: "Dental Implant Restoration",
     subtitle: "Permanent natural-looking tooth replacement",
     category: "Implants",
@@ -38,8 +38,8 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1766338390573-ec092d69cdcb?w=900&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=900&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1766338390573-ec092d69cdcb?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1100&q=95&auto=format&fit=crop",
     title: "Invisible Orthodontics",
     subtitle: "Clear aligners for perfectly straightened teeth",
     category: "Orthodontics",
@@ -97,12 +97,12 @@ export default function Gallery() {
                           src={cases[activeIndex].beforeImg}
                           alt="Before treatment"
                           fill
-                          className="object-cover saturate-[0.5] brightness-[0.7] sepia-[0.2] group-hover:scale-110 transition-transform duration-700"
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
                           sizes="(max-width: 1024px) 100vw, 33vw"
                           priority
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                        <div className="absolute top-4 left-4 px-4 py-2 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-white/10">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                        <div className="absolute top-4 left-4 px-4 py-2 rounded-xl bg-black/70 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-red-400/30">
                           <div className="w-2 h-2 rounded-full bg-red-400" />
                           {t.gallery.before}
                         </div>
@@ -189,12 +189,12 @@ export default function Gallery() {
                           src={cases[activeIndex].afterImg}
                           alt="After treatment"
                           fill
-                          className="object-cover saturate-[1.15] brightness-[1.1] contrast-[1.05] group-hover:scale-110 transition-transform duration-700"
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
                           sizes="(max-width: 1024px) 100vw, 33vw"
                           priority
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                        <div className="absolute top-4 right-4 px-4 py-2 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-white/10">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                        <div className="absolute top-4 right-4 px-4 py-2 rounded-xl bg-gradient-to-r from-[#0F766E]/90 to-[#14B8A6]/90 text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-emerald-400/30 backdrop-blur-sm">
                           {t.gallery.after}
                           <div className="w-2 h-2 rounded-full bg-emerald-300" />
                         </div>
@@ -220,10 +220,10 @@ export default function Gallery() {
             >
               <div className="absolute inset-0">
                 <Image
-                  src="https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1600&q=95&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1800&q=95&auto=format&fit=crop"
                   alt="Before treatment"
                   fill
-                  className="object-cover saturate-[0.5] brightness-[0.7] sepia-[0.2]"
+                  className="object-cover"
                   sizes="100vw"
                   priority
                 />
@@ -233,10 +233,10 @@ export default function Gallery() {
                 style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1600&q=95&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1800&q=95&auto=format&fit=crop"
                   alt="After treatment"
                   fill
-                  className="object-cover saturate-[1.2] brightness-[1.15] contrast-[1.05]"
+                  className="object-cover"
                   sizes="100vw"
                   priority
                 />
@@ -254,11 +254,11 @@ export default function Gallery() {
                   <ArrowLeftRight className={`w-5 h-5 text-[#0A0A0F] transition-transform duration-300 ${sliderHover ? "rotate-180" : ""}`} />
                 </div>
               </div>
-              <div className="absolute bottom-6 left-6 px-5 py-2.5 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-white/10">
+              <div className="absolute bottom-6 left-6 px-5 py-2.5 rounded-xl bg-black/70 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-red-400/30">
                 <div className="w-2 h-2 rounded-full bg-red-400" />
                 {t.gallery.before}
               </div>
-              <div className="absolute bottom-6 right-6 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-white/10">
+              <div className="absolute bottom-6 right-6 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0F766E]/90 to-[#14B8A6]/90 text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-emerald-400/30 backdrop-blur-sm">
                 {t.gallery.after}
                 <div className="w-2 h-2 rounded-full bg-emerald-300" />
               </div>
