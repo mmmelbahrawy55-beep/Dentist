@@ -245,3 +245,9 @@
   0%, 100% { box-shadow: 0 0 20px rgba(201, 169, 110, 0.1); }
   50% { box-shadow: 0 0 40px rgba(201, 169, 110, 0.2); }
 }
+
+/* Performance: contain paint layout for sections */
+.section-padding {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}

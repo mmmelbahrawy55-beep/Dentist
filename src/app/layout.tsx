@@ -7,7 +7,7 @@ import { LangProvider } from "@/components/ui/LanguageProvider";
 const poppins = Poppins({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 

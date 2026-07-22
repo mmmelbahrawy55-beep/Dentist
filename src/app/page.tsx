@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -7,20 +8,21 @@ import Stats from "@/components/sections/Stats";
 import AwardsMarquee from "@/components/sections/AwardsMarquee";
 import Services from "@/components/sections/Services";
 import Doctors from "@/components/sections/Doctors";
-import Gallery from "@/components/sections/Gallery";
-import Testimonials from "@/components/sections/Testimonials";
-import Appointment from "@/components/sections/Appointment";
-import Insurance from "@/components/sections/Insurance";
-import FAQ from "@/components/sections/FAQ";
-import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import { WhatsAppButton, ScrollToTop } from "@/components/sections/FloatingButtons";
-import CursorRipple from "@/components/ui/CursorRipple";
-import PageLoader from "@/components/ui/PageLoader";
-import NoiseOverlay from "@/components/ui/NoiseOverlay";
-import ScrollProgress from "@/components/ui/ScrollProgress";
-import MorphingBackground from "@/components/ui/MorphingBackground";
 import SectionDivider from "@/components/ui/SectionDivider";
+
+const Gallery = dynamic(() => import("@/components/sections/Gallery"), { ssr: false });
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), { ssr: false });
+const Appointment = dynamic(() => import("@/components/sections/Appointment"), { ssr: false });
+const Insurance = dynamic(() => import("@/components/sections/Insurance"), { ssr: false });
+const FAQ = dynamic(() => import("@/components/sections/FAQ"), { ssr: false });
+const Contact = dynamic(() => import("@/components/sections/Contact"), { ssr: false });
+const CursorRipple = dynamic(() => import("@/components/ui/CursorRipple"), { ssr: false });
+const PageLoader = dynamic(() => import("@/components/ui/PageLoader"), { ssr: false });
+const NoiseOverlay = dynamic(() => import("@/components/ui/NoiseOverlay"), { ssr: false });
+const ScrollProgress = dynamic(() => import("@/components/ui/ScrollProgress"), { ssr: false });
+const MorphingBackground = dynamic(() => import("@/components/ui/MorphingBackground"), { ssr: false });
 
 export default function Home() {
   return (

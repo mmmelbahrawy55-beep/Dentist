@@ -3,79 +3,73 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-interface Ripple {
-  id: number;
-  x: number;
-  y: number;
-}
-
 export default function CursorRipple() {
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [clicking, setClicking] = useState(false);
-  const [ripples, setRipples] = useState<Ripple[]>([]);
 
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  const springX = useSpring(cursorX, { stiffness: 600, damping: 28 });
-  const springY = useSpring(cursorY, { stiffness: 600, damping: 28 });
-  const trailX = useSpring(cursorX, { stiffness: 120, damping: 18 });
-  const trailY = useSpring(cursorY, { stiffness: 120, damping: 18 });
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  const springX = useSpring(cursorX, { stiffness: 300, damping: 25 });
+  const springY = useSpring(cursorY, { stiffness: 300, damping: 25 });
 
   const addRipple = useCallback((x: number, y: number) => {
-    const id = Date.now();
-    setRipples((prev) => [...prev, { id, x, y }]);
-    setTimeout(() => setRipples((prev) => prev.filter((r) => r.id !== id)), 800);
+    const ripple = document.createElement("div");
+    ripple.className = "fixed rounded-full border border-[#C9A96E]/30 pointer-events-none z-[9999]";
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.style.translate = "-50% -50%";
+    ripple.animate([
+      { width: "0px", height: "0px", opacity: 0.6 },
+      { width: "80px", height: "80px", opacity: 0 },
+    ], { duration: 800, easing: "ease-out", fill: "forwards" });
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 800);
   }, []);
 
   useEffect(() => {
-    const isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
+    const isMobile = window.matchMedia("(pointer: coarse)").matches;
     if (isMobile) return;
 
-    const move = (e: MouseEvent) => {
+    let hoverEls = new Set<Element>();
+    let ticking = false;
+
+    const onMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
       if (!visible) setVisible(true);
     };
 
-    const down = (e: MouseEvent) => {
+    const onDown = (e: MouseEvent) => {
       setClicking(true);
       addRipple(e.clientX, e.clientY);
     };
-    const up = () => setClicking(false);
+    const onUp = () => setClicking(false);
 
-    const enterHover = () => setHovering(true);
-    const leaveHover = () => setHovering(false);
+    const checkHover = () => {
+      const hovered = document.querySelectorAll(":hover");
+      const isHovering = Array.from(hovered).some(
+        (el) => el.matches("a, button, [role='button'], input, select, textarea, [data-cursor-hover]")
+      );
+      setHovering(isHovering);
+    };
 
-    window.addEventListener("mousemove", move);
-    window.addEventListener("mousedown", down);
-    window.addEventListener("mouseup", up);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup", onUp);
 
-    const interactiveEls = document.querySelectorAll("a, button, [role='button'], input, select, textarea, [data-cursor-hover]");
-    interactiveEls.forEach((el) => {
-      el.addEventListener("mouseenter", enterHover);
-      el.addEventListener("mouseleave", leaveHover);
-    });
-
-    const observer = new MutationObserver(() => {
-      const newEls = document.querySelectorAll("a, button, [role='button'], input, select, textarea, [data-cursor-hover]");
-      newEls.forEach((el) => {
-        el.removeEventListener("mouseenter", enterHover);
-        el.removeEventListener("mouseleave", leaveHover);
-        el.addEventListener("mouseenter", enterHover);
-        el.addEventListener("mouseleave", leaveHover);
-      });
-    });
+    // Lightweight hover check
+    const observer = new MutationObserver(checkHover);
     observer.observe(document.body, { childList: true, subtree: true });
+    document.addEventListener("mouseover", checkHover);
+    document.addEventListener("mouseout", checkHover);
 
     return () => {
-      window.removeEventListener("mousemove", move);
-      window.removeEventListener("mousedown", down);
-      window.removeEventListener("mouseup", up);
-      interactiveEls.forEach((el) => {
-        el.removeEventListener("mouseenter", enterHover);
-        el.removeEventListener("mouseleave", leaveHover);
-      });
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup", onUp);
+      document.removeEventListener("mouseover", checkHover);
+      document.removeEventListener("mouseout", checkHover);
       observer.disconnect();
     };
   }, [cursorX, cursorY, visible, addRipple]);
@@ -84,59 +78,25 @@ export default function CursorRipple() {
 
   return (
     <div className="fixed inset-0 z-[9999] pointer-events-none hidden lg:block">
-      {/* Ripple effects */}
-      {ripples.map((ripple) => (
-        <motion.div
-          key={ripple.id}
-          initial={{ width: 0, height: 0, opacity: 0.6 }}
-          animate={{ width: 80, height: 80, opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          style={{
-            position: "fixed",
-            left: ripple.x,
-            top: ripple.y,
-            translateX: "-50%",
-            translateY: "-50%",
-            borderRadius: "50%",
-            border: "2px solid rgba(201, 169, 110, 0.4)",
-          }}
-        />
-      ))}
-
-      {/* Outer trail */}
       <motion.div
-        style={{ x: trailX, y: trailY, translateX: "-50%", translateY: "-50%" }}
+        style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          width: hovering ? 64 : clicking ? 30 : 40,
-          height: hovering ? 64 : clicking ? 30 : 40,
-          opacity: clicking ? 0.5 : 0.8,
+          width: hovering ? 64 : clicking ? 28 : 36,
+          height: hovering ? 64 : clicking ? 28 : 36,
           borderWidth: hovering ? 1.5 : 1,
         }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="fixed top-0 left-0 rounded-full border-[#C9A96E]/30"
+        transition={{ duration: 0.2 }}
+        className="fixed top-0 left-0 rounded-full border-[#C9A96E]/25"
       />
-
-      {/* Inner dot */}
       <motion.div
         style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
         animate={{
           width: clicking ? 4 : hovering ? 8 : 5,
           height: clicking ? 4 : hovering ? 8 : 5,
         }}
-        transition={{ duration: 0.15 }}
+        transition={{ duration: 0.1 }}
         className="fixed top-0 left-0 rounded-full bg-[#C9A96E]"
       />
-
-      {/* Glow on hover */}
-      {hovering && (
-        <motion.div
-          style={{ x: trailX, y: trailY, translateX: "-50%", translateY: "-50%" }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.15, scale: 1 }}
-          exit={{ opacity: 0, scale: 0 }}
-          className="fixed top-0 left-0 w-24 h-24 rounded-full bg-[#C9A96E] blur-xl"
-        />
-      )}
     </div>
   );
 }
