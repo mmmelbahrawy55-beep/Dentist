@@ -11,8 +11,8 @@ import { useLang } from "@/components/ui/LanguageProvider";
 
 const cases = [
   {
-    beforeImg: "https://images.unsplash.com/photo-1733685373334-c5ea7c0ee009?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=1100&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1679741919483-acf704e00495?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1100&q=95&auto=format&fit=crop",
     title: "Complete Smile Makeover",
     subtitle: "Full mouth rehabilitation with premium porcelain veneers",
     category: "Cosmetic",
@@ -20,8 +20,17 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1758205307804-097f5437189f?w=1100&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1679911522750-aeedd9c88550?w=1100&q=95&auto=format&fit=crop",
     afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=1100&q=95&auto=format&fit=crop",
+    title: "Porcelain Veneers",
+    subtitle: "Custom porcelain shells for a flawless, natural smile",
+    category: "Veneers",
+    duration: "10 Days",
+    rating: 5,
+  },
+  {
+    beforeImg: "https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=1100&q=95&auto=format&fit=crop",
     title: "Professional Teeth Whitening",
     subtitle: "Advanced laser whitening for dramatically brighter teeth",
     category: "Whitening",
@@ -29,21 +38,12 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1758205307745-84a7132fd91b?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1567516364473-233c4b6fcfbe?w=1100&q=95&auto=format&fit=crop",
-    title: "Dental Implant Restoration",
-    subtitle: "Permanent natural-looking tooth replacement",
-    category: "Implants",
-    duration: "3 Months",
-    rating: 5,
-  },
-  {
-    beforeImg: "https://images.unsplash.com/photo-1766338390573-ec092d69cdcb?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1100&q=95&auto=format&fit=crop",
-    title: "Invisible Orthodontics",
-    subtitle: "Clear aligners for perfectly straightened teeth",
-    category: "Orthodontics",
-    duration: "12 Months",
+    beforeImg: "https://images.unsplash.com/photo-1664529845836-433c172142ca?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1776400985210-92f654712d30?w=1100&q=95&auto=format&fit=crop",
+    title: "Full Mouth Reconstruction",
+    subtitle: "Complete transformation with implants and veneers",
+    category: "Reconstruction",
+    duration: "6 Months",
     rating: 5,
   },
 ];
@@ -220,7 +220,7 @@ export default function Gallery() {
             >
               <div className="absolute inset-0">
                 <Image
-                  src="https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1800&q=95&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1679741919483-acf704e00495?w=1800&q=95&auto=format&fit=crop"
                   alt="Before treatment"
                   fill
                   className="object-cover"
