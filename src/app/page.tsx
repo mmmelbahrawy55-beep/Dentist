@@ -13,16 +13,20 @@ import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import { WhatsAppButton, ScrollToTop } from "@/components/sections/FloatingButtons";
-import CustomCursor from "@/components/ui/CustomCursor";
+import CursorRipple from "@/components/ui/CursorRipple";
 import PageLoader from "@/components/ui/PageLoader";
 import NoiseOverlay from "@/components/ui/NoiseOverlay";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import MorphingBackground from "@/components/ui/MorphingBackground";
 
 export default function Home() {
   return (
     <>
       <PageLoader />
-      <CustomCursor />
+      <CursorRipple />
       <NoiseOverlay />
+      <MorphingBackground />
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
