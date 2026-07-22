@@ -3,6 +3,8 @@
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
+import Stats from "@/components/sections/Stats";
+import AwardsMarquee from "@/components/sections/AwardsMarquee";
 import Services from "@/components/sections/Services";
 import Doctors from "@/components/sections/Doctors";
 import Gallery from "@/components/sections/Gallery";
@@ -18,6 +20,7 @@ import PageLoader from "@/components/ui/PageLoader";
 import NoiseOverlay from "@/components/ui/NoiseOverlay";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import MorphingBackground from "@/components/ui/MorphingBackground";
+import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Home() {
   return (
@@ -30,23 +33,27 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <div className="section-divider" />
+        <SectionDivider />
         <About />
-        <div className="section-divider" />
+        <SectionDivider variant="gradient" />
+        <Stats />
+        <SectionDivider variant="gradient" />
+        <AwardsMarquee />
+        <SectionDivider />
         <Services />
-        <div className="section-divider" />
+        <SectionDivider />
         <Doctors />
-        <div className="section-divider" />
+        <SectionDivider />
         <Gallery />
-        <div className="section-divider" />
+        <SectionDivider />
         <Testimonials />
-        <div className="section-divider" />
+        <SectionDivider />
         <Appointment />
-        <div className="section-divider" />
+        <SectionDivider />
         <Insurance />
-        <div className="section-divider" />
+        <SectionDivider />
         <FAQ />
-        <div className="section-divider" />
+        <SectionDivider />
         <Contact />
       </main>
       <Footer />
