@@ -13,10 +13,10 @@ const cases = [
   {
     beforeImg: "https://images.unsplash.com/photo-1679741919483-acf704e00495?w=1100&q=95&auto=format&fit=crop",
     afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1100&q=95&auto=format&fit=crop",
-    title: "Complete Smile Makeover",
-    subtitle: "Full mouth rehabilitation with premium porcelain veneers",
-    category: "Cosmetic",
-    duration: "2 Weeks",
+    title: "Teeth Whitening Transformation",
+    subtitle: "Professional whitening for a brighter, more confident smile",
+    category: "Whitening",
+    duration: "45 Mins",
     rating: 5,
   },
   {
@@ -31,19 +31,19 @@ const cases = [
   {
     beforeImg: "https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1100&q=95&auto=format&fit=crop",
     afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=1100&q=95&auto=format&fit=crop",
-    title: "Professional Teeth Whitening",
-    subtitle: "Advanced laser whitening for dramatically brighter teeth",
-    category: "Whitening",
-    duration: "45 Mins",
-    rating: 5,
-  },
-  {
-    beforeImg: "https://images.unsplash.com/photo-1660300110558-392c91835aa5?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=1100&q=95&auto=format&fit=crop",
     title: "Porcelain Veneers",
     subtitle: "Custom porcelain shells for a flawless, natural smile",
     category: "Veneers",
     duration: "10 Days",
+    rating: 5,
+  },
+  {
+    beforeImg: "https://images.unsplash.com/photo-1679136293900-05b227099221?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=1100&q=95&auto=format&fit=crop",
+    title: "Smile Makeover",
+    subtitle: "Complete cosmetic transformation with veneers and whitening",
+    category: "Cosmetic",
+    duration: "2 Weeks",
     rating: 5,
   },
 ];
