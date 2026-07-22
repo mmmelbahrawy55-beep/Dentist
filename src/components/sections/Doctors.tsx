@@ -2,11 +2,41 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Star, Award, GraduationCap } from "lucide-react";
+import { Star, GraduationCap } from "lucide-react";
 import ScrollReveal, { StaggerChildren, StaggerItem } from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
-import { doctors } from "@/lib/data";
 import { useLang } from "@/components/ui/LanguageProvider";
+
+const doctorsData = [
+  {
+    name: "Dr. Ahmed Hassan",
+    specialty: "Cosmetic Dentistry",
+    experience: "15+ Years",
+    qualifications: ["DDS - New York University", "Fellow AACD", "Smile Design Expert"],
+    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=95&auto=format&fit=crop&crop=face"
+  },
+  {
+    name: "Dr. Sarah Mitchell",
+    specialty: "Orthodontics",
+    experience: "12+ Years",
+    qualifications: ["DMD - Harvard School", "Invisalign Diamond", "Board Certified"],
+    image: "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=800&q=95&auto=format&fit=crop&crop=face"
+  },
+  {
+    name: "Dr. Michael Chen",
+    specialty: "Dental Implants",
+    experience: "18+ Years",
+    qualifications: ["DDS - Columbia", "ICOI Fellow", "Implant Surgeon"],
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=95&auto=format&fit=crop&crop=face"
+  },
+  {
+    name: "Dr. Emily Roberts",
+    specialty: "Endodontics",
+    experience: "10+ Years",
+    qualifications: ["DMD - UPenn", "Root Canal Specialist", "Pain Management Expert"],
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=95&auto=format&fit=crop&crop=face"
+  },
+];
 
 export default function Doctors() {
   const { t } = useLang();
@@ -30,51 +60,49 @@ export default function Doctors() {
 
         <StaggerChildren stagger={0.1}>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {doctors.map((doc) => (
+            {doctorsData.map((doc) => (
               <StaggerItem key={doc.name}>
                 <motion.div
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.4 }}
-                  className="group relative bg-white/70 dark:bg-white/[0.04] backdrop-blur-sm border border-[#B08D4F]/[0.08] dark:border-white/[0.06] rounded-2xl overflow-hidden hover:bg-white dark:hover:bg-white/[0.07] transition-all duration-500"
+                  className="group relative bg-white/70 dark:bg-white/[0.04] backdrop-blur-sm border border-[#B08D4F]/[0.08] dark:border-white/[0.06] rounded-2xl overflow-hidden hover:bg-white dark:hover:bg-white/[0.07] transition-all duration-500 shadow-lg shadow-black/[0.02] dark:shadow-black/[0.2]"
                 >
-                  {/* Image */}
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <Image
                       src={doc.image}
                       alt={doc.name}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover transition-all duration-700 group-hover:scale-110"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/90 dark:from-[#0A0A0F]/90 via-[#FDFBF7]/20 dark:via-[#0A0A0F]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A2E]/90 via-[#1A1A2E]/30 to-transparent dark:from-[#0A0A0F]/90 dark:via-[#0A0A0F]/30 to-transparent" />
 
-                    {/* Rating stars */}
+                    {/* Stars */}
                     <div className="absolute top-4 left-4 flex gap-0.5">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-3 h-3 fill-[#C9A96E] text-[#C9A96E]" />
                       ))}
                     </div>
 
-                    {/* Experience badge */}
+                    {/* Experience */}
                     <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-[#C9A96E]/20 backdrop-blur-sm border border-[#C9A96E]/30">
                       <span className="text-[10px] font-bold text-[#B08D4F] dark:text-[#C9A96E]">{doc.experience}</span>
                     </div>
 
-                    {/* Info overlay */}
+                    {/* Bottom info */}
                     <div className="absolute bottom-0 left-0 right-0 p-5">
-                      <h4 className="font-bold font-[family-name:var(--font-heading)] text-[#1A1A2E] dark:text-white text-[17px] mb-1">
+                      <h4 className="font-bold font-[family-name:var(--font-heading)] text-white text-[17px] mb-1">
                         {doc.name}
                       </h4>
-                      <p className="text-[#0F766E] text-[13px] font-medium mb-3">
+                      <p className="text-[#14B8A6] text-[13px] font-medium mb-3">
                         {doc.specialty}
                       </p>
 
-                      {/* Qualifications - visible on hover */}
                       <div className="space-y-1.5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                        {doc.qualifications.slice(0, 2).map((qual) => (
+                        {doc.qualifications.map((qual) => (
                           <div key={qual} className="flex items-center gap-2">
-                            <GraduationCap className="w-3 h-3 text-[#B08D4F] dark:text-[#C9A96E] shrink-0" />
-                            <span className="text-[11px] text-[#555] dark:text-white/60">{qual}</span>
+                            <GraduationCap className="w-3 h-3 text-[#C9A96E] shrink-0" />
+                            <span className="text-[11px] text-white/60">{qual}</span>
                           </div>
                         ))}
                       </div>

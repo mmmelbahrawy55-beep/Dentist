@@ -3,7 +3,7 @@
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeftRight, ChevronLeft, ChevronRight, Sparkles, Star, ZoomIn } from "lucide-react";
+import { ArrowLeftRight, ChevronLeft, ChevronRight, Sparkles, Star, Clock, Syringe } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { SplitText } from "@/components/ui/TextReveal";
 import TiltCard from "@/components/ui/TiltCard";
@@ -11,36 +11,40 @@ import { useLang } from "@/components/ui/LanguageProvider";
 
 const cases = [
   {
-    beforeImg: "https://images.unsplash.com/photo-1663182245833-7dd667277043?w=800&q=90&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=800&q=90&auto=format&fit=crop",
-    title: "Hollywood Smile Makeover",
-    subtitle: "Full smile transformation with porcelain veneers",
+    beforeImg: "https://images.unsplash.com/photo-1733685373334-c5ea7c0ee009?w=900&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=900&q=95&auto=format&fit=crop",
+    title: "Complete Smile Makeover",
+    subtitle: "Full mouth rehabilitation with premium porcelain veneers",
     category: "Cosmetic",
-    duration: "2 Weeks"
+    duration: "2 Weeks",
+    rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1679741919483-acf704e00495?w=800&q=90&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1607960402012-7041136af2c0?w=800&q=90&auto=format&fit=crop",
-    title: "Dental Implant Restoration",
-    subtitle: "Natural-looking implants replacing missing teeth",
-    category: "Implants",
-    duration: "3 Months"
-  },
-  {
-    beforeImg: "https://images.unsplash.com/photo-1663182245833-7dd667277043?w=800&q=90&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1567516364473-233c4b6fcfbe?w=800&q=90&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1758205307804-097f5437189f?w=900&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=900&q=95&auto=format&fit=crop",
     title: "Professional Teeth Whitening",
-    subtitle: "8 shades brighter in a single session",
+    subtitle: "Advanced laser whitening for dramatically brighter teeth",
     category: "Whitening",
-    duration: "1 Hour"
+    duration: "45 Mins",
+    rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1636307739505-413f99c224e0?w=800&q=90&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=800&q=90&auto=format&fit=crop",
-    title: "Orthodontic Alignment",
-    subtitle: "Perfect teeth alignment with clear aligners",
+    beforeImg: "https://images.unsplash.com/photo-1758205307745-84a7132fd91b?w=900&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1567516364473-233c4b6fcfbe?w=900&q=95&auto=format&fit=crop",
+    title: "Dental Implant Restoration",
+    subtitle: "Permanent natural-looking tooth replacement",
+    category: "Implants",
+    duration: "3 Months",
+    rating: 5,
+  },
+  {
+    beforeImg: "https://images.unsplash.com/photo-1766338390573-ec092d69cdcb?w=900&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=900&q=95&auto=format&fit=crop",
+    title: "Invisible Orthodontics",
+    subtitle: "Clear aligners for perfectly straightened teeth",
     category: "Orthodontics",
-    duration: "12 Months"
+    duration: "12 Months",
+    rating: 5,
   },
 ];
 
@@ -48,6 +52,7 @@ export default function Gallery() {
   const { t } = useLang();
   const [activeIndex, setActiveIndex] = useState(0);
   const [sliderPos, setSliderPos] = useState(50);
+  const [sliderHover, setSliderHover] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleMove = useCallback((clientX: number) => {
@@ -74,7 +79,6 @@ export default function Gallery() {
           </div>
         </ScrollReveal>
 
-        {/* Before/After Cards */}
         <ScrollReveal>
           <div className="mb-16">
             <AnimatePresence mode="wait">
@@ -86,33 +90,26 @@ export default function Gallery() {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center">
-                  {/* Before */}
                   <TiltCard glareColor="rgba(201,169,110,0.06)" maxTilt={5} scale={1.01}>
-                    <div className="relative rounded-[1.5rem] overflow-hidden group">
+                    <div className="relative rounded-[1.5rem] overflow-hidden group shadow-xl shadow-black/5">
                       <div className="aspect-[4/3] relative">
                         <Image
                           src={cases[activeIndex].beforeImg}
                           alt="Before treatment"
                           fill
-                          className="object-cover saturate-[0.6] brightness-[0.75] sepia-[0.15] group-hover:scale-110 transition-transform duration-700"
+                          className="object-cover saturate-[0.5] brightness-[0.7] sepia-[0.2] group-hover:scale-110 transition-transform duration-700"
                           sizes="(max-width: 1024px) 100vw, 33vw"
+                          priority
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                        <div className="absolute inset-0 bg-[#B08D4F]/0 group-hover:bg-[#B08D4F]/5 dark:bg-[#C9A96E]/0 dark:group-hover:bg-[#C9A96E]/5 transition-colors duration-500" />
-                        <div className="absolute top-4 left-4 px-4 py-2 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-white/40" />
+                        <div className="absolute top-4 left-4 px-4 py-2 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-white/10">
+                          <div className="w-2 h-2 rounded-full bg-red-400" />
                           {t.gallery.before}
-                        </div>
-                        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                            <ZoomIn className="w-4 h-4 text-white" />
-                          </div>
                         </div>
                       </div>
                     </div>
                   </TiltCard>
 
-                  {/* Center info */}
                   <div className="text-center px-4 lg:px-8">
                     <motion.div
                       animate={{ scale: [1, 1.05, 1] }}
@@ -127,23 +124,30 @@ export default function Gallery() {
                     <h3 className="text-[clamp(1.3rem,2.5vw,1.8rem)] font-bold font-[family-name:var(--font-heading)] text-[#1A1A2E] dark:text-white mb-2">
                       {cases[activeIndex].title}
                     </h3>
-                    <p className="text-[14px] text-[#555] dark:text-white/50 mb-4 leading-relaxed">
+                    <p className="text-[14px] text-[#555] dark:text-white/50 mb-6 leading-relaxed">
                       {cases[activeIndex].subtitle}
                     </p>
-                    <div className="flex items-center justify-center gap-4 mb-6">
-                      <div className="text-center">
-                        <p className="text-[10px] text-[#999] dark:text-white/30 uppercase tracking-[2px]">Duration</p>
-                        <p className="text-[14px] font-bold text-[#1A1A2E] dark:text-white">{cases[activeIndex].duration}</p>
-                      </div>
-                      <div className="w-px h-8 bg-[#B08D4F]/10 dark:bg-white/10" />
-                      <div className="text-center">
-                        <p className="text-[10px] text-[#999] dark:text-white/30 uppercase tracking-[2px]">Rating</p>
-                        <div className="flex gap-0.5">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-3.5 h-3.5 fill-[#C9A96E] text-[#C9A96E]" />
-                          ))}
+                    <div className="flex items-center justify-center gap-6 mb-6">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-[#B08D4F] dark:text-[#C9A96E]" />
+                        <div className="text-left">
+                          <p className="text-[10px] text-[#999] dark:text-white/30 uppercase tracking-[2px]">Duration</p>
+                          <p className="text-[14px] font-bold text-[#1A1A2E] dark:text-white">{cases[activeIndex].duration}</p>
                         </div>
                       </div>
+                      <div className="w-px h-8 bg-[#B08D4F]/10 dark:bg-white/10" />
+                      <div className="flex items-center gap-2">
+                        <Syringe className="w-4 h-4 text-[#B08D4F] dark:text-[#C9A96E]" />
+                        <div className="text-left">
+                          <p className="text-[10px] text-[#999] dark:text-white/30 uppercase tracking-[2px]">Pain Level</p>
+                          <p className="text-[14px] font-bold text-[#1A1A2E] dark:text-white">Minimal</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-center gap-2 mb-6">
+                      {[...Array(cases[activeIndex].rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-[#C9A96E] text-[#C9A96E]" />
+                      ))}
                     </div>
                     <div className="flex items-center justify-center gap-3">
                       <motion.button
@@ -178,9 +182,8 @@ export default function Gallery() {
                     </div>
                   </div>
 
-                  {/* After */}
                   <TiltCard glareColor="rgba(15,118,110,0.06)" maxTilt={5} scale={1.01}>
-                    <div className="relative rounded-[1.5rem] overflow-hidden group">
+                    <div className="relative rounded-[1.5rem] overflow-hidden group shadow-xl shadow-black/5">
                       <div className="aspect-[4/3] relative">
                         <Image
                           src={cases[activeIndex].afterImg}
@@ -188,17 +191,12 @@ export default function Gallery() {
                           fill
                           className="object-cover saturate-[1.15] brightness-[1.1] contrast-[1.05] group-hover:scale-110 transition-transform duration-700"
                           sizes="(max-width: 1024px) 100vw, 33vw"
+                          priority
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                        <div className="absolute inset-0 bg-[#0F766E]/0 group-hover:bg-[#0F766E]/5 transition-colors duration-500" />
-                        <div className="absolute top-4 right-4 px-4 py-2 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2">
+                        <div className="absolute top-4 right-4 px-4 py-2 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-white/10">
                           {t.gallery.after}
-                          <div className="w-2 h-2 rounded-full bg-white/60" />
-                        </div>
-                        <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                            <ZoomIn className="w-4 h-4 text-white" />
-                          </div>
+                          <div className="w-2 h-2 rounded-full bg-emerald-300" />
                         </div>
                       </div>
                     </div>
@@ -209,45 +207,60 @@ export default function Gallery() {
           </div>
         </ScrollReveal>
 
-        {/* Interactive Slider */}
+        {/* Interactive Before/After Slider */}
         <ScrollReveal>
-          <div className="relative rounded-[2rem] overflow-hidden border border-[#B08D4F]/[0.08] dark:border-white/[0.06]">
+          <div className="relative rounded-[2rem] overflow-hidden border border-[#B08D4F]/[0.08] dark:border-white/[0.06] shadow-2xl shadow-black/10">
             <div
               ref={sliderRef}
               className="relative aspect-[21/9] cursor-col-resize select-none"
               onMouseMove={(e) => handleMove(e.clientX)}
               onTouchMove={(e) => handleMove(e.touches[0].clientX)}
+              onMouseEnter={() => setSliderHover(true)}
+              onMouseLeave={() => setSliderHover(false)}
             >
               <div className="absolute inset-0">
                 <Image
-                  src="https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1600&q=90&auto=format&fit=crop"
-                  alt="Before"
+                  src="https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1600&q=95&auto=format&fit=crop"
+                  alt="Before treatment"
                   fill
                   className="object-cover saturate-[0.5] brightness-[0.7] sepia-[0.2]"
                   sizes="100vw"
+                  priority
                 />
               </div>
-              <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}>
+              <div
+                className="absolute inset-0"
+                style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}
+              >
                 <Image
-                  src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1600&q=90&auto=format&fit=crop"
-                  alt="After"
+                  src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1600&q=95&auto=format&fit=crop"
+                  alt="After treatment"
                   fill
                   className="object-cover saturate-[1.2] brightness-[1.15] contrast-[1.05]"
                   sizes="100vw"
+                  priority
                 />
               </div>
-              <div className="absolute top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#C9A96E] via-white to-[#C9A96E] z-10" style={{ left: `${sliderPos}%` }}>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform">
-                  <ArrowLeftRight className="w-5 h-5 text-[#0A0A0F]" />
+              <div
+                className="absolute top-0 bottom-0 w-[3px] z-10 transition-all duration-150"
+                style={{ left: `${sliderPos}%` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-[#C9A96E] via-white to-[#C9A96E]" />
+                <div
+                  className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white shadow-2xl flex items-center justify-center transition-all duration-300 ${
+                    sliderHover ? "scale-110 shadow-[#C9A96E]/30" : ""
+                  }`}
+                >
+                  <ArrowLeftRight className={`w-5 h-5 text-[#0A0A0F] transition-transform duration-300 ${sliderHover ? "rotate-180" : ""}`} />
                 </div>
               </div>
-              <div className="absolute bottom-6 left-6 px-5 py-2.5 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-white/40" />
+              <div className="absolute bottom-6 left-6 px-5 py-2.5 rounded-xl bg-black/60 backdrop-blur-sm text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-white/10">
+                <div className="w-2 h-2 rounded-full bg-red-400" />
                 {t.gallery.before}
               </div>
-              <div className="absolute bottom-6 right-6 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2">
+              <div className="absolute bottom-6 right-6 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white text-[12px] font-bold tracking-wider uppercase flex items-center gap-2 border border-white/10">
                 {t.gallery.after}
-                <div className="w-2 h-2 rounded-full bg-white/60" />
+                <div className="w-2 h-2 rounded-full bg-emerald-300" />
               </div>
             </div>
           </div>
