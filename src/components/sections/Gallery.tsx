@@ -20,14 +20,14 @@ const cases = [
   },
   {
     beforeImg: "https://images.unsplash.com/photo-1679741919483-acf704e00495?w=800&q=90&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=800&q=90&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1607960402012-7041136af2c0?w=800&q=90&auto=format&fit=crop",
     title: "Dental Implant Restoration",
     subtitle: "Natural-looking implants replacing missing teeth",
     category: "Implants",
     duration: "3 Months"
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1679911522750-aeedd9c88550?w=800&q=90&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1663182245833-7dd667277043?w=800&q=90&auto=format&fit=crop",
     afterImg: "https://images.unsplash.com/photo-1567516364473-233c4b6fcfbe?w=800&q=90&auto=format&fit=crop",
     title: "Professional Teeth Whitening",
     subtitle: "8 shades brighter in a single session",
@@ -35,7 +35,7 @@ const cases = [
     duration: "1 Hour"
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=90&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1636307739505-413f99c224e0?w=800&q=90&auto=format&fit=crop",
     afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=800&q=90&auto=format&fit=crop",
     title: "Orthodontic Alignment",
     subtitle: "Perfect teeth alignment with clear aligners",
