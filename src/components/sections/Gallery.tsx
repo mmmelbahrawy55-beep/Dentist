@@ -20,12 +20,12 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1679911522750-aeedd9c88550?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=1100&q=95&auto=format&fit=crop",
-    title: "Porcelain Veneers",
-    subtitle: "Custom porcelain shells for a flawless, natural smile",
-    category: "Veneers",
-    duration: "10 Days",
+    beforeImg: "https://images.unsplash.com/photo-1660732205502-2c4dcd3af74d?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1664529842504-5743d286ec1b?w=1100&q=95&auto=format&fit=crop",
+    title: "Full Mouth Reconstruction",
+    subtitle: "Complete restoration of damaged and decayed teeth",
+    category: "Reconstruction",
+    duration: "6 Months",
     rating: 5,
   },
   {
@@ -38,12 +38,12 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1664529845836-433c172142ca?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1776400985210-92f654712d30?w=1100&q=95&auto=format&fit=crop",
-    title: "Full Mouth Reconstruction",
-    subtitle: "Complete transformation with implants and veneers",
-    category: "Reconstruction",
-    duration: "6 Months",
+    beforeImg: "https://images.unsplash.com/photo-1660300110558-392c91835aa5?w=1100&q=95&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=1100&q=95&auto=format&fit=crop",
+    title: "Porcelain Veneers",
+    subtitle: "Custom porcelain shells for a flawless, natural smile",
+    category: "Veneers",
+    duration: "10 Days",
     rating: 5,
   },
 ];
@@ -220,7 +220,7 @@ export default function Gallery() {
             >
               <div className="absolute inset-0">
                 <Image
-                  src="https://images.unsplash.com/photo-1679741919483-acf704e00495?w=1800&q=95&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1660732205502-2c4dcd3af74d?w=1800&q=95&auto=format&fit=crop"
                   alt="Before treatment"
                   fill
                   className="object-cover"
@@ -233,7 +233,7 @@ export default function Gallery() {
                 style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1800&q=95&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1664529842504-5743d286ec1b?w=1800&q=95&auto=format&fit=crop"
                   alt="After treatment"
                   fill
                   className="object-cover"
