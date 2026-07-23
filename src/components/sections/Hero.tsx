@@ -33,8 +33,8 @@ export default function Hero() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7]/85 via-[#FDFBF7]/50 to-[#FDFBF7]/20 dark:from-[#0A0A0F]/85 dark:via-[#0A0A0F]/50 dark:to-[#0A0A0F]/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/70 via-transparent to-[#FDFBF7]/20 dark:from-[#0A0A0F]/70 dark:via-transparent dark:to-[#0A0A0F]/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7]/90 via-[#FDFBF7]/55 to-[#FDFBF7]/15 dark:from-[#0A0A0F]/90 dark:via-[#0A0A0F]/55 dark:to-[#0A0A0F]/15 max-md:from-[#FDFBF7]/95 max-md:via-[#FDFBF7]/70 max-md:to-[#FDFBF7]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/60 via-transparent to-[#FDFBF7]/10 dark:from-[#0A0A0F]/60 dark:via-transparent dark:to-[#0A0A0F]/10" />
       </motion.div>
 
       {/* Particle field */}
@@ -58,12 +58,12 @@ export default function Hero() {
         />
       </div>
 
-      <motion.div style={{ y: contentY, opacity, scale }} className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-8 pt-32 pb-20 w-full">
+      <motion.div style={{ y: contentY, opacity, scale }} className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-8 pt-28 pb-16 max-md:pt-24 max-md:pb-10 w-full">
         <div className="max-w-3xl">
           {/* Badge */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-            <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/80 dark:bg-white/[0.08] backdrop-blur-md border border-[#B08D4F]/15 dark:border-white/[0.1] text-[#1A1A2E]/80 dark:text-white/80 text-[12px] font-semibold tracking-[2px] uppercase shadow-lg shadow-[#B08D4F]/5 dark:shadow-none">
-              <span className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-[#C9A96E] text-[#C9A96E]" />)}</span>
+            <span className="inline-flex items-center gap-2 sm:gap-3 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/80 dark:bg-white/[0.08] backdrop-blur-md border border-[#B08D4F]/15 dark:border-white/[0.1] text-[#1A1A2E]/80 dark:text-white/80 text-[10px] sm:text-[12px] font-semibold tracking-[1.5px] sm:tracking-[2px] uppercase shadow-lg shadow-[#B08D4F]/5 dark:shadow-none">
+              <span className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-[#C9A96E] text-[#C9A96E]" />)}</span>
               <span className="w-px h-3.5 bg-[#B08D4F]/20 dark:bg-white/20" />
               {t.hero.badge}
               <Sparkles className="w-3 h-3 text-[#B08D4F] dark:text-[#C9A96E]" />
@@ -71,12 +71,12 @@ export default function Hero() {
           </motion.div>
 
           {/* Heading - massive dramatic typography */}
-          <div className="mt-8 mb-7">
+          <div className="mt-6 sm:mt-8 mb-5 sm:mb-7">
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(3rem,8vw,6rem)] font-bold font-[family-name:var(--font-heading)] text-[#1A1A2E] dark:text-white leading-[1.02] tracking-[-0.04em]"
+              className="text-[clamp(2.4rem,8vw,6rem)] font-bold font-[family-name:var(--font-heading)] text-[#1A1A2E] dark:text-white leading-[1.05] tracking-[-0.03em]"
             >
               {t.hero.title1}
             </motion.h1>
@@ -84,7 +84,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(3rem,8vw,6rem)] font-bold font-[family-name:var(--font-heading)] leading-[1.02] tracking-[-0.04em] bg-gradient-to-r from-[#B08D4F] via-[#C9A96E] to-[#B08D4F] dark:from-[#C9A96E] dark:via-[#E8D5A8] dark:to-[#C9A96E] bg-clip-text text-transparent"
+              className="text-[clamp(2.4rem,8vw,6rem)] font-bold font-[family-name:var(--font-heading)] leading-[1.05] tracking-[-0.03em] bg-gradient-to-r from-[#B08D4F] via-[#C9A96E] to-[#B08D4F] dark:from-[#C9A96E] dark:via-[#E8D5A8] dark:to-[#C9A96E] bg-clip-text text-transparent"
             >
               {t.hero.title2}
             </motion.h1>
@@ -95,7 +95,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="text-[18px] text-[#555] dark:text-white/60 mb-12 max-w-lg leading-relaxed"
+            className="text-[15px] sm:text-[18px] text-[#555] dark:text-white/60 mb-8 sm:mb-12 max-w-lg leading-relaxed"
           >
             {t.hero.subtitle}
           </motion.p>
@@ -105,10 +105,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1 }}
-            className="flex flex-col sm:flex-row gap-4 mb-16"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12 sm:mb-16"
           >
             <MagneticButton>
-              <a href="#appointment" className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#C9A96E] to-[#E8D5A8] text-[#0A0A0F] font-bold font-[family-name:var(--font-heading)] py-5 px-10 rounded-full text-[15px] transition-all duration-500 hover:shadow-[0_0_50px_rgba(201,169,110,0.35)] overflow-hidden">
+              <a href="#appointment" className="group relative flex items-center justify-center gap-3 bg-gradient-to-r from-[#C9A96E] to-[#E8D5A8] text-[#0A0A0F] font-bold font-[family-name:var(--font-heading)] py-4 sm:py-5 px-8 sm:px-10 rounded-full text-[14px] sm:text-[15px] w-full sm:w-auto transition-all duration-500 hover:shadow-[0_0_50px_rgba(201,169,110,0.35)] overflow-hidden">
                 <span className="relative z-10">{t.hero.bookBtn}</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 relative z-10" />
                 {/* Shimmer effect */}
@@ -120,7 +120,7 @@ export default function Hero() {
               </a>
             </MagneticButton>
             <MagneticButton>
-              <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 bg-white/80 dark:bg-white/[0.08] backdrop-blur-md border border-[#B08D4F]/15 dark:border-white/[0.15] text-[#1A1A2E] dark:text-white font-bold font-[family-name:var(--font-heading)] py-5 px-10 rounded-full text-[15px] transition-all duration-500 hover:bg-white dark:hover:bg-white/[0.15] hover:border-[#B08D4F]/30 dark:hover:border-white/[0.25]">
+              <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center gap-3 bg-white/80 dark:bg-white/[0.08] backdrop-blur-md border border-[#B08D4F]/15 dark:border-white/[0.15] text-[#1A1A2E] dark:text-white font-bold font-[family-name:var(--font-heading)] py-4 sm:py-5 px-8 sm:px-10 rounded-full text-[14px] sm:text-[15px] w-full sm:w-auto transition-all duration-500 hover:bg-white dark:hover:bg-white/[0.15] hover:border-[#B08D4F]/30 dark:hover:border-white/[0.25]">
                 <MessageCircle className="w-4 h-4" />
                 {t.hero.whatsappBtn}
               </a>
@@ -159,14 +159,14 @@ export default function Hero() {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-24 lg:mt-32"
+          className="mt-16 sm:mt-24 lg:mt-32"
         >
           <div className="relative">
             {/* Glow behind stats */}
             <div className="absolute -inset-4 bg-gradient-to-r from-[#B08D4F]/5 via-[#0F766E]/5 to-[#B08D4F]/5 dark:from-[#C9A96E]/10 dark:via-[#0F766E]/10 dark:to-[#C9A96E]/10 rounded-[2.5rem] blur-2xl" />
 
-            <div className="relative bg-white/80 dark:bg-white/[0.06] backdrop-blur-xl border border-[#B08D4F]/10 dark:border-white/[0.08] rounded-3xl p-8 md:p-10 gold-glow">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="relative bg-white/80 dark:bg-white/[0.06] backdrop-blur-xl border border-[#B08D4F]/10 dark:border-white/[0.08] rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 gold-glow">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
                 {stats.map((stat, i) => (
                   <motion.div
                     key={stat.label}
@@ -191,7 +191,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:block"
       >
         <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-3">
           <span className="text-[#555] dark:text-white/30 text-[10px] tracking-[3px] uppercase">{t.hero.scroll}</span>
