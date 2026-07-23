@@ -33,8 +33,8 @@ export default function Hero() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7]/98 via-[#FDFBF7]/75 to-[#FDFBF7]/50 dark:from-[#0A0A0F]/98 dark:via-[#0A0A0F]/75 dark:to-[#0A0A0F]/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/90 via-[#FDFBF7]/20 to-[#FDFBF7]/40 dark:from-[#0A0A0F]/90 dark:via-transparent dark:to-[#0A0A0F]/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7]/85 via-[#FDFBF7]/50 to-[#FDFBF7]/20 dark:from-[#0A0A0F]/85 dark:via-[#0A0A0F]/50 dark:to-[#0A0A0F]/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/70 via-transparent to-[#FDFBF7]/20 dark:from-[#0A0A0F]/70 dark:via-transparent dark:to-[#0A0A0F]/20" />
       </motion.div>
 
       {/* Particle field */}
