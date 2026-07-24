@@ -252,3 +252,110 @@
   content-visibility: auto;
   contain-intrinsic-size: 500px;
 }
+
+/* Premium hover glow effect */
+.premium-card {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(176,141,79,0.12), 0 8px 24px rgba(0,0,0,0.06);
+}
+.dark .premium-card:hover {
+  box-shadow: 0 20px 60px rgba(201,169,110,0.15), 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* Gold shimmer border animation */
+@keyframes border-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gold-border-shimmer {
+  position: relative;
+}
+.gold-border-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, #B08D4F, #E8D5A8, #C9A96E, #B08D4F, #E8D5A8);
+  background-size: 300% 100%;
+  animation: border-shimmer 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.gold-border-shimmer:hover::after {
+  opacity: 1;
+}
+
+/* Premium floating animation */
+@keyframes premium-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(1deg); }
+  75% { transform: translateY(4px) rotate(-1deg); }
+}
+.animate-premium-float {
+  animation: premium-float 6s ease-in-out infinite;
+}
+
+/* Premium pulse ring */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  50% { transform: scale(1); opacity: 0.3; }
+  100% { transform: scale(0.8); opacity: 0.5; }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 3s ease-in-out infinite;
+}
+
+/* Luxury gradient text animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Premium button hover effect */
+.premium-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.premium-btn:hover::before {
+  transform: translateX(100%);
+}
+.premium-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(176,141,79,0.25);
+}
+
+/* Mobile premium adjustments */
+@media (max-width: 640px) {
+  .premium-card:hover {
+    transform: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
+  .dark .premium-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+}

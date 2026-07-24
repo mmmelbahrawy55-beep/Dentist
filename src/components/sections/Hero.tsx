@@ -108,7 +108,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12 sm:mb-16"
           >
             <MagneticButton>
-              <a href="#appointment" className="group relative flex items-center justify-center gap-3 bg-gradient-to-r from-[#C9A96E] to-[#E8D5A8] text-[#0A0A0F] font-bold font-[family-name:var(--font-heading)] py-4 sm:py-5 px-8 sm:px-10 rounded-full text-[14px] sm:text-[15px] w-full sm:w-auto transition-all duration-500 hover:shadow-[0_0_50px_rgba(201,169,110,0.35)] overflow-hidden">
+              <a href="#appointment" className="group relative flex items-center justify-center gap-3 bg-gradient-to-r from-[#C9A96E] to-[#E8D5A8] text-[#0A0A0F] font-bold font-[family-name:var(--font-heading)] py-4 sm:py-5 px-8 sm:px-10 rounded-full text-[14px] sm:text-[15px] w-full sm:w-auto transition-all duration-500 hover:shadow-[0_0_50px_rgba(201,169,110,0.35)] overflow-hidden premium-btn">
                 <span className="relative z-10">{t.hero.bookBtn}</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 relative z-10" />
                 {/* Shimmer effect */}
@@ -120,7 +120,7 @@ export default function Hero() {
               </a>
             </MagneticButton>
             <MagneticButton>
-              <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center gap-3 bg-white/80 dark:bg-white/[0.08] backdrop-blur-md border border-[#B08D4F]/15 dark:border-white/[0.15] text-[#1A1A2E] dark:text-white font-bold font-[family-name:var(--font-heading)] py-4 sm:py-5 px-8 sm:px-10 rounded-full text-[14px] sm:text-[15px] w-full sm:w-auto transition-all duration-500 hover:bg-white dark:hover:bg-white/[0.15] hover:border-[#B08D4F]/30 dark:hover:border-white/[0.25]">
+              <a href="https://wa.me/15550123456" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center gap-3 bg-white/80 dark:bg-white/[0.08] backdrop-blur-md border border-[#B08D4F]/15 dark:border-white/[0.15] text-[#1A1A2E] dark:text-white font-bold font-[family-name:var(--font-heading)] py-4 sm:py-5 px-8 sm:px-10 rounded-full text-[14px] sm:text-[15px] w-full sm:w-auto transition-all duration-500 hover:bg-white dark:hover:bg-white/[0.15] hover:border-[#B08D4F]/30 dark:hover:border-white/[0.25] hover:shadow-[0_0_30px_rgba(15,118,110,0.15)]">
                 <MessageCircle className="w-4 h-4" />
                 {t.hero.whatsappBtn}
               </a>
@@ -165,7 +165,7 @@ export default function Hero() {
             {/* Glow behind stats */}
             <div className="absolute -inset-4 bg-gradient-to-r from-[#B08D4F]/5 via-[#0F766E]/5 to-[#B08D4F]/5 dark:from-[#C9A96E]/10 dark:via-[#0F766E]/10 dark:to-[#C9A96E]/10 rounded-[2.5rem] blur-2xl" />
 
-            <div className="relative bg-white/80 dark:bg-white/[0.06] backdrop-blur-xl border border-[#B08D4F]/10 dark:border-white/[0.08] rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 gold-glow">
+            <div className="relative bg-white/80 dark:bg-white/[0.06] backdrop-blur-xl border border-[#B08D4F]/10 dark:border-white/[0.08] rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 gold-glow gold-border-shimmer">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
                 {stats.map((stat, i) => (
                   <motion.div
@@ -184,6 +184,32 @@ export default function Hero() {
             </div>
           </div>
         </motion.div>
+      </motion.div>
+
+      {/* Premium floating dental image on mobile */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        className="sm:hidden absolute bottom-24 left-1/2 -translate-x-1/2 z-10"
+      >
+        <div className="relative">
+          <div className="absolute -inset-3 bg-gradient-to-r from-[#C9A96E]/20 to-[#E8D5A8]/20 rounded-full blur-xl animate-pulse-ring" />
+          <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-white/50 shadow-xl shadow-[#C9A96E]/10">
+            <Image
+              src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=400&q=90&auto=format&fit=crop"
+              alt="Perfect smile"
+              width={128}
+              height={128}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute -inset-4 border border-dashed border-[#C9A96E]/20 rounded-full"
+          />
+        </div>
       </motion.div>
 
       {/* Scroll indicator */}
