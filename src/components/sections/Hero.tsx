@@ -20,10 +20,10 @@ export default function Hero() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   return (
-    <section ref={containerRef} id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#1A1A2E] via-[#1A1A2E] to-[#0F1520]">
-      {/* Subtle background image with dark overlay */}
+    <section ref={containerRef} id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0A0F]">
+      {/* Background image with Ken Burns and gradient overlays */}
       <motion.div style={{ y: bgY }} className="absolute inset-0">
-        <div className="absolute inset-0 animate-kenburns opacity-[0.12]">
+        <div className="absolute inset-0 animate-kenburns">
           <Image
             src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1920&q=90&auto=format&fit=crop"
             alt="Dental clinic"
@@ -33,9 +33,10 @@ export default function Hero() {
             sizes="100vw"
           />
         </div>
-        {/* Gold gradient orb */}
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-[#C9A96E]/[0.06] rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#1A1A2E] to-transparent" />
+        <div className="absolute inset-0 bg-[#0A0A0F]/[0.82]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#C9A96E]/[0.08] via-transparent to-emerald-500/[0.04]" />
+        <div className="absolute top-0 right-0 w-[50vw] h-[50vh] bg-[#C9A96E]/[0.06] rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-gradient-to-t from-[#0A0A0F] to-transparent" />
       </motion.div>
 
       {/* Particle field */}
