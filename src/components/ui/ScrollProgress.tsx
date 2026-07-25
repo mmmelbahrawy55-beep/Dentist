@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/components/ui/LanguageProvider";
 
@@ -20,28 +20,35 @@ export default function ScrollProgress() {
   const [activeSection, setActiveSection] = useState("home");
   const [progress, setProgress] = useState(0);
   const { lang } = useLang();
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        setProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
 
-      // Find active section
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i].id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= window.innerHeight / 3) {
-            setActiveSection(sections[i].id);
-            break;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sections[i].id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 3) {
+              setActiveSection(sections[i].id);
+              break;
+            }
           }
         }
-      }
+        rafRef.current = 0;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return (
@@ -54,7 +61,6 @@ export default function ScrollProgress() {
             href={`#${section.id}`}
             className="group flex items-center gap-3"
           >
-            {/* Label - appears on hover */}
             <span className={`text-[11px] font-medium tracking-wide transition-all duration-300 ${
               isActive
                 ? "text-[#C9A96E] opacity-100 translate-x-0"
@@ -63,7 +69,6 @@ export default function ScrollProgress() {
               {lang === "ar" ? section.labelAr : section.label}
             </span>
 
-            {/* Dot */}
             <div className="relative">
               <motion.div
                 animate={{

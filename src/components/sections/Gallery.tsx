@@ -11,8 +11,8 @@ import { useLang } from "@/components/ui/LanguageProvider";
 
 const cases = [
   {
-    beforeImg: "https://images.unsplash.com/photo-1679741919483-acf704e00495?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1100&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1679741919483-acf704e00495?w=1100&q=85&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=1100&q=85&auto=format&fit=crop",
     title: "Teeth Whitening Transformation",
     subtitle: "Professional whitening for a brighter, more confident smile",
     category: "Whitening",
@@ -20,8 +20,8 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1660732205502-2c4dcd3af74d?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1664529842504-5743d286ec1b?w=1100&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1660732205502-2c4dcd3af74d?w=1100&q=85&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1664529842504-5743d286ec1b?w=1100&q=85&auto=format&fit=crop",
     title: "Full Mouth Reconstruction",
     subtitle: "Complete restoration of damaged and decayed teeth",
     category: "Reconstruction",
@@ -29,8 +29,8 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=1100&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1663182245833-7dd667277043?w=1100&q=85&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=1100&q=85&auto=format&fit=crop",
     title: "Porcelain Veneers",
     subtitle: "Custom porcelain shells for a flawless, natural smile",
     category: "Veneers",
@@ -38,8 +38,8 @@ const cases = [
     rating: 5,
   },
   {
-    beforeImg: "https://images.unsplash.com/photo-1679136293900-05b227099221?w=1100&q=95&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=1100&q=95&auto=format&fit=crop",
+    beforeImg: "https://images.unsplash.com/photo-1679136293900-05b227099221?w=1100&q=85&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1654373535457-383a0a4d00f9?w=1100&q=85&auto=format&fit=crop",
     title: "Smile Makeover",
     subtitle: "Complete cosmetic transformation with veneers and whitening",
     category: "Cosmetic",
@@ -220,7 +220,7 @@ export default function Gallery() {
             >
               <div className="absolute inset-0">
                 <Image
-                  src="https://images.unsplash.com/photo-1660732205502-2c4dcd3af74d?w=1800&q=95&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1660732205502-2c4dcd3af74d?w=1800&q=85&auto=format&fit=crop"
                   alt="Before treatment"
                   fill
                   className="object-cover"
@@ -233,7 +233,7 @@ export default function Gallery() {
                 style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1664529842504-5743d286ec1b?w=1800&q=95&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1664529842504-5743d286ec1b?w=1800&q=85&auto=format&fit=crop"
                   alt="After treatment"
                   fill
                   className="object-cover"

@@ -57,10 +57,7 @@ export default function ParticleField() {
     }
 
     const animate = () => {
-      if (!visible) {
-        animationRef.current = requestAnimationFrame(animate);
-        return;
-      }
+      if (!visible) return;
 
       frameCount++;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -98,7 +95,6 @@ export default function ParticleField() {
         }
       }
 
-      // Draw connections every 2nd frame
       if (frameCount % 2 === 0 && particles.length <= 35) {
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
@@ -131,12 +127,17 @@ export default function ParticleField() {
     };
   }, [config, visible]);
 
-  // Stop animation when not in viewport
   useEffect(() => {
     const el = canvasRef.current?.parentElement;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
+      ([entry]) => {
+        const isVisible = entry.isIntersecting;
+        setVisible(isVisible);
+        if (isVisible) {
+          animationRef.current = requestAnimationFrame(() => {});
+        }
+      },
       { threshold: 0 }
     );
     obs.observe(el);
@@ -149,7 +150,7 @@ export default function ParticleField() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ opacity: 0.6, willChange: "transform" }}
+      style={{ opacity: 0.6 }}
     />
   );
 }

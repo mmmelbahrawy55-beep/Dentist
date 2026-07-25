@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CursorRipple() {
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [clicking, setClicking] = useState(false);
+  const hoveringRef = useRef(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -31,13 +32,17 @@ export default function CursorRipple() {
     const isMobile = window.matchMedia("(pointer: coarse)").matches;
     if (isMobile) return;
 
-    let hoverEls = new Set<Element>();
-    let ticking = false;
-
     const onMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
       if (!visible) setVisible(true);
+
+      const target = e.target as HTMLElement;
+      const isHovering = !!target.closest("a, button, [role='button'], input, select, textarea, [data-cursor-hover]");
+      if (isHovering !== hoveringRef.current) {
+        hoveringRef.current = isHovering;
+        setHovering(isHovering);
+      }
     };
 
     const onDown = (e: MouseEvent) => {
@@ -46,31 +51,14 @@ export default function CursorRipple() {
     };
     const onUp = () => setClicking(false);
 
-    const checkHover = () => {
-      const hovered = document.querySelectorAll(":hover");
-      const isHovering = Array.from(hovered).some(
-        (el) => el.matches("a, button, [role='button'], input, select, textarea, [data-cursor-hover]")
-      );
-      setHovering(isHovering);
-    };
-
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup", onUp);
-
-    // Lightweight hover check
-    const observer = new MutationObserver(checkHover);
-    observer.observe(document.body, { childList: true, subtree: true });
-    document.addEventListener("mouseover", checkHover);
-    document.addEventListener("mouseout", checkHover);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
-      document.removeEventListener("mouseover", checkHover);
-      document.removeEventListener("mouseout", checkHover);
-      observer.disconnect();
     };
   }, [cursorX, cursorY, visible, addRipple]);
 

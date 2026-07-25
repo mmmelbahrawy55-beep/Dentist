@@ -13,28 +13,28 @@ const doctorsData = [
     specialty: "Cosmetic Dentistry",
     experience: "15+ Years",
     qualifications: ["DDS - New York University", "Fellow AACD", "Smile Design Expert"],
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=95&auto=format&fit=crop&crop=face"
+    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=85&auto=format&fit=crop&crop=face"
   },
   {
     name: "Dr. Sarah Mitchell",
     specialty: "Orthodontics",
     experience: "12+ Years",
     qualifications: ["DMD - Harvard School", "Invisalign Diamond", "Board Certified"],
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=800&q=95&auto=format&fit=crop&crop=face"
+    image: "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=800&q=85&auto=format&fit=crop&crop=face"
   },
   {
     name: "Dr. Michael Chen",
     specialty: "Dental Implants",
     experience: "18+ Years",
     qualifications: ["DDS - Columbia", "ICOI Fellow", "Implant Surgeon"],
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=95&auto=format&fit=crop&crop=face"
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=85&auto=format&fit=crop&crop=face"
   },
   {
     name: "Dr. Emily Roberts",
     specialty: "Endodontics",
     experience: "10+ Years",
     qualifications: ["DMD - UPenn", "Root Canal Specialist", "Pain Management Expert"],
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=95&auto=format&fit=crop&crop=face"
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=85&auto=format&fit=crop&crop=face"
   },
 ];
 

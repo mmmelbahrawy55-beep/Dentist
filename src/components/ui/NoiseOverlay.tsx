@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function NoiseOverlay() {
+  const ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const canvas = document.createElement("canvas");
     canvas.width = 256;
@@ -20,15 +22,14 @@ export default function NoiseOverlay() {
     }
     ctx.putImageData(imageData, 0, 0);
 
-    const el = document.getElementById("noise-overlay");
-    if (el) {
-      el.style.backgroundImage = `url(${canvas.toDataURL()})`;
+    if (ref.current) {
+      ref.current.style.backgroundImage = `url(${canvas.toDataURL()})`;
     }
   }, []);
 
   return (
     <div
-      id="noise-overlay"
+      ref={ref}
       className="fixed inset-0 z-[90] pointer-events-none opacity-[0.35]"
       style={{ backgroundRepeat: "repeat" }}
     />
