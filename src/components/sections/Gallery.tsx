@@ -53,6 +53,7 @@ export default function Gallery() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [sliderPos, setSliderPos] = useState(50);
   const [sliderHover, setSliderHover] = useState(false);
+  const [dragging, setDragging] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleMove = useCallback((clientX: number) => {
@@ -213,10 +214,13 @@ export default function Gallery() {
             <div
               ref={sliderRef}
               className="relative aspect-[21/9] cursor-col-resize select-none"
-              onMouseMove={(e) => handleMove(e.clientX)}
+              onMouseDown={(e) => { setDragging(true); handleMove(e.clientX); }}
+              onMouseMove={(e) => dragging && handleMove(e.clientX)}
+              onTouchStart={(e) => { setDragging(true); handleMove(e.touches[0].clientX); }}
               onTouchMove={(e) => handleMove(e.touches[0].clientX)}
               onMouseEnter={() => setSliderHover(true)}
-              onMouseLeave={() => setSliderHover(false)}
+              onMouseLeave={() => { setSliderHover(false); setDragging(false); }}
+              onTouchEnd={() => setDragging(false)}
             >
               <div className="absolute inset-0">
                 <Image

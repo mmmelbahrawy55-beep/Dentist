@@ -172,7 +172,7 @@ export default function Hero() {
                   className="absolute top-5 right-5 flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/[0.1] text-white text-[12px] font-semibold"
                 >
                   <Award className="w-3.5 h-3.5 text-[#C9A96E]" />
-                  2024
+                  {new Date().getFullYear()}
                 </motion.div>
 
                 {/* Bottom label */}
@@ -229,7 +229,7 @@ export default function Hero() {
                 {/* Top badge */}
                 <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/[0.1] text-white text-[11px] font-semibold">
                   <Award className="w-3 h-3 text-[#C9A96E]" />
-                  2024
+                  {new Date().getFullYear()}
                 </div>
                 {/* Bottom label */}
                 <div className="absolute bottom-4 left-4 right-4">

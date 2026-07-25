@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Award, Shield, Star, Heart, Sparkles, Syringe } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -19,6 +20,9 @@ const awards = [
 const duplicated = [...awards, ...awards];
 
 export default function AwardsMarquee() {
+  const [hovered, setHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
     <section className="relative py-16 md:py-20 overflow-hidden bg-[#F5F0EA]/50 dark:bg-white/[0.02]">
       <div className="max-w-[1400px] mx-auto px-6 mb-10">
@@ -35,14 +39,20 @@ export default function AwardsMarquee() {
         </ScrollReveal>
       </div>
 
-      <div className="relative">
+      <div
+        ref={containerRef}
+        className="relative"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#F5F0EA]/80 dark:from-[#0A0A0F]/80 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#F5F0EA]/80 dark:from-[#0A0A0F]/80 to-transparent z-10 pointer-events-none" />
 
         <motion.div
           className="flex gap-8"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+          transition={{ duration: 40, ease: "linear", repeat: Infinity, ...(hovered ? { duration: 0 } : {}) }}
+          style={{ willChange: "transform" }}
         >
           {duplicated.map((award, i) => {
             const Icon = award.icon;

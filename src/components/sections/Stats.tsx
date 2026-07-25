@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Users, Clock, Award, Activity } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -16,20 +16,26 @@ const statsData = [
 function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const duration = 2000;
+    const startTime = performance.now();
+    const easeOutExpo = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      setCount(Math.floor(easeOutExpo(progress) * end));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [inView, end]);
 
   return (
-    <span ref={ref}>
-      {inView ? (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="tabular-nums"
-        >
-          {end.toLocaleString()}{suffix}
-        </motion.span>
-      ) : (
-        "0"
-      )}
+    <span ref={ref} className="tabular-nums">
+      {count.toLocaleString()}{suffix}
     </span>
   );
 }
