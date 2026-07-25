@@ -25,7 +25,7 @@ export default function Hero() {
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0 animate-kenburns">
           <Image
-            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=90&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&q=90&auto=format&fit=crop"
             alt="Premium dental clinic interior"
             fill
             className="object-cover"
@@ -155,8 +155,8 @@ export default function Hero() {
               {/* Main card */}
               <div className="relative w-[420px] h-[520px] rounded-[2rem] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/40">
                 <Image
-                  src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=90&auto=format&fit=crop"
-                  alt="Dental treatment"
+                  src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=90&auto=format&fit=crop"
+                  alt="Modern dental clinic"
                   fill
                   className="object-cover"
                   priority
@@ -218,8 +218,8 @@ export default function Hero() {
             <div className="relative mx-auto w-full max-w-[360px]">
               <div className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/40">
                 <Image
-                  src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=90&auto=format&fit=crop"
-                  alt="Dental treatment"
+                  src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=90&auto=format&fit=crop"
+                  alt="Modern dental clinic"
                   fill
                   className="object-cover"
                   priority
