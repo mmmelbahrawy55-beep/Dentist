@@ -25,7 +25,7 @@ export default function Hero() {
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0 animate-kenburns">
           <Image
-            src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1920&q=90&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=90&auto=format&fit=crop"
             alt="Premium dental clinic interior"
             fill
             className="object-cover"
