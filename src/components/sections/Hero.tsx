@@ -155,8 +155,8 @@ export default function Hero() {
               {/* Main card */}
               <div className="relative w-[420px] h-[520px] rounded-[2rem] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/40">
                 <Image
-                  src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=90&auto=format&fit=crop"
-                  alt="Modern dental clinic"
+                  src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=90&auto=format&fit=crop&crop=face"
+                  alt="Beautiful smile"
                   fill
                   className="object-cover"
                   priority
@@ -218,8 +218,8 @@ export default function Hero() {
             <div className="relative mx-auto w-full max-w-[360px]">
               <div className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/40">
                 <Image
-                  src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=90&auto=format&fit=crop"
-                  alt="Modern dental clinic"
+                  src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=90&auto=format&fit=crop&crop=face"
+                  alt="Beautiful smile"
                   fill
                   className="object-cover"
                   priority
