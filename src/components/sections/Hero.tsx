@@ -25,17 +25,17 @@ export default function Hero() {
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0 animate-kenburns">
           <Image
-            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=90&auto=format&fit=crop"
-            alt="Premium dental clinic interior"
+            src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1920&q=90&auto=format&fit=crop"
+            alt="Beautiful dental smile"
             fill
             className="object-cover"
             priority
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-[#0A0A0F]/[0.78]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#C9A96E]/[0.06] via-transparent to-emerald-500/[0.03]" />
-        <div className="absolute top-0 right-0 w-[50vw] h-[50vh] bg-[#C9A96E]/[0.05] rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-[#0A0A0F]/[0.72]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#C9A96E]/[0.08] via-transparent to-emerald-500/[0.04]" />
+        <div className="absolute top-0 right-0 w-[50vw] h-[50vh] bg-[#C9A96E]/[0.06] rounded-full blur-[100px]" />
         <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-gradient-to-t from-[#0A0A0F] to-transparent" />
       </motion.div>
 
@@ -155,8 +155,8 @@ export default function Hero() {
               {/* Main card */}
               <div className="relative w-[420px] h-[520px] rounded-[2rem] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/40">
                 <Image
-                  src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=90&auto=format&fit=crop&crop=face"
-                  alt="Beautiful smile"
+                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=90&auto=format&fit=crop&crop=face"
+                  alt="Patient with beautiful smile"
                   fill
                   className="object-cover"
                   priority
@@ -218,8 +218,8 @@ export default function Hero() {
             <div className="relative mx-auto w-full max-w-[360px]">
               <div className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/40">
                 <Image
-                  src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=90&auto=format&fit=crop&crop=face"
-                  alt="Beautiful smile"
+                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=90&auto=format&fit=crop&crop=face"
+                  alt="Patient with beautiful smile"
                   fill
                   className="object-cover"
                   priority
