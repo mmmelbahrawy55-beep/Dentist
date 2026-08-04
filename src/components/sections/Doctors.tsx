@@ -20,7 +20,7 @@ const doctorsData = [
     specialty: "Orthodontics",
     experience: "12+ Years",
     qualifications: ["DMD - Harvard School", "Invisalign Diamond", "Board Certified"],
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=800&q=85&auto=format&fit=crop&crop=face"
+    image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&q=85&auto=format&fit=crop&crop=face"
   },
   {
     name: "Dr. Michael Chen",
