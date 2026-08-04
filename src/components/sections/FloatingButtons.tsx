@@ -44,7 +44,7 @@ export function ScrollToTop() {
   useEffect(() => { const h = () => setVisible(window.scrollY > 500); window.addEventListener("scroll", h, { passive: true }); return () => window.removeEventListener("scroll", h); }, []);
   return (
     <AnimatePresence>{visible && (
-      <motion.button initial={{ opacity: 0, scale: 0.8, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: 20 }} whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.92 }} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-[#C9A96E] text-[#0A0A0F] flex items-center justify-center shadow-lg shadow-[#C9A96E]/30 hover:shadow-[#C9A96E]/50 transition-shadow">
+      <motion.button initial={{ opacity: 0, scale: 0.8, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: 20 }} whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.92 }} onClick={() => window.scrollTo({ top: 0, behavior: "auto" })} className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-[#C9A96E] text-[#0A0A0F] flex items-center justify-center shadow-lg shadow-[#C9A96E]/30 hover:shadow-[#C9A96E]/50 transition-shadow">
         <ArrowUp className="w-5 h-5" />
       </motion.button>
     )}</AnimatePresence>
